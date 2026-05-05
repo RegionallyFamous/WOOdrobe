@@ -1,0 +1,56 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "meta": {
+    "title": "WOOdrobe — try the styles",
+    "description": "A fresh WordPress + WooCommerce site with WOOdrobe pre-installed and a sample product. Lands in the Site Editor on the Single Product template so you can swap WOOdrobe variants from the Styles panel.",
+    "author": "Regionally Famous"
+  },
+  "preferredVersions": {
+    "php": "8.2",
+    "wp": "latest"
+  },
+  "phpExtensionBundles": [
+    "kitchen-sink"
+  ],
+  "features": {
+    "networking": true
+  },
+  "landingPage": "/wp-admin/site-editor.php?postType=wp_template&postId=woocommerce%2Fwoocommerce%2F%2Fsingle-product&canvas=edit",
+  "login": true,
+  "steps": [
+    {
+      "step": "installPlugin",
+      "pluginData": {
+        "resource": "wordpress.org/plugins",
+        "slug": "woocommerce"
+      }
+    },
+    {
+      "step": "installPlugin",
+      "pluginData": {
+        "resource": "url",
+        "url": "https://github-proxy.com/proxy/?repo=RegionallyFamous/WOOdrobe&branch=main"
+      }
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php require '/wordpress/wp-load.php'; if ( class_exists( 'WC_Product_Simple' ) && ! get_page_by_path( 'beanie', OBJECT, 'product' ) ) { $p = new WC_Product_Simple(); $p->set_name( 'Beanie' ); $p->set_slug( 'beanie' ); $p->set_status( 'publish' ); $p->set_regular_price( '20' ); $p->set_sale_price( '18' ); $p->set_short_description( 'Soft, hand-knit, ready for a chilly day.' ); $p->set_description( \"Hand-finished in small batches from full-grain merino wool. Each piece develops a unique patina with use \\u2014 softening at the edges and deepening in tone over the first few months of wear.\\n\\nStitched with waxed Tiger thread and finished with a brushed-felt brim. Designed to last decades, not seasons.\" ); $p->set_sku( 'woo-beanie' ); $p->set_weight( '0.2' ); $p->set_dimensions( array( 'length' => '21', 'width' => '11', 'height' => '2' ) ); $p->save(); }"
+    },
+    {
+      "step": "setSiteOptions",
+      "options": {
+        "blogname": "WOOdrobe Demo",
+        "blogdescription": "A wardrobe of block-style outfits for WooCommerce blocks",
+        "woocommerce_store_address": "1 Demo Lane",
+        "woocommerce_store_city": "Demoville",
+        "woocommerce_default_country": "US:CA",
+        "woocommerce_store_postcode": "90210",
+        "woocommerce_currency": "USD",
+        "woocommerce_onboarding_profile": {
+          "completed": true,
+          "skipped": true
+        }
+      }
+    }
+  ]
+}
