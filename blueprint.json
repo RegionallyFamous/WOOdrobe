@@ -19,6 +19,22 @@
   "login": true,
   "steps": [
     {
+      "step": "setSiteOptions",
+      "options": {
+        "blogname": "WOOdrobe Demo",
+        "blogdescription": "A wardrobe of block-style outfits for WooCommerce blocks",
+        "woocommerce_store_address": "1 Demo Lane",
+        "woocommerce_store_city": "Demoville",
+        "woocommerce_default_country": "US:CA",
+        "woocommerce_store_postcode": "90210",
+        "woocommerce_currency": "USD",
+        "woocommerce_onboarding_profile": {
+          "completed": true,
+          "skipped": true
+        }
+      }
+    },
+    {
       "step": "installPlugin",
       "pluginData": {
         "resource": "wordpress.org/plugins",
@@ -34,23 +50,7 @@
     },
     {
       "step": "runPHP",
-      "code": "<?php require '/wordpress/wp-load.php'; if ( class_exists( 'WC_Product_Simple' ) && ! get_page_by_path( 'beanie', OBJECT, 'product' ) ) { $p = new WC_Product_Simple(); $p->set_name( 'Beanie' ); $p->set_slug( 'beanie' ); $p->set_status( 'publish' ); $p->set_regular_price( '20' ); $p->set_sale_price( '18' ); $p->set_short_description( 'Soft, hand-knit, ready for a chilly day.' ); $p->set_description( \"Hand-finished in small batches from full-grain merino wool. Each piece develops a unique patina with use \\u2014 softening at the edges and deepening in tone over the first few months of wear.\\n\\nStitched with waxed Tiger thread and finished with a brushed-felt brim. Designed to last decades, not seasons.\" ); $p->set_sku( 'woo-beanie' ); $p->set_weight( '0.2' ); $p->set_dimensions( array( 'length' => '21', 'width' => '11', 'height' => '2' ) ); $p->save(); }"
-    },
-    {
-      "step": "setSiteOptions",
-      "options": {
-        "blogname": "WOOdrobe Demo",
-        "blogdescription": "A wardrobe of block-style outfits for WooCommerce blocks",
-        "woocommerce_store_address": "1 Demo Lane",
-        "woocommerce_store_city": "Demoville",
-        "woocommerce_default_country": "US:CA",
-        "woocommerce_store_postcode": "90210",
-        "woocommerce_currency": "USD",
-        "woocommerce_onboarding_profile": {
-          "completed": true,
-          "skipped": true
-        }
-      }
+      "code": "<?php\nrequire_once '/wordpress/wp-load.php';\n\nif ( ! class_exists( 'WooCommerce' ) ) {\n    return;\n}\n\n$existing = get_page_by_path( 'beanie', OBJECT, 'product' );\nif ( $existing instanceof WP_Post ) {\n    return;\n}\n\n$post_id = wp_insert_post( array(\n    'post_title'   => 'Beanie',\n    'post_name'    => 'beanie',\n    'post_status'  => 'publish',\n    'post_type'    => 'product',\n    'post_content' => 'Hand-finished in small batches from full-grain merino wool. Each piece develops a unique patina with use — softening at the edges and deepening in tone over the first few months of wear.\n\nStitched with waxed Tiger thread and finished with a brushed-felt brim. Designed to last decades, not seasons.',\n    'post_excerpt' => 'Soft, hand-knit, ready for a chilly day.',\n) );\n\nif ( ! $post_id || is_wp_error( $post_id ) ) {\n    return;\n}\n\nwp_set_object_terms( $post_id, 'simple', 'product_type' );\nupdate_post_meta( $post_id, '_sku',           'woo-beanie' );\nupdate_post_meta( $post_id, '_regular_price', '20' );\nupdate_post_meta( $post_id, '_sale_price',    '18' );\nupdate_post_meta( $post_id, '_price',         '18' );\nupdate_post_meta( $post_id, '_stock_status',  'instock' );\nupdate_post_meta( $post_id, '_visibility',    'visible' );\nupdate_post_meta( $post_id, '_weight',        '0.2' );\nupdate_post_meta( $post_id, '_length',        '21' );\nupdate_post_meta( $post_id, '_width',         '11' );\nupdate_post_meta( $post_id, '_height',        '2' );\nupdate_post_meta( $post_id, '_manage_stock',  'no' );\nupdate_post_meta( $post_id, '_virtual',       'no' );\nupdate_post_meta( $post_id, '_downloadable',  'no' );\nupdate_post_meta( $post_id, '_featured',      'no' );\n"
     }
   ]
 }
