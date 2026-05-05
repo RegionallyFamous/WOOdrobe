@@ -1,0 +1,1324 @@
+/**
+ * WOOdrobe — block styles for WooCommerce blocks.
+ *
+ * Sections in this file:
+ *   1. Shared design tokens + motion tokens   (cross-block)
+ *   2. Resets                                 (per-block, scoped to the block wrapper)
+ *   3. Global micro-interactions              (per-block: panel reveal, on-load stagger, focus, motion-reduce)
+ *   4. BLOCK: woocommerce/product-details     — 25 variants
+ *   5. BLOCK: <future block>                  — variants
+ *
+ * Adding a new block:
+ *   - Append a section banner: BLOCK: woocommerce/<name>
+ *   - Scope every selector to ".is-style-<slug>.wp-block-woocommerce-<name>" or its descendants.
+ *   - If the block has structural children (like the accordion-item inside product-details),
+ *     copy the pattern from the product-details section.
+ *   - Register the slug + label in woodrobe_block_styles() in woodrobe.php.
+ *
+ * Tokens are shared across blocks; per-block resets/micro-interactions are scoped to that
+ * block's wrapper class so they never leak into others.
+ */
+
+/* ============================================================
+   Shared design tokens — apply to any WC block carrying an is-style-*
+   class shipped by this plugin. Inherited by descendants.
+   ============================================================ */
+[class*="wp-block-woocommerce-"][class*="is-style-"],
+[class*="wp-block-woocommerce-"][class*="is-style-"] :where(.wp-block-accordion, .wp-block-accordion-item) {
+  --wpds-surface: #ffffff;
+  --wpds-ink:     #1a1a1a;
+  --wpds-ink-2:   #4a4a48;
+  --wpds-ink-3:   #8a8a86;
+  --wpds-line:    #e6e3dc;
+  --wpds-line-2:  #d8d4cb;
+  --wpds-soft:    #efece5;
+  --wpds-soft-2:  #f1ede4;
+  --wpds-warm:    #b35a2c;
+  --wpds-radius:  14px;
+  --wpds-sans:    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --wpds-serif:   "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --wpds-mono:    ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  /* Motion tokens — keep timings consistent across variants. */
+  --wpds-ease:    cubic-bezier(.4, 0, .2, 1);
+  --wpds-ease-out: cubic-bezier(.16, 1, .3, 1);
+  --wpds-fast:    160ms;
+  --wpds-snap:    220ms;
+  --wpds-glide:   320ms;
+}
+
+/* ============================================================
+   Resets — neutralize WP/theme defaults so variants control layout.
+   ============================================================ */
+.wp-block-woocommerce-product-details[class*="is-style-"] .wp-block-accordion {
+  --wp--style--block-gap: 0;
+}
+.wp-block-woocommerce-product-details[class*="is-style-"] .wp-block-accordion-item,
+.wp-block-woocommerce-product-details[class*="is-style-"] .wp-block-accordion-heading,
+.wp-block-woocommerce-product-details[class*="is-style-"] .wp-block-accordion-panel {
+  margin-block-start: 0;
+  margin-block-end:   0;
+}
+.wp-block-woocommerce-product-details[class*="is-style-"] .wp-block-accordion-heading {
+  margin: 0;
+  padding: 0;
+  font-weight: inherit;
+  line-height: 1;
+}
+.wp-block-woocommerce-product-details[class*="is-style-"] .wp-block-accordion-heading__toggle {
+  font-family: inherit;
+  cursor: pointer;
+  appearance: none;
+}
+.wp-block-woocommerce-product-details[class*="is-style-"] .wp-block-accordion-panel {
+  margin-block-start: 0;
+}
+/* Beat WP's high-specificity icon-rotate rule:
+   .wp-block-accordion-item.is-open>.wp-block-accordion-heading .wp-block-accordion-heading__toggle-icon { transform: rotate(45deg) } */
+.wp-block-woocommerce-product-details[class*="is-style-"] .wp-block-accordion-item.is-open > .wp-block-accordion-heading .wp-block-accordion-heading__toggle-icon { transform: none; }
+
+/* Consistent focus ring for keyboard users across every variant. */
+.wp-block-woocommerce-product-details[class*="is-style-"] .wp-block-accordion-heading__toggle:focus-visible {
+  outline: 2px solid var(--wpds-ink);
+  outline-offset: 2px;
+  transition: outline-offset var(--wpds-fast) var(--wpds-ease);
+}
+
+/* ============================================================
+   Micro-interactions — global motion baseline
+   - Smooth panel reveal (CSS Grid 0fr → 1fr trick).
+   - Animated entrance: items fade up with a per-position delay.
+   - Heading-toggle and icon defaults so every variant inherits motion.
+   ============================================================ */
+
+/* Smoother panel open/close than WP's default. */
+.wp-block-woocommerce-product-details[class*="is-style-"] .wp-block-accordion-item {
+  transition: grid-template-rows var(--wpds-glide) var(--wpds-ease);
+}
+
+/* Panel content slides up subtly when revealed. */
+.wp-block-woocommerce-product-details[class*="is-style-"] .wp-block-accordion-item.is-open .wp-block-accordion-panel > * {
+  animation: wpds-rise var(--wpds-glide) var(--wpds-ease-out) both;
+}
+@keyframes wpds-rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* Default smooth motion for any toggle that doesn't define its own transition. */
+.wp-block-woocommerce-product-details[class*="is-style-"] .wp-block-accordion-heading__toggle,
+.wp-block-woocommerce-product-details[class*="is-style-"] .wp-block-accordion-heading__toggle-icon,
+.wp-block-woocommerce-product-details[class*="is-style-"] .wp-block-accordion-heading__toggle-title {
+  transition:
+    background-color var(--wpds-fast) var(--wpds-ease),
+    color            var(--wpds-fast) var(--wpds-ease),
+    border-color     var(--wpds-fast) var(--wpds-ease),
+    box-shadow       var(--wpds-fast) var(--wpds-ease),
+    transform        var(--wpds-snap) var(--wpds-ease);
+}
+
+/* On-load entrance: stagger items by sibling index. */
+@media (prefers-reduced-motion: no-preference) {
+  .wp-block-woocommerce-product-details[class*="is-style-"] .wp-block-accordion-item {
+    animation: wpds-enter 480ms var(--wpds-ease-out) both;
+  }
+  .wp-block-woocommerce-product-details[class*="is-style-"] .wp-block-accordion-item:nth-child(1) { animation-delay:   0ms; }
+  .wp-block-woocommerce-product-details[class*="is-style-"] .wp-block-accordion-item:nth-child(2) { animation-delay:  60ms; }
+  .wp-block-woocommerce-product-details[class*="is-style-"] .wp-block-accordion-item:nth-child(3) { animation-delay: 120ms; }
+  .wp-block-woocommerce-product-details[class*="is-style-"] .wp-block-accordion-item:nth-child(4) { animation-delay: 180ms; }
+  .wp-block-woocommerce-product-details[class*="is-style-"] .wp-block-accordion-item:nth-child(5) { animation-delay: 240ms; }
+}
+@keyframes wpds-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+/* Honor user motion preferences — disable all decorative motion. */
+@media (prefers-reduced-motion: reduce) {
+  .wp-block-woocommerce-product-details[class*="is-style-"] *,
+  .wp-block-woocommerce-product-details[class*="is-style-"] *::before,
+  .wp-block-woocommerce-product-details[class*="is-style-"] *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   BLOCK: woocommerce/product-details
+   ----------------------------------------------------------------------------
+   The is-style-* class lands on .wp-block-woocommerce-product-details.
+   Inside it WP renders a core accordion-group (.wp-block-accordion) whose
+   children are .wp-block-accordion-item. Each item has a heading
+   (.wp-block-accordion-heading) wrapping a button
+   (.wp-block-accordion-heading__toggle) and a panel
+   (.wp-block-accordion-panel). Open state is .is-open on the item.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ============================================================
+   01 — Pill Switch
+   Outer card; soft pill-track wraps tabs; active tab is white pill.
+   ============================================================ */
+.is-style-pill-switch .wp-block-accordion {
+  background: var(--wpds-surface);
+  border: 1px solid var(--wpds-line);
+  border-radius: var(--wpds-radius);
+  padding: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: flex-start;
+}
+.is-style-pill-switch .wp-block-accordion-item {
+  border: none;
+  display: contents;
+}
+.is-style-pill-switch .wp-block-accordion-heading__toggle {
+  background: var(--wpds-soft); border: none;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font: 500 14px/1 var(--wpds-sans);
+  color: var(--wpds-ink-3);
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: background 200ms, color 200ms, box-shadow 200ms;
+}
+.is-style-pill-switch .wp-block-accordion-heading__toggle:hover { color: var(--wpds-ink-2); transform: translateY(-1px); }
+.is-style-pill-switch .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle,
+.is-style-pill-switch .wp-block-accordion-heading__toggle[aria-expanded="true"] {
+  background: var(--wpds-surface); color: var(--wpds-ink); font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06), 0 0 0 1px var(--wpds-line);
+}
+.is-style-pill-switch .wp-block-accordion-heading__toggle-icon { display: none; }
+.is-style-pill-switch .wp-block-accordion-panel {
+  flex-basis: 100%; order: 99;
+  padding: 24px 4px 0;
+}
+
+/* ============================================================
+   02 — Sidebar Tabs
+   Outer card; left rail with mono numbers; body fills right.
+   ============================================================ */
+.is-style-sidebar-tabs .wp-block-accordion {
+  background: var(--wpds-surface);
+  border: 1px solid var(--wpds-line);
+  border-radius: var(--wpds-radius);
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  overflow: hidden;
+  counter-reset: wpds-side;
+}
+.is-style-sidebar-tabs .wp-block-accordion-item {
+  border: none;
+  display: contents;
+}
+.is-style-sidebar-tabs .wp-block-accordion-heading {
+  background: var(--wpds-soft-2);
+  border-bottom: 1px solid var(--wpds-line);
+  counter-increment: wpds-side;
+}
+.is-style-sidebar-tabs .wp-block-accordion-item:last-child .wp-block-accordion-heading { border-bottom: none; }
+.is-style-sidebar-tabs .wp-block-accordion-heading__toggle {
+  width: 100%;
+  background: transparent; border: none;
+  padding: 14px 18px;
+  text-align: left;
+  font: 500 14px/1.3 var(--wpds-sans);
+  color: var(--wpds-ink-2);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: center;
+  transition: background 160ms, color 160ms;
+}
+.is-style-sidebar-tabs .wp-block-accordion-heading__toggle::before {
+  content: counter(wpds-side, decimal-leading-zero);
+  font: 500 11px/1 var(--wpds-mono);
+  color: var(--wpds-ink-3);
+  background: rgba(0,0,0,.05);
+  padding: 4px 7px;
+  border-radius: 4px;
+}
+.is-style-sidebar-tabs .wp-block-accordion-heading__toggle:hover { background: rgba(0,0,0,.03); }
+.is-style-sidebar-tabs .wp-block-accordion-item.is-open .wp-block-accordion-heading { background: var(--wpds-surface); }
+.is-style-sidebar-tabs .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
+  color: var(--wpds-ink);
+  font-weight: 600;
+  box-shadow: inset 2px 0 0 var(--wpds-ink);
+}
+.is-style-sidebar-tabs .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle::before {
+  background: var(--wpds-ink); color: var(--wpds-surface);
+}
+.is-style-sidebar-tabs .wp-block-accordion-heading__toggle-icon { display: none; }
+.is-style-sidebar-tabs .wp-block-accordion-panel {
+  grid-column: 2;
+  grid-row: 1 / span 99;
+  align-self: start;
+  background: var(--wpds-surface);
+  padding: 32px 36px;
+  min-height: 100%;
+}
+
+/* ============================================================
+   03 — Accordion Stack (refined default)
+   Outer card; soft hover; animated chevron via toggle-icon rotation.
+   ============================================================ */
+.is-style-accordion-stack .wp-block-accordion {
+  background: var(--wpds-surface);
+  border: 1px solid var(--wpds-line);
+  border-radius: var(--wpds-radius);
+  overflow: hidden;
+}
+.is-style-accordion-stack .wp-block-accordion-item {
+  border: none;
+  border-bottom: 1px solid var(--wpds-line);
+}
+.is-style-accordion-stack .wp-block-accordion-item:last-child { border-bottom: none; }
+.is-style-accordion-stack .wp-block-accordion-heading__toggle {
+  width: 100%;
+  background: transparent; border: none;
+  padding: 22px 26px;
+  text-align: left;
+  font: 500 16px/1.2 var(--wpds-sans);
+  color: var(--wpds-ink);
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  transition: background 160ms;
+}
+.is-style-accordion-stack .wp-block-accordion-heading__toggle:hover { background: var(--wpds-soft); }
+.is-style-accordion-stack .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle { font-weight: 600; }
+.is-style-accordion-stack .wp-block-accordion-heading__toggle-icon {
+  color: var(--wpds-ink-3);
+  transition: transform 280ms cubic-bezier(.4,0,.2,1);
+}
+.is-style-accordion-stack .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle-icon { transform: rotate(180deg); }
+.is-style-accordion-stack .wp-block-accordion-panel { padding: 0 26px 26px; }
+
+/* ============================================================
+   04 — Card Tabs
+   Tabs are cards across the top; active tab "lifts" and joins
+   a single body card below. Achieved by ordering panels last.
+   ============================================================ */
+.is-style-card-tabs .wp-block-accordion {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 8px;
+}
+.is-style-card-tabs .wp-block-accordion-item { border: none; display: contents; }
+.is-style-card-tabs .wp-block-accordion-heading {
+  border: 1px solid var(--wpds-line);
+  background: var(--wpds-soft);
+  border-radius: 12px 12px 0 0;
+  flex: 1 1 180px;
+  transition: transform var(--wpds-snap) var(--wpds-ease), background var(--wpds-snap) var(--wpds-ease), box-shadow var(--wpds-snap) var(--wpds-ease), border-color var(--wpds-snap) var(--wpds-ease);
+  margin-bottom: -1px;
+}
+.is-style-card-tabs .wp-block-accordion-heading:hover {
+  transform: translateY(-2px);
+  background: var(--wpds-soft-2);
+  box-shadow: 0 4px 12px -6px rgba(0,0,0,.1);
+}
+.is-style-card-tabs .wp-block-accordion-item.is-open .wp-block-accordion-heading {
+  background: var(--wpds-surface);
+  border-bottom-color: var(--wpds-surface);
+  transform: translateY(-4px);
+  box-shadow: 0 -2px 0 var(--wpds-ink) inset;
+}
+.is-style-card-tabs .wp-block-accordion-heading__toggle {
+  width: 100%;
+  background: transparent; border: none;
+  padding: 18px 20px 22px;
+  text-align: left;
+  font: 600 15px/1.2 var(--wpds-sans);
+  color: var(--wpds-ink);
+  letter-spacing: -0.01em;
+}
+.is-style-card-tabs .wp-block-accordion-heading__toggle-icon { display: none; }
+.is-style-card-tabs .wp-block-accordion-panel {
+  flex-basis: 100%;
+  order: 99;
+  background: var(--wpds-surface);
+  border: 1px solid var(--wpds-line);
+  border-radius: 0 var(--wpds-radius) var(--wpds-radius) var(--wpds-radius);
+  padding: 32px 32px 36px;
+  margin-top: -1px;
+}
+
+/* ============================================================
+   05 — Numbered Index (editorial)
+   Top/bottom heavy rules; serif heading + decimal-leading-zero.
+   ============================================================ */
+.is-style-numbered-index .wp-block-accordion {
+  background: var(--wpds-surface);
+  border: 1px solid var(--wpds-line);
+  border-radius: var(--wpds-radius);
+  padding: 32px;
+  border-top: 1px solid var(--wpds-ink);
+  border-bottom: 1px solid var(--wpds-ink);
+  counter-reset: wpds-num;
+}
+.is-style-numbered-index .wp-block-accordion-item {
+  border: none;
+  border-top: 1px solid var(--wpds-line);
+  counter-increment: wpds-num;
+}
+.is-style-numbered-index .wp-block-accordion-item:first-child { border-top: none; }
+.is-style-numbered-index .wp-block-accordion-heading__toggle {
+  width: 100%;
+  background: transparent; border: none;
+  padding: 18px 4px;
+  text-align: left;
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 24px;
+  align-items: baseline;
+  color: var(--wpds-ink-2);
+  transition: padding 240ms cubic-bezier(.4,0,.2,1);
+}
+.is-style-numbered-index .wp-block-accordion-heading__toggle:hover { padding-left: 12px; padding-right: 12px; }
+.is-style-numbered-index .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
+  padding-left: 16px; padding-right: 16px;
+  box-shadow: inset 4px 0 0 var(--wpds-ink);
+}
+.is-style-numbered-index .wp-block-accordion-heading__toggle::before {
+  content: counter(wpds-num, decimal-leading-zero);
+  font: 500 12px/1 var(--wpds-mono);
+  color: var(--wpds-ink-3);
+  letter-spacing: 0.06em;
+}
+.is-style-numbered-index .wp-block-accordion-heading__toggle > span:first-of-type {
+  font: 500 28px/1.1 var(--wpds-serif);
+  color: var(--wpds-ink);
+  letter-spacing: -0.015em;
+}
+.is-style-numbered-index .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle > span:first-of-type { font-weight: 600; }
+.is-style-numbered-index .wp-block-accordion-heading__toggle-icon { display: none; }
+.is-style-numbered-index .wp-block-accordion-panel { padding: 0 4px 24px 84px; }
+
+/* ============================================================
+   06 — Underline Slide
+   Outer card; tabs along a baseline rule; active tab gets a 2px underline.
+   ============================================================ */
+.is-style-underline-slide .wp-block-accordion {
+  background: var(--wpds-surface);
+  border: 1px solid var(--wpds-line);
+  border-radius: var(--wpds-radius);
+  padding: 0 28px 28px;
+  display: flex; flex-wrap: wrap;
+  gap: 8px;
+  align-items: flex-end;
+  position: relative;
+}
+.is-style-underline-slide.wp-block-woocommerce-accordion-group::after,
+.is-style-underline-slide .wp-block-accordion .wp-block-woocommerce-accordion-group::after {
+  content: ""; order: 50; flex-basis: 100%; height: 1px;
+  background: var(--wpds-line);
+  margin-top: -1px;
+}
+.is-style-underline-slide .wp-block-accordion-item { border: none; display: contents; }
+.is-style-underline-slide .wp-block-accordion-heading__toggle {
+  background: transparent; border: none;
+  padding: 18px 4px;
+  font: 500 14px/1 var(--wpds-sans);
+  color: var(--wpds-ink-3);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 200ms, border-color 200ms;
+}
+.is-style-underline-slide .wp-block-accordion-heading__toggle:hover { color: var(--wpds-ink-2); }
+.is-style-underline-slide .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
+  color: var(--wpds-ink); font-weight: 600;
+  border-bottom-color: var(--wpds-ink);
+}
+.is-style-underline-slide .wp-block-accordion-heading__toggle-icon { display: none; }
+.is-style-underline-slide .wp-block-accordion-panel {
+  flex-basis: 100%; order: 99;
+  padding: 24px 0 4px;
+}
+
+/* ============================================================
+   07 — Chips
+   Outer card; rounded chip toggles; dot indicator on active.
+   ============================================================ */
+.is-style-chips .wp-block-accordion {
+  background: var(--wpds-surface);
+  border: 1px solid var(--wpds-line);
+  border-radius: var(--wpds-radius);
+  padding: 24px 28px 28px;
+  display: flex; flex-wrap: wrap;
+  gap: 8px;
+  align-items: flex-start;
+}
+.is-style-chips .wp-block-accordion-item { border: none; display: contents; }
+.is-style-chips .wp-block-accordion-heading__toggle {
+  background: var(--wpds-surface);
+  border: 1px solid var(--wpds-line-2);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font: 500 13px/1 var(--wpds-sans);
+  color: var(--wpds-ink-2);
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: all 180ms;
+}
+.is-style-chips .wp-block-accordion-heading__toggle::before {
+  content: ""; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--wpds-line-2);
+  flex: none;
+  transition: background 180ms;
+}
+.is-style-chips .wp-block-accordion-heading__toggle:hover { border-color: var(--wpds-ink-3); color: var(--wpds-ink); }
+.is-style-chips .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
+  background: var(--wpds-ink); color: var(--wpds-surface); border-color: var(--wpds-ink);
+}
+.is-style-chips .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle::before {
+  background: #4ade80;
+  animation: wpds-pulse 2s var(--wpds-ease) infinite;
+}
+@keyframes wpds-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, .55); }
+  50%      { box-shadow: 0 0 0 5px rgba(74, 222, 128, 0);  }
+}
+.is-style-chips .wp-block-accordion-heading__toggle-icon { display: none; }
+.is-style-chips .wp-block-accordion-panel {
+  flex-basis: 100%; order: 99;
+  padding: 24px 0 4px;
+}
+
+/* ============================================================
+   08 — Bottom Tabs
+   Outer card; body on top, tabs at bottom in a 3-column grid.
+   ============================================================ */
+.is-style-bottom-tabs .wp-block-accordion {
+  background: var(--wpds-surface);
+  border: 1px solid var(--wpds-line);
+  border-radius: var(--wpds-radius);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.is-style-bottom-tabs .wp-block-accordion-item { border: none; display: contents; }
+.is-style-bottom-tabs .wp-block-accordion-heading__toggle {
+  width: 100%;
+  background: var(--wpds-soft-2); border: none;
+  padding: 16px 12px;
+  font: 500 13px/1 var(--wpds-sans);
+  color: var(--wpds-ink-3);
+  border-right: 1px solid var(--wpds-line);
+  border-top: 1px solid var(--wpds-line);
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  transition: all 180ms;
+  position: relative;
+}
+.is-style-bottom-tabs .wp-block-accordion-item:last-child .wp-block-accordion-heading__toggle { border-right: none; }
+.is-style-bottom-tabs .wp-block-accordion-heading__toggle::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--wpds-line-2);
+  transition: all 200ms;
+}
+.is-style-bottom-tabs .wp-block-accordion-heading__toggle:hover { color: var(--wpds-ink-2); background: rgba(0,0,0,.02); }
+.is-style-bottom-tabs .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
+  background: var(--wpds-surface); color: var(--wpds-ink); font-weight: 600;
+  box-shadow: inset 0 2px 0 var(--wpds-ink);
+}
+.is-style-bottom-tabs .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle::before {
+  background: var(--wpds-ink); transform: scale(1.4);
+}
+.is-style-bottom-tabs .wp-block-accordion-heading__toggle-icon { display: none; }
+.is-style-bottom-tabs .wp-block-accordion-panel {
+  grid-column: 1 / -1;
+  order: -1;
+  padding: 32px 36px;
+  min-height: 280px;
+}
+
+/* ============================================================
+   09 — Magazine Masthead
+   Top double rule + bottom rule; serif headlines; column body.
+   ============================================================ */
+.is-style-magazine-masthead .wp-block-accordion {
+  background: var(--wpds-surface);
+  border: 1px solid var(--wpds-line);
+  border-radius: var(--wpds-radius);
+  padding: 8px 32px 32px;
+  border-top: 4px solid var(--wpds-ink);
+  border-bottom: 4px solid var(--wpds-ink);
+}
+.is-style-magazine-masthead .wp-block-accordion-item {
+  border: none;
+  border-top: 1px solid var(--wpds-line-2);
+}
+.is-style-magazine-masthead .wp-block-accordion-item:first-child { border-top: none; }
+.is-style-magazine-masthead .wp-block-accordion-heading__toggle {
+  width: 100%;
+  background: transparent; border: none;
+  padding: 18px 0;
+  text-align: left;
+  font: 700 26px/1.1 var(--wpds-serif);
+  color: var(--wpds-ink);
+  letter-spacing: -0.02em;
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+}
+.is-style-magazine-masthead .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle { font-style: italic; }
+.is-style-magazine-masthead .wp-block-accordion-heading__toggle-icon { display: none; }
+.is-style-magazine-masthead .wp-block-accordion-panel {
+  padding: 0 0 24px;
+  font: 16px/1.6 var(--wpds-serif);
+  column-count: 2; column-gap: 36px;
+  column-rule: 1px solid var(--wpds-line);
+}
+@media (max-width: 600px) {
+  .is-style-magazine-masthead .wp-block-accordion-panel { column-count: 1; }
+}
+
+/* ============================================================
+   10 — Brutalist
+   2px ink border; uppercase mono toggles; active inverts to ink.
+   ============================================================ */
+.is-style-brutalist .wp-block-accordion {
+  background: var(--wpds-surface);
+  border: 2px solid var(--wpds-ink);
+  border-radius: 0;
+}
+.is-style-brutalist .wp-block-accordion-item {
+  border: none;
+  border-bottom: 2px solid var(--wpds-ink);
+}
+.is-style-brutalist .wp-block-accordion-item:last-child { border-bottom: none; }
+.is-style-brutalist .wp-block-accordion-heading__toggle {
+  width: 100%;
+  background: var(--wpds-surface); border: none;
+  padding: 18px 22px;
+  text-align: left;
+  font: 700 13px/1 var(--wpds-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--wpds-ink);
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  transition: background 140ms, color 140ms;
+}
+.is-style-brutalist .wp-block-accordion-heading__toggle:hover { background: var(--wpds-soft); }
+.is-style-brutalist .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
+  background: var(--wpds-ink); color: var(--wpds-surface);
+}
+.is-style-brutalist .wp-block-accordion-heading__toggle-icon { font-family: var(--wpds-mono); font-weight: 500; }
+.is-style-brutalist .wp-block-accordion-panel { padding: 22px; }
+
+/* ============================================================
+   11 — Soft Cards
+   Soft gradient outer; tabs as soft cards; active card lifts on white.
+   ============================================================ */
+.is-style-soft-cards .wp-block-accordion {
+  background: linear-gradient(180deg, #ecebe6, #f6f5f2);
+  border-radius: 18px;
+  padding: 8px;
+  display: flex; flex-direction: column;
+  gap: 6px;
+}
+.is-style-soft-cards .wp-block-accordion-item {
+  border: none;
+  background: transparent;
+  border-radius: 14px;
+  transition: background var(--wpds-snap) var(--wpds-ease), box-shadow var(--wpds-snap) var(--wpds-ease), transform var(--wpds-snap) var(--wpds-ease);
+}
+.is-style-soft-cards .wp-block-accordion-item:hover { background: rgba(255,255,255,.4); transform: translateY(-1px); }
+.is-style-soft-cards .wp-block-accordion-item.is-open {
+  background: var(--wpds-surface);
+  box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 12px rgba(0,0,0,.06);
+}
+.is-style-soft-cards .wp-block-accordion-heading__toggle {
+  width: 100%;
+  background: transparent; border: none;
+  padding: 14px 18px;
+  text-align: left;
+  font: 600 14px/1.2 var(--wpds-sans);
+  color: var(--wpds-ink);
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+}
+.is-style-soft-cards .wp-block-accordion-heading__toggle-icon { color: var(--wpds-ink-3); }
+.is-style-soft-cards .wp-block-accordion-panel { padding: 0 18px 18px; }
+
+/* ============================================================
+   12 — Preview Strip
+   Outer card; tabs in 3-col grid with preview text under each label;
+   active panel sits below the strip.
+   ============================================================ */
+.is-style-preview-strip .wp-block-accordion {
+  background: var(--wpds-surface);
+  border: 1px solid var(--wpds-line);
+  border-radius: var(--wpds-radius);
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.is-style-preview-strip .wp-block-accordion-item { border: none; display: contents; }
+.is-style-preview-strip .wp-block-accordion-heading {
+  border: 1.5px solid transparent;
+  background: var(--wpds-soft);
+  border-radius: 10px;
+  transition: background 200ms, border-color 200ms;
+}
+.is-style-preview-strip .wp-block-accordion-heading:hover { background: var(--wpds-soft-2); }
+.is-style-preview-strip .wp-block-accordion-item.is-open .wp-block-accordion-heading {
+  background: var(--wpds-surface);
+  border-color: var(--wpds-ink);
+}
+.is-style-preview-strip .wp-block-accordion-heading__toggle {
+  width: 100%;
+  background: transparent; border: none;
+  padding: 14px 16px;
+  text-align: left;
+  font: 600 14px/1 var(--wpds-sans);
+  color: var(--wpds-ink);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.is-style-preview-strip .wp-block-accordion-heading__toggle-icon { display: none; }
+.is-style-preview-strip .wp-block-accordion-panel {
+  grid-column: 1 / -1;
+  order: 99;
+  padding: 16px 18px 12px;
+}
+
+/* ============================================================
+   13 — Always-on Story
+   Force-open editorial stream with mono kickers per section.
+   ============================================================ */
+.is-style-always-on-story .wp-block-accordion {
+  display: flex; flex-direction: column;
+  gap: 56px;
+}
+.is-style-always-on-story .wp-block-accordion-item {
+  border: none;
+  scroll-margin-top: 24px;
+}
+.is-style-always-on-story .wp-block-accordion-heading__toggle {
+  width: 100%;
+  background: transparent; border: none;
+  padding: 0 0 8px;
+  text-align: left;
+  font: 500 11px/1 var(--wpds-mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--wpds-ink-3);
+  pointer-events: none;
+}
+.is-style-always-on-story .wp-block-accordion-heading__toggle-icon { display: none; }
+.is-style-always-on-story .wp-block-accordion-panel {
+  display: block !important; height: auto !important;
+  padding: 0;
+  font: 16px/1.65 var(--wpds-sans);
+  color: var(--wpds-ink-2);
+}
+.is-style-always-on-story .wp-block-accordion-panel > * + * { margin-top: 16px; }
+
+/* ============================================================
+   14 — Description-first / At-a-glance
+   First item: serif lead. Rest: soft-bordered glance modules.
+   ============================================================ */
+.is-style-description-first .wp-block-accordion {
+  display: flex; flex-direction: column;
+  gap: 32px;
+}
+.is-style-description-first .wp-block-accordion-item { border: none; }
+.is-style-description-first .wp-block-accordion-heading__toggle {
+  width: 100%;
+  background: transparent; border: none;
+  padding: 0 0 14px;
+  text-align: left;
+  font: 500 11px/1 var(--wpds-mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--wpds-ink-3);
+  pointer-events: none;
+}
+.is-style-description-first .wp-block-accordion-heading__toggle-icon { display: none; }
+.is-style-description-first .wp-block-accordion-panel {
+  display: block !important; height: auto !important;
+  padding: 0;
+}
+
+/* First item — lead/hero (serif, large). */
+.is-style-description-first .wp-block-accordion-item:first-child .wp-block-accordion-heading__toggle {
+  margin-bottom: 6px;
+}
+.is-style-description-first .wp-block-accordion-item:first-child .wp-block-accordion-panel {
+  font: 500 26px/1.3 var(--wpds-serif);
+  color: var(--wpds-ink);
+  letter-spacing: -0.01em;
+}
+
+/* Subsequent items — boxed glance modules. */
+.is-style-description-first .wp-block-accordion-item:not(:first-child) {
+  background: var(--wpds-soft-2);
+  border: 1px solid var(--wpds-line);
+  border-radius: 12px;
+  padding: 22px 24px;
+}
+.is-style-description-first .wp-block-accordion-item:not(:first-child) .wp-block-accordion-heading__toggle {
+  font: 600 13px/1 var(--wpds-sans);
+  color: var(--wpds-ink);
+  letter-spacing: 0;
+  text-transform: none;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--wpds-line);
+  margin-bottom: 16px;
+}
+
+/* ============================================================
+   15 — Q&A Format
+   Each item is a 280px+1fr row. Q-prefix, serif heading, ink rules.
+   ============================================================ */
+.is-style-qa-format .wp-block-accordion {
+  display: flex; flex-direction: column;
+}
+.is-style-qa-format .wp-block-accordion-item {
+  border: none;
+  border-top: 1px solid var(--wpds-ink);
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 48px;
+  padding: 32px 0;
+}
+.is-style-qa-format .wp-block-accordion-item:last-child { border-bottom: 1px solid var(--wpds-ink); }
+.is-style-qa-format .wp-block-accordion-heading__toggle {
+  background: transparent; border: none;
+  padding: 0;
+  text-align: left;
+  pointer-events: none;
+  font: 600 28px/1.15 var(--wpds-serif);
+  color: var(--wpds-ink);
+  letter-spacing: -0.02em;
+  position: relative;
+}
+.is-style-qa-format .wp-block-accordion-heading__toggle::before {
+  content: "Q.";
+  display: block;
+  font: 500 11px/1 var(--wpds-mono);
+  letter-spacing: 0.18em;
+  color: var(--wpds-warm);
+  margin-bottom: 8px;
+}
+.is-style-qa-format .wp-block-accordion-heading__toggle-icon { display: none; }
+.is-style-qa-format .wp-block-accordion-panel {
+  display: block !important; height: auto !important;
+  padding: 0;
+  font: 16px/1.6 var(--wpds-sans);
+  color: var(--wpds-ink-2);
+}
+@media (max-width: 720px) {
+  .is-style-qa-format .wp-block-accordion-item { grid-template-columns: 1fr; gap: 16px; }
+}
+
+/* ============================================================
+   16 — Reading View (museum placard)
+   Force-open serif body, mono kickers, wide reading column.
+   ============================================================ */
+.is-style-reading-view .wp-block-accordion {
+  display: flex; flex-direction: column;
+  gap: 36px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.is-style-reading-view .wp-block-accordion-item { border: none; }
+.is-style-reading-view .wp-block-accordion-heading__toggle {
+  width: 100%;
+  background: transparent; border: none;
+  padding: 0 0 12px;
+  text-align: left;
+  pointer-events: none;
+  font: 500 11px/1 var(--wpds-mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--wpds-ink-3);
+  border-bottom: 1px solid var(--wpds-line);
+  margin-bottom: 18px;
+}
+.is-style-reading-view .wp-block-accordion-heading__toggle-icon { display: none; }
+.is-style-reading-view .wp-block-accordion-panel {
+  display: block !important; height: auto !important;
+  font: 17px/1.7 var(--wpds-serif);
+  color: var(--wpds-ink-2);
+}
+.is-style-reading-view .wp-block-accordion-panel > * + * { margin-top: 16px; }
+
+/* ============================================================
+   17 — Progressive Disclosure (Reveal Layers)
+   Crisp dividers, hover slides padding, larger sans heading.
+   ============================================================ */
+.is-style-progressive .wp-block-accordion {
+  border-top: 1px solid var(--wpds-line);
+}
+.is-style-progressive .wp-block-accordion-item {
+  border: none;
+  border-bottom: 1px solid var(--wpds-line);
+}
+.is-style-progressive .wp-block-accordion-heading__toggle {
+  width: 100%;
+  background: transparent; border: none;
+  padding: 22px 4px;
+  text-align: left;
+  font: 600 17px/1 var(--wpds-sans);
+  color: var(--wpds-ink);
+  letter-spacing: -0.005em;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  transition: padding 220ms;
+}
+.is-style-progressive .wp-block-accordion-heading__toggle:hover { padding-left: 12px; padding-right: 12px; }
+.is-style-progressive .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle { padding-bottom: 16px; }
+.is-style-progressive .wp-block-accordion-heading__toggle-icon {
+  font-size: 20px;
+  color: var(--wpds-ink-3);
+  transition: transform 280ms;
+}
+.is-style-progressive .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle-icon { transform: rotate(45deg); }
+.is-style-progressive .wp-block-accordion-panel { padding: 0 4px 24px; }
+
+/* ============================================================
+   18 — Filmstrip / Chaptered (dark)
+   Dark surface, large numerals, warm kicker, serif titles.
+   ============================================================ */
+.is-style-filmstrip .wp-block-accordion {
+  background: var(--wpds-ink);
+  color: var(--wpds-surface);
+  border-radius: var(--wpds-radius);
+  padding: 28px;
+  display: flex; flex-direction: column;
+  gap: 16px;
+  counter-reset: wpds-film;
+}
+.is-style-filmstrip .wp-block-accordion-item {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px;
+  padding: 28px 32px;
+  counter-increment: wpds-film;
+  transition: background var(--wpds-snap) var(--wpds-ease), border-color var(--wpds-snap) var(--wpds-ease), transform var(--wpds-snap) var(--wpds-ease);
+}
+.is-style-filmstrip .wp-block-accordion-item:hover {
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.18);
+  transform: translateY(-2px);
+}
+.is-style-filmstrip .wp-block-accordion-heading__toggle {
+  width: 100%;
+  background: transparent; border: none;
+  padding: 0;
+  text-align: left;
+  pointer-events: none;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+}
+.is-style-filmstrip .wp-block-accordion-heading__toggle::before {
+  content: counter(wpds-film, decimal-leading-zero);
+  font: 600 80px/0.9 var(--wpds-serif);
+  color: rgba(255,255,255,.18);
+  letter-spacing: -0.04em;
+}
+.is-style-filmstrip .wp-block-accordion-heading__toggle-title {
+  font: 600 30px/1.2 var(--wpds-serif);
+  color: var(--wpds-surface);
+  letter-spacing: -0.02em;
+}
+.is-style-filmstrip .wp-block-accordion-heading__toggle-icon { display: none; }
+.is-style-filmstrip .wp-block-accordion-panel {
+  display: block !important; height: auto !important;
+  margin-top: 18px;
+  font: 15px/1.6 var(--wpds-sans);
+  color: rgba(255,255,255,.75);
+}
+
+/* ============================================================
+   19 — Spec Sheet First (technical)
+   Mono datasheet; ink double border at top.
+   ============================================================ */
+.is-style-spec-sheet .wp-block-accordion {
+  background: var(--wpds-surface);
+  border: 1px solid var(--wpds-ink);
+  border-radius: 4px;
+  padding: 32px;
+  font-family: var(--wpds-mono);
+}
+.is-style-spec-sheet .wp-block-accordion-item {
+  border: none;
+  border-top: 1px solid var(--wpds-line);
+  padding: 14px 0;
+}
+.is-style-spec-sheet .wp-block-accordion-item:first-child { border-top: 2px solid var(--wpds-ink); }
+.is-style-spec-sheet .wp-block-accordion-item:last-child { border-bottom: 1px solid var(--wpds-line); }
+.is-style-spec-sheet .wp-block-accordion-heading__toggle {
+  width: 100%;
+  background: transparent; border: none;
+  padding: 0 0 8px;
+  text-align: left;
+  pointer-events: none;
+  font: 500 11px/1 var(--wpds-mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--wpds-ink-3);
+}
+.is-style-spec-sheet .wp-block-accordion-heading__toggle-icon { display: none; }
+.is-style-spec-sheet .wp-block-accordion-panel {
+  display: block !important; height: auto !important;
+  padding: 0;
+  font: 14px/1.5 var(--wpds-sans);
+  color: var(--wpds-ink);
+}
+
+/* ============================================================
+   20 — Marginalia / Conversation
+   Two-column layout: main prose at left, voiced annotations at right.
+   ============================================================ */
+.is-style-marginalia .wp-block-accordion {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 48px;
+  padding-top: 8px;
+}
+.is-style-marginalia .wp-block-accordion-item { border: none; }
+.is-style-marginalia .wp-block-accordion-heading__toggle {
+  width: 100%;
+  background: transparent; border: none;
+  padding: 0;
+  text-align: left;
+  pointer-events: none;
+}
+.is-style-marginalia .wp-block-accordion-heading__toggle-icon { display: none; }
+.is-style-marginalia .wp-block-accordion-panel {
+  display: block !important; height: auto !important;
+  padding: 0;
+}
+
+/* First item — main column. */
+.is-style-marginalia .wp-block-accordion-item:first-child {
+  grid-column: 1;
+  grid-row: 1 / span 99;
+}
+.is-style-marginalia .wp-block-accordion-item:first-child .wp-block-accordion-heading__toggle {
+  font: 500 11px/1 var(--wpds-mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--wpds-ink-3);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--wpds-line);
+  margin-bottom: 18px;
+}
+.is-style-marginalia .wp-block-accordion-item:first-child .wp-block-accordion-panel {
+  font: 18px/1.65 var(--wpds-serif);
+  color: var(--wpds-ink);
+}
+
+/* Subsequent items — margin notes (voice quotes). */
+.is-style-marginalia .wp-block-accordion-item:not(:first-child) {
+  padding-left: 14px;
+  border-left: 2px solid var(--wpds-warm);
+  margin-bottom: 22px;
+}
+.is-style-marginalia .wp-block-accordion-item:not(:first-child) .wp-block-accordion-heading__toggle {
+  font: 500 11px/1 var(--wpds-mono);
+  color: var(--wpds-warm);
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.is-style-marginalia .wp-block-accordion-item:not(:first-child) .wp-block-accordion-panel {
+  font: italic 14px/1.5 var(--wpds-serif);
+  color: var(--wpds-ink-2);
+}
+@media (max-width: 720px) {
+  .is-style-marginalia.wp-block-woocommerce-accordion-group,
+  .is-style-marginalia .wp-block-accordion .wp-block-woocommerce-accordion-group {
+    grid-template-columns: 1fr; gap: 28px;
+  }
+  .is-style-marginalia .wp-block-accordion-item:first-child {
+    grid-column: 1; grid-row: auto;
+  }
+}
+
+/* ============================================================
+   21 — Bento Grid
+   First item = lead (dark, full-width); rest = soft beige cells.
+   ============================================================ */
+.is-style-bento .wp-block-accordion {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.is-style-bento .wp-block-accordion-item {
+  background: var(--wpds-soft-2);
+  border: none;
+  border-radius: 12px;
+  padding: 22px 24px;
+  display: flex; flex-direction: column;
+  grid-column: span 2;
+  transition: transform var(--wpds-snap) var(--wpds-ease), box-shadow var(--wpds-snap) var(--wpds-ease);
+}
+.is-style-bento .wp-block-accordion-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -12px rgba(0,0,0,.18);
+}
+.is-style-bento .wp-block-accordion-item:first-child:hover {
+  box-shadow: 0 16px 32px -12px rgba(0,0,0,.4);
+}
+.is-style-bento .wp-block-accordion-item:first-child {
+  grid-column: 1 / -1;
+  background: var(--wpds-ink);
+  color: var(--wpds-surface);
+  padding: 28px;
+}
+.is-style-bento .wp-block-accordion-heading__toggle {
+  width: 100%;
+  background: transparent; border: none;
+  padding: 0 0 14px;
+  text-align: left;
+  pointer-events: none;
+  font: 500 11px/1 var(--wpds-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--wpds-ink-3);
+}
+.is-style-bento .wp-block-accordion-item:first-child .wp-block-accordion-heading__toggle { color: var(--wpds-warm); }
+.is-style-bento .wp-block-accordion-heading__toggle-icon { display: none; }
+.is-style-bento .wp-block-accordion-panel {
+  display: block !important; height: auto !important;
+  padding: 0;
+  font: 14px/1.5 var(--wpds-sans);
+}
+.is-style-bento .wp-block-accordion-item:first-child .wp-block-accordion-panel {
+  font: 500 22px/1.4 var(--wpds-serif);
+  letter-spacing: -0.01em;
+}
+@media (max-width: 720px) {
+  .is-style-bento.wp-block-woocommerce-accordion-group,
+  .is-style-bento .wp-block-accordion .wp-block-woocommerce-accordion-group {
+    grid-template-columns: 1fr;
+  }
+  .is-style-bento .wp-block-accordion-item { grid-column: 1 / -1; }
+}
+
+/* ============================================================
+   22 — Newspaper Front Page
+   Inked border, masthead rule, serif headlines, columnar body.
+   ============================================================ */
+.is-style-newspaper .wp-block-accordion {
+  background: var(--wpds-surface);
+  border: 1px solid var(--wpds-ink);
+  border-radius: 0;
+  padding: 28px;
+  font-family: var(--wpds-serif);
+  border-top: 4px solid var(--wpds-ink);
+}
+.is-style-newspaper .wp-block-accordion-item {
+  border: none;
+  border-bottom: 1px solid var(--wpds-line-2);
+  padding: 16px 0;
+}
+.is-style-newspaper .wp-block-accordion-item:first-child { padding-top: 0; }
+.is-style-newspaper .wp-block-accordion-item:last-child { border-bottom: none; padding-bottom: 0; }
+.is-style-newspaper .wp-block-accordion-heading__toggle {
+  width: 100%;
+  background: transparent; border: none;
+  padding: 0 0 12px;
+  text-align: left;
+  pointer-events: none;
+  font: 700 32px/1.1 var(--wpds-serif);
+  letter-spacing: -0.01em;
+  color: var(--wpds-ink);
+  text-wrap: balance;
+}
+.is-style-newspaper .wp-block-accordion-heading__toggle::before {
+  content: "Dispatch";
+  display: block;
+  font: 500 11px/1 var(--wpds-mono);
+  letter-spacing: 0.18em;
+  color: var(--wpds-ink-3);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.is-style-newspaper .wp-block-accordion-item:nth-child(2) .wp-block-accordion-heading__toggle::before { content: "Specifications"; }
+.is-style-newspaper .wp-block-accordion-item:nth-child(3) .wp-block-accordion-heading__toggle::before { content: "Verdicts"; }
+.is-style-newspaper .wp-block-accordion-heading__toggle-icon { display: none; }
+.is-style-newspaper .wp-block-accordion-panel {
+  display: block !important; height: auto !important;
+  padding: 0;
+  font: 15px/1.65 var(--wpds-serif);
+  color: var(--wpds-ink);
+  column-count: 2; column-gap: 24px;
+  column-rule: 1px solid var(--wpds-line-2);
+}
+@media (max-width: 600px) {
+  .is-style-newspaper .wp-block-accordion-panel { column-count: 1; }
+  .is-style-newspaper .wp-block-accordion-heading__toggle { font-size: 24px; }
+}
+
+/* ============================================================
+   23 — Map / Pinned Coordinates
+   Grid background with pinned cards at offset positions.
+   ============================================================ */
+.is-style-map-pins .wp-block-accordion {
+  background: var(--wpds-soft-2);
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  border: 1px solid var(--wpds-line);
+  border-radius: 12px;
+  padding: 32px 24px 32px 56px;
+  display: flex; flex-direction: column;
+  gap: 14px;
+  position: relative;
+}
+.is-style-map-pins.wp-block-woocommerce-accordion-group::after,
+.is-style-map-pins .wp-block-accordion .wp-block-woocommerce-accordion-group::after {
+  content: "° N · ° W";
+  position: absolute; bottom: 12px; left: 18px;
+  font: 500 11px/1 var(--wpds-mono);
+  color: var(--wpds-ink-3);
+  letter-spacing: 0.1em;
+}
+.is-style-map-pins .wp-block-accordion-item {
+  background: var(--wpds-surface);
+  border: 1px solid var(--wpds-ink);
+  border-radius: 4px;
+  padding: 12px 16px;
+  max-width: 60%;
+  position: relative;
+  box-shadow: 0 4px 12px -4px rgba(0,0,0,.12);
+  transition: transform var(--wpds-snap) var(--wpds-ease), box-shadow var(--wpds-snap) var(--wpds-ease);
+}
+.is-style-map-pins .wp-block-accordion-item:hover {
+  transform: translateY(-2px) translateX(2px);
+  box-shadow: 0 12px 24px -8px rgba(0,0,0,.22);
+}
+.is-style-map-pins .wp-block-accordion-item::before {
+  content: ""; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--wpds-ink); border: 3px solid var(--wpds-surface);
+  box-shadow: 0 0 0 1px var(--wpds-ink);
+  position: absolute; left: -22px; top: 50%; transform: translateY(-50%);
+  animation: wpds-ping 2.4s var(--wpds-ease-out) infinite;
+}
+@keyframes wpds-ping {
+  0%        { box-shadow: 0 0 0 1px var(--wpds-ink), 0 0 0 0   rgba(26,26,26,.35); }
+  60%, 100% { box-shadow: 0 0 0 1px var(--wpds-ink), 0 0 0 16px rgba(26,26,26,0);   }
+}
+.is-style-map-pins .wp-block-accordion-item:nth-child(2) { margin-left: 12%; }
+.is-style-map-pins .wp-block-accordion-item:nth-child(3) { margin-left: 32%; }
+.is-style-map-pins .wp-block-accordion-item:nth-child(4) { margin-left: 8%; }
+.is-style-map-pins .wp-block-accordion-item:nth-child(5) { margin-left: 24%; }
+.is-style-map-pins .wp-block-accordion-heading__toggle {
+  width: 100%;
+  background: transparent; border: none;
+  padding: 0 0 4px;
+  text-align: left;
+  pointer-events: none;
+  font: 600 14px/1.2 var(--wpds-serif);
+  color: var(--wpds-ink);
+}
+.is-style-map-pins .wp-block-accordion-heading__toggle-icon { display: none; }
+.is-style-map-pins .wp-block-accordion-panel {
+  display: block !important; height: auto !important;
+  padding: 0;
+  font: 500 12px/1.4 var(--wpds-sans);
+  color: var(--wpds-ink-2);
+}
+
+/* ============================================================
+   24 — Field Notebook
+   Cream paper with horizontal rules; serif title; numbered notes.
+   ============================================================ */
+.is-style-field-notebook .wp-block-accordion {
+  background: #fbf6e9;
+  background-image: repeating-linear-gradient(
+    to bottom, transparent 0 27px,
+    rgba(80,60,40,.08) 27px 28px
+  );
+  border: 1px solid #d9cfa6;
+  border-left: 4px solid rgba(185,0,0,.18);
+  border-radius: 2px;
+  padding: 28px 36px;
+  box-shadow: 0 12px 32px -16px rgba(0,0,0,.18);
+  counter-reset: wpds-note;
+}
+.is-style-field-notebook .wp-block-accordion-item {
+  border: none;
+  padding: 8px 0;
+  counter-increment: wpds-note;
+}
+.is-style-field-notebook .wp-block-accordion-item:not(:last-child) {
+  border-bottom: 1px solid rgba(80,60,40,.18);
+  margin-bottom: 12px;
+  padding-bottom: 16px;
+}
+.is-style-field-notebook .wp-block-accordion-heading__toggle {
+  width: 100%;
+  background: transparent; border: none;
+  padding: 0;
+  text-align: left;
+  pointer-events: none;
+  font: 600 22px/1.2 var(--wpds-serif);
+  color: #2a1f10;
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 12px;
+  align-items: baseline;
+  letter-spacing: -0.01em;
+}
+.is-style-field-notebook .wp-block-accordion-heading__toggle::before {
+  content: counter(wpds-note);
+  font: 600 18px/1 var(--wpds-serif);
+  color: var(--wpds-warm);
+}
+.is-style-field-notebook .wp-block-accordion-heading__toggle-icon { display: none; }
+.is-style-field-notebook .wp-block-accordion-panel {
+  display: block !important; height: auto !important;
+  padding: 6px 0 0 44px;
+  font: 14px/1.5 var(--wpds-sans);
+  color: #2a1f10;
+}
+
+/* ============================================================
+   25 — Stat Block (RPG character sheet)
+   Heavy 2px ink border; mono labels; serif headings; soft trait box.
+   ============================================================ */
+.is-style-stat-block .wp-block-accordion {
+  background: var(--wpds-surface);
+  border: 2px solid var(--wpds-ink);
+  border-radius: 0;
+  padding: 24px 28px;
+  font-family: var(--wpds-mono);
+}
+.is-style-stat-block.wp-block-woocommerce-accordion-group::before,
+.is-style-stat-block .wp-block-accordion .wp-block-woocommerce-accordion-group::before {
+  content: "Object class · Common edition";
+  display: block;
+  font: 500 11px/1 var(--wpds-mono);
+  letter-spacing: 0.18em;
+  color: var(--wpds-ink-3);
+  text-transform: uppercase;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--wpds-ink);
+  margin-bottom: 16px;
+}
+.is-style-stat-block .wp-block-accordion-item {
+  border: none;
+  border-top: 1px solid var(--wpds-ink);
+  padding: 14px 0;
+}
+.is-style-stat-block .wp-block-accordion-item:first-child { border-top: none; padding-top: 0; }
+.is-style-stat-block .wp-block-accordion-heading__toggle {
+  width: 100%;
+  background: transparent; border: none;
+  padding: 0 0 8px;
+  text-align: left;
+  pointer-events: none;
+  font: 500 11px/1 var(--wpds-mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--wpds-ink-3);
+}
+.is-style-stat-block .wp-block-accordion-heading__toggle-icon { display: none; }
+.is-style-stat-block .wp-block-accordion-panel {
+  display: block !important; height: auto !important;
+  padding: 10px 14px;
+  background: var(--wpds-soft-2);
+  border-left: 3px solid var(--wpds-ink);
+  font: 14px/1.55 var(--wpds-sans);
+  color: var(--wpds-ink);
+}

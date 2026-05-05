@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Build / tooling artifacts (in case future tooling is added)
+node_modules/
+vendor/
+*.log
+
+# Local-only helpers — kept on disk but not tracked
+sync-to-studio.sh
