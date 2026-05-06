@@ -20,25 +20,53 @@
  */
 
 /* ============================================================
-   Shared design tokens — apply to any WC block carrying an is-style-*
-   class shipped by this plugin. Inherited by descendants.
+   Shared design tokens — theme-aware.
+   Every token reads from the active theme's theme.json presets first
+   (color, font-family, custom radius) and falls back to our own values
+   only when the theme doesn't define that slug. Derived gray tones use
+   color-mix(), so they harmonize with whatever surface + ink the theme
+   provides — including dark themes (where surface is dark and ink is
+   light, the mixes invert automatically).
    ============================================================ */
 [class*="wp-block-woocommerce-"][class*="is-style-"],
 [class*="wp-block-woocommerce-"][class*="is-style-"] :where(.wp-block-accordion, .wp-block-accordion-item) {
-  --wpds-surface: #ffffff;
-  --wpds-ink:     #1a1a1a;
-  --wpds-ink-2:   #4a4a48;
-  --wpds-ink-3:   #8a8a86;
-  --wpds-line:    #e6e3dc;
-  --wpds-line-2:  #d8d4cb;
-  --wpds-soft:    #efece5;
-  --wpds-soft-2:  #f1ede4;
-  --wpds-warm:    #b35a2c;
-  --wpds-radius:  14px;
-  --wpds-sans:    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --wpds-serif:   "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
-  --wpds-mono:    ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  /* Motion tokens — keep timings consistent across variants. */
+  /* Anchor colors — pulled from theme.json palette. */
+  --wpds-surface: var(--wp--preset--color--base,      #ffffff);
+  --wpds-ink:     var(--wp--preset--color--contrast,  #1a1a1a);
+
+  /* Derived tones — built from surface + ink so the whole tonal ramp
+     follows the theme without us hard-coding hex values. */
+  --wpds-ink-2:   color-mix(in srgb, var(--wpds-ink) 70%, var(--wpds-surface));
+  --wpds-ink-3:   color-mix(in srgb, var(--wpds-ink) 50%, var(--wpds-surface));
+  --wpds-line:    color-mix(in srgb, var(--wpds-ink) 12%, var(--wpds-surface));
+  --wpds-line-2:  color-mix(in srgb, var(--wpds-ink) 22%, var(--wpds-surface));
+  --wpds-soft:    color-mix(in srgb, var(--wpds-ink)  8%, var(--wpds-surface));
+  --wpds-soft-2:  color-mix(in srgb, var(--wpds-ink)  4%, var(--wpds-surface));
+
+  /* Accent — chain through common theme palette slug names. */
+  --wpds-warm:    var(--wp--preset--color--accent,
+                  var(--wp--preset--color--accent-1,
+                  var(--wp--preset--color--accent-2,
+                  var(--wp--preset--color--primary,
+                  #b35a2c))));
+
+  /* Typography — body text rolls up to whatever the theme provides;
+     serif and mono use the theme's named families if they exist before
+     falling back to a quality system stack. */
+  --wpds-sans:    var(--wp--preset--font-family--body,
+                  var(--wp--preset--font-family--system-font,
+                  ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif));
+  --wpds-serif:   var(--wp--preset--font-family--heading,
+                  var(--wp--preset--font-family--serif,
+                  "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif));
+  --wpds-mono:    var(--wp--preset--font-family--monospace,
+                  var(--wp--preset--font-family--mono,
+                  ui-monospace, "SF Mono", Menlo, Consolas, monospace));
+
+  /* Spacing — pick up theme custom radius if defined. */
+  --wpds-radius:  var(--wp--custom--radius, 14px);
+
+  /* Motion tokens — kept as our own; not part of theme.json. */
   --wpds-ease:    cubic-bezier(.4, 0, .2, 1);
   --wpds-ease-out: cubic-bezier(.16, 1, .3, 1);
   --wpds-fast:    160ms;

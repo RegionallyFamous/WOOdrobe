@@ -38,7 +38,9 @@
         "woocommerce_onboarding_profile": {
           "completed": true,
           "skipped": true
-        }
+        },
+        "woocommerce_block_theme_has_blockified_templates": "yes",
+        "woocommerce_single_product_block_template": "yes"
       }
     },
     {

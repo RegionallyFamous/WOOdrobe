@@ -19,6 +19,8 @@
 
 [![Try it live](https://img.shields.io/badge/▶%20%20Try%20it%20live%20in%20WordPress%20Playground-1a1a1a?style=for-the-badge&logo=wordpress&logoColor=ffffff)](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/RegionallyFamous/WOOdrobe/main/blueprint.json)
 
+**Live demo →** https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/RegionallyFamous/WOOdrobe/main/blueprint.json
+
 </div>
 
 <br/>
@@ -103,6 +105,8 @@ For theme makers and store builders, WOOdrobe means you stop hand-rolling CSS fo
 > **One stylesheet, 25 looks.** Every variant is pure CSS — no JS dependencies, no build step.
 
 > **Multi-block by design.** Built around a `block_name → variants` map so any WooCommerce block can drop in.
+
+> **Theme-aware tokens.** WOOdrobe reads from your theme's `theme.json` palette and font families first — surface, contrast, accent, body / heading / monospace — and falls back to its own values only when the theme doesn't define a slug. Derived gray tones use `color-mix()`, so the entire tonal ramp follows the theme automatically (including dark themes).
 
 > **Modern motion.** Smooth panel reveals, hover lifts, on-load stagger, pulse and ping accents, all timed off shared motion tokens. `prefers-reduced-motion` honored everywhere.
 
