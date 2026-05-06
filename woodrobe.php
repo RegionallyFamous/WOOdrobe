@@ -115,23 +115,32 @@ function woodrobe_register_block_styles() {
 add_action( 'init', 'woodrobe_register_block_styles' );
 
 /**
- * Cache-busting version derived from the stylesheet's mtime, with a
- * fallback to the plugin version constant.
+ * Cache-busting version derived from a given asset's mtime, with a fallback
+ * to the plugin version constant.
+ *
+ * @param string $relative_path Path to the asset relative to the plugin root.
+ * @return string
+ */
+function woodrobe_asset_version( $relative_path ) {
+	$path = WOODROBE_PLUGIN_DIR . ltrim( $relative_path, '/' );
+
+	return file_exists( $path ) ? (string) filemtime( $path ) : WOODROBE_VERSION;
+}
+
+/**
+ * Cache-busting version for the stylesheet (kept for back-compat).
  *
  * @return string
  */
 function woodrobe_style_version() {
-	$style_path = WOODROBE_PLUGIN_DIR . 'assets/styles.css';
-
-	return file_exists( $style_path ) ? (string) filemtime( $style_path ) : WOODROBE_VERSION;
+	return woodrobe_asset_version( 'assets/styles.css' );
 }
 
 /**
- * Force-enqueue styles in both the front-end and the Site Editor iframe.
- *
- * register_block_style's style_handle loads on render, but doesn't reliably
- * reach the editor iframe in every WP version. enqueue_block_assets fires
- * for both contexts.
+ * Force-enqueue styles + autoclose script in both the front-end and the
+ * Site Editor iframe. register_block_style's style_handle loads on render,
+ * but doesn't reliably reach the editor iframe in every WP version.
+ * enqueue_block_assets fires for both contexts.
  *
  * @return void
  */
@@ -144,7 +153,23 @@ function woodrobe_enqueue_block_assets() {
 		'woodrobe-styles',
 		plugins_url( 'assets/styles.css', WOODROBE_PLUGIN_FILE ),
 		array(),
-		woodrobe_style_version()
+		woodrobe_asset_version( 'assets/styles.css' )
+	);
+
+	// Tab-strip variants (pill-switch, sidebar-tabs, card-tabs,
+	// underline-slide, chips, bottom-tabs, preview-strip) read as tabs:
+	// opening one item should close the others. The core accordion block
+	// defaults to multi-open, so this small enqueued script enforces
+	// autoclose on those variants only. ~50 lines, no dependencies.
+	wp_enqueue_script(
+		'woodrobe-autoclose',
+		plugins_url( 'assets/woodrobe.js', WOODROBE_PLUGIN_FILE ),
+		array(),
+		woodrobe_asset_version( 'assets/woodrobe.js' ),
+		array(
+			'in_footer' => true,
+			'strategy'  => 'defer',
+		)
 	);
 }
 add_action( 'enqueue_block_assets', 'woodrobe_enqueue_block_assets' );
