@@ -6,8 +6,7 @@
     "author": "Regionally Famous"
   },
   "preferredVersions": {
-    "php": "8.2",
-    "wp": "latest"
+    "php": "8.2"
   },
   "phpExtensionBundles": [
     "kitchen-sink"
