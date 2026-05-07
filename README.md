@@ -102,7 +102,9 @@ For theme makers and store builders, WOOdrobe means you stop hand-rolling CSS fo
 
 ## Why it's different
 
-> **One stylesheet, 25 looks.** Every variant is pure CSS — no JS dependencies, no build step.
+> **One stylesheet, 25 looks.** Every variant is styled in CSS, with one tiny dependency-free script only for tab-style autoclose behavior.
+
+> **Built-in showcase block.** Open **Appearance → WOOdrobe Showcase** or insert the **WOOdrobe Showcase** block on a page to see every outfit with the same sample content.
 
 > **Multi-block by design.** Built around a `block_name → variants` map so any WooCommerce block can drop in.
 
@@ -123,6 +125,8 @@ Appearance → Editor → Single Product → Product Details → Styles → pick
 ```
 
 That's it. The store-front transforms instantly.
+
+To browse the whole wardrobe at once, open **Appearance → WOOdrobe Showcase** in wp-admin or insert the **WOOdrobe Showcase** block on any page.
 
 <br/>
 
@@ -167,7 +171,7 @@ cd WOOdrobe
 ),
 ```
 
-**2.** Append a `BLOCK: woocommerce/cart` section to [`assets/styles.css`](assets/styles.css), with selectors scoped to `.is-style-<slug>.wp-block-woocommerce-cart` (and descendants).
+**2.** Append a `BLOCK: woocommerce/cart` section to [`assets/styles.css`](assets/styles.css), with selectors scoped to `.wp-block-woocommerce-cart.is-style-<slug>` (and descendants).
 
 The plugin auto-registers every entry through `register_block_style()` and shares the single stylesheet handle so design tokens cascade across blocks and the request count stays at 1.
 

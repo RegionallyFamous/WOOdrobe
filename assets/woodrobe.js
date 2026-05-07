@@ -9,7 +9,9 @@
  * (accordion, magazine-masthead, etc.) with the standard accordion
  * behavior.
  *
- * Pure delegated click handler. No frameworks, no build step.
+ * Also powers the static Showcase block and wp-admin sampler, where the
+ * core accordion interactivity layer is not present. Pure delegated click
+ * handling. No frameworks, no build step.
  */
 ( function () {
 	'use strict';
@@ -23,6 +25,24 @@
 		'is-style-bottom-tabs',
 		'is-style-preview-strip',
 	];
+	function setItemOpen( item, open ) {
+		var itemToggle = item.querySelector( '.wp-block-accordion-heading__toggle' );
+		var panel = item.querySelector( '.wp-block-accordion-panel' );
+
+		item.classList.toggle( 'is-open', open );
+
+		if ( itemToggle ) {
+			itemToggle.setAttribute( 'aria-expanded', open ? 'true' : 'false' );
+		}
+
+		if ( panel ) {
+			if ( open ) {
+				panel.removeAttribute( 'hidden' );
+			} else {
+				panel.setAttribute( 'hidden', 'hidden' );
+			}
+		}
+	}
 
 	// Re-entrancy guard: when we close a sibling we synthesize a click on
 	// its toggle, which fires this same listener. Without the flag we'd
@@ -34,7 +54,12 @@
 			return;
 		}
 
-		var toggle = event.target.closest( '.wp-block-accordion-heading__toggle' );
+		var target = event.target;
+		if ( ! target || typeof target.closest !== 'function' ) {
+			return;
+		}
+
+		var toggle = target.closest( '.wp-block-accordion-heading__toggle' );
 		if ( ! toggle ) {
 			return;
 		}
@@ -44,10 +69,9 @@
 			return;
 		}
 
-		// Walk up to the nearest element carrying one of our tab-strip
-		// is-style classes — that's the WC product-details wrapper.
+		// Walk up to the styled WC product-details wrapper.
 		var styleHost = item.closest(
-			'.is-style-pill-switch, .is-style-sidebar-tabs, .is-style-card-tabs, .is-style-underline-slide, .is-style-chips, .is-style-bottom-tabs, .is-style-preview-strip'
+			'.wp-block-woocommerce-product-details[class*="is-style-"]'
 		);
 		if ( ! styleHost ) {
 			return;
@@ -56,12 +80,29 @@
 		var hasTabStrip = TAB_STRIP_VARIANTS.some( function ( cls ) {
 			return styleHost.classList.contains( cls );
 		} );
-		if ( ! hasTabStrip ) {
+		var isShowcaseToggle = toggle.hasAttribute( 'data-woodrobe-showcase-toggle' );
+
+		if ( ! hasTabStrip && ! isShowcaseToggle ) {
 			return;
 		}
 
 		var accordion = item.closest( '.wp-block-accordion' );
 		if ( ! accordion ) {
+			return;
+		}
+
+		if ( isShowcaseToggle ) {
+			event.preventDefault();
+
+			if ( hasTabStrip ) {
+				var showcaseItems = accordion.querySelectorAll( '.wp-block-accordion-item' );
+				for ( var si = 0; si < showcaseItems.length; si++ ) {
+					setItemOpen( showcaseItems[ si ], showcaseItems[ si ] === item );
+				}
+			} else {
+				setItemOpen( item, ! item.classList.contains( 'is-open' ) );
+			}
+
 			return;
 		}
 

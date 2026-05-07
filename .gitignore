@@ -10,6 +10,3 @@
 node_modules/
 vendor/
 *.log
-
-# Local-only helpers — kept on disk but not tracked
-sync-to-studio.sh

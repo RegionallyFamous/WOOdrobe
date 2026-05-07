@@ -28,7 +28,8 @@ For theme makers and store builders, WOOdrobe means you stop hand-rolling CSS fo
 
 = Why theme makers love it =
 
-* **One stylesheet, 25 looks.** Every variant is CSS-only — no JS dependencies, no build step.
+* **One stylesheet, 25 looks.** Every variant is styled in CSS, with one tiny dependency-free script only for tab-style autoclose behavior.
+* **Built-in showcase block.** Open **Appearance &rarr; WOOdrobe Showcase** or insert the **WOOdrobe Showcase** block on a page to preview every outfit with the same sample content.
 * **Multi-block by design.** First release covers `woocommerce/product-details`. The architecture is built for Cart, Checkout, Mini Cart, Product Image Gallery, and the rest of the WooCommerce block catalog as they ship.
 * **Modern micro-interactions.** Smooth panel reveals, hover lifts, on-load stagger, pulse and ping accents — all timed off shared motion tokens. `prefers-reduced-motion` honored everywhere.
 * **Site Editor friendly.** Loads cleanly in the editor iframe and on the front end through `enqueue_block_assets`. Cache-busting via stylesheet mtime so your iterations show up immediately.
@@ -42,6 +43,8 @@ For theme makers and store builders, WOOdrobe means you stop hand-rolling CSS fo
 3. Open the **Styles** tab and pick an outfit.
 
 That's it. The store-front transforms instantly.
+
+To browse the whole wardrobe at once, open **Appearance &rarr; WOOdrobe Showcase** in wp-admin or insert the **WOOdrobe Showcase** block on any page.
 
 == Installation ==
 
@@ -59,13 +62,17 @@ Yes. The plugin only registers styles when WooCommerce is active.
 
 Yes. WOOdrobe enqueues its stylesheet via `enqueue_block_assets`, which fires for both the editor iframe and the front end.
 
+= Can I preview every style at once? =
+
+Yes. Open **Appearance &rarr; WOOdrobe Showcase** in wp-admin, or insert the **WOOdrobe Showcase** block on any page to render a public style gallery.
+
 = Are these styles only for the Product Details block? =
 
 Today, yes — the first release ships 25 variants for `woocommerce/product-details`. The codebase is built around a `woodrobe_block_styles()` map keyed by block name, so additional WooCommerce blocks (Cart, Checkout, Mini Cart, Product Image Gallery, and others) are first-class citizens in upcoming releases.
 
 = Does WOOdrobe ship JavaScript? =
 
-No. Every style is pure CSS, including the micro-interactions and animations.
+Yes, but only a tiny dependency-free script for the tab-strip variants. It makes tab-like styles close sibling panels when a new tab opens; all visual styling and animation still live in CSS.
 
 = Will my store still be accessible? =
 
@@ -73,7 +80,7 @@ Yes. Every variant keeps a visible focus ring on tab toggles, and force-open var
 
 = Can I add my own variants? =
 
-Absolutely. Add a slug + label to `woodrobe_block_styles()` and a CSS section scoped to `.is-style-<slug>` in `assets/styles.css`. The codebase includes an extension recipe at the top of the stylesheet.
+Absolutely. Add a slug + label to `woodrobe_block_styles()` and a CSS section scoped to the target block wrapper, such as `.wp-block-woocommerce-product-details.is-style-<slug>`, in `assets/styles.css`. The codebase includes an extension recipe at the top of the stylesheet.
 
 = Where do I file bugs or feature requests? =
 
@@ -92,6 +99,7 @@ Open an issue on the project repository (linked under Plugin URI in the plugin h
 = 1.0.0 =
 * First release.
 * 25 block-style variants for `woocommerce/product-details`.
+* Built-in style showcase page and dynamic WOOdrobe Showcase block.
 * Multi-block architecture ready for additional WooCommerce blocks.
 * Micro-interactions: smooth panel reveal, on-load stagger, hover lifts, pulse and ping accents, all governed by shared motion tokens.
 * `prefers-reduced-motion` override.

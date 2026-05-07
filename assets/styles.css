@@ -10,7 +10,7 @@
  *
  * Adding a new block:
  *   - Append a section banner: BLOCK: woocommerce/<name>
- *   - Scope every selector to ".is-style-<slug>.wp-block-woocommerce-<name>" or its descendants.
+ *   - Scope every selector to ".wp-block-woocommerce-<name>.is-style-<slug>" or its descendants.
  *   - If the block has structural children (like the accordion-item inside product-details),
  *     copy the pattern from the product-details section.
  *   - Register the slug + label in woodrobe_block_styles() in woodrobe.php.
@@ -187,7 +187,7 @@
    01 — Pill Switch
    Outer card; soft pill-track wraps tabs; active tab is white pill.
    ============================================================ */
-.is-style-pill-switch .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-pill-switch .wp-block-accordion {
   background: var(--wpds-surface);
   border: 1px solid var(--wpds-line);
   border-radius: var(--wpds-radius);
@@ -197,11 +197,11 @@
   gap: 4px;
   align-items: flex-start;
 }
-.is-style-pill-switch .wp-block-accordion-item {
+.wp-block-woocommerce-product-details.is-style-pill-switch .wp-block-accordion-item {
   border: none;
   display: contents;
 }
-.is-style-pill-switch .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-pill-switch .wp-block-accordion-heading__toggle {
   background: var(--wpds-soft); border: none;
   padding: 10px 22px;
   border-radius: 999px;
@@ -210,14 +210,14 @@
   display: inline-flex; align-items: center; gap: 8px;
   transition: background 200ms, color 200ms, box-shadow 200ms;
 }
-.is-style-pill-switch .wp-block-accordion-heading__toggle:hover { color: var(--wpds-ink-2); transform: translateY(-1px); }
-.is-style-pill-switch .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle,
-.is-style-pill-switch .wp-block-accordion-heading__toggle[aria-expanded="true"] {
+.wp-block-woocommerce-product-details.is-style-pill-switch .wp-block-accordion-heading__toggle:hover { color: var(--wpds-ink-2); transform: translateY(-1px); }
+.wp-block-woocommerce-product-details.is-style-pill-switch .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle,
+.wp-block-woocommerce-product-details.is-style-pill-switch .wp-block-accordion-heading__toggle[aria-expanded="true"] {
   background: var(--wpds-surface); color: var(--wpds-ink); font-weight: 600;
   box-shadow: 0 1px 3px rgba(0,0,0,.06), 0 0 0 1px var(--wpds-line);
 }
-.is-style-pill-switch .wp-block-accordion-heading__toggle-icon { display: none; }
-.is-style-pill-switch .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-pill-switch .wp-block-accordion-heading__toggle-icon { display: none; }
+.wp-block-woocommerce-product-details.is-style-pill-switch .wp-block-accordion-panel {
   flex-basis: 100%; order: 99;
   padding: 24px 4px 0;
 }
@@ -226,7 +226,7 @@
    02 — Sidebar Tabs
    Outer card; left rail with mono numbers; body fills right.
    ============================================================ */
-.is-style-sidebar-tabs .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-sidebar-tabs .wp-block-accordion {
   background: var(--wpds-surface);
   border: 1px solid var(--wpds-line);
   border-radius: var(--wpds-radius);
@@ -235,17 +235,17 @@
   overflow: hidden;
   counter-reset: wpds-side;
 }
-.is-style-sidebar-tabs .wp-block-accordion-item {
+.wp-block-woocommerce-product-details.is-style-sidebar-tabs .wp-block-accordion-item {
   border: none;
   display: contents;
 }
-.is-style-sidebar-tabs .wp-block-accordion-heading {
+.wp-block-woocommerce-product-details.is-style-sidebar-tabs .wp-block-accordion-heading {
   background: var(--wpds-soft-2);
   border-bottom: 1px solid var(--wpds-line);
   counter-increment: wpds-side;
 }
-.is-style-sidebar-tabs .wp-block-accordion-item:last-child .wp-block-accordion-heading { border-bottom: none; }
-.is-style-sidebar-tabs .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-sidebar-tabs .wp-block-accordion-item:last-child .wp-block-accordion-heading { border-bottom: none; }
+.wp-block-woocommerce-product-details.is-style-sidebar-tabs .wp-block-accordion-heading__toggle {
   width: 100%;
   background: transparent; border: none;
   padding: 14px 18px;
@@ -258,7 +258,7 @@
   align-items: center;
   transition: background 160ms, color 160ms;
 }
-.is-style-sidebar-tabs .wp-block-accordion-heading__toggle::before {
+.wp-block-woocommerce-product-details.is-style-sidebar-tabs .wp-block-accordion-heading__toggle::before {
   content: counter(wpds-side, decimal-leading-zero);
   font: 500 11px/1 var(--wpds-mono);
   color: var(--wpds-ink-3);
@@ -266,18 +266,18 @@
   padding: 4px 7px;
   border-radius: 4px;
 }
-.is-style-sidebar-tabs .wp-block-accordion-heading__toggle:hover { background: rgba(0,0,0,.03); }
-.is-style-sidebar-tabs .wp-block-accordion-item.is-open .wp-block-accordion-heading { background: var(--wpds-surface); }
-.is-style-sidebar-tabs .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-sidebar-tabs .wp-block-accordion-heading__toggle:hover { background: rgba(0,0,0,.03); }
+.wp-block-woocommerce-product-details.is-style-sidebar-tabs .wp-block-accordion-item.is-open .wp-block-accordion-heading { background: var(--wpds-surface); }
+.wp-block-woocommerce-product-details.is-style-sidebar-tabs .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
   color: var(--wpds-ink);
   font-weight: 600;
   box-shadow: inset 2px 0 0 var(--wpds-ink);
 }
-.is-style-sidebar-tabs .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle::before {
+.wp-block-woocommerce-product-details.is-style-sidebar-tabs .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle::before {
   background: var(--wpds-ink); color: var(--wpds-surface);
 }
-.is-style-sidebar-tabs .wp-block-accordion-heading__toggle-icon { display: none; }
-.is-style-sidebar-tabs .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-sidebar-tabs .wp-block-accordion-heading__toggle-icon { display: none; }
+.wp-block-woocommerce-product-details.is-style-sidebar-tabs .wp-block-accordion-panel {
   grid-column: 2;
   grid-row: 1 / span 99;
   align-self: start;
@@ -290,18 +290,18 @@
    03 — Accordion Stack (refined default)
    Outer card; soft hover; animated chevron via toggle-icon rotation.
    ============================================================ */
-.is-style-accordion-stack .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-accordion-stack .wp-block-accordion {
   background: var(--wpds-surface);
   border: 1px solid var(--wpds-line);
   border-radius: var(--wpds-radius);
   overflow: hidden;
 }
-.is-style-accordion-stack .wp-block-accordion-item {
+.wp-block-woocommerce-product-details.is-style-accordion-stack .wp-block-accordion-item {
   border: none;
   border-bottom: 1px solid var(--wpds-line);
 }
-.is-style-accordion-stack .wp-block-accordion-item:last-child { border-bottom: none; }
-.is-style-accordion-stack .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-accordion-stack .wp-block-accordion-item:last-child { border-bottom: none; }
+.wp-block-woocommerce-product-details.is-style-accordion-stack .wp-block-accordion-heading__toggle {
   width: 100%;
   background: transparent; border: none;
   padding: 22px 26px;
@@ -311,28 +311,28 @@
   display: flex; justify-content: space-between; align-items: center; gap: 16px;
   transition: background 160ms;
 }
-.is-style-accordion-stack .wp-block-accordion-heading__toggle:hover { background: var(--wpds-soft); }
-.is-style-accordion-stack .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle { font-weight: 600; }
-.is-style-accordion-stack .wp-block-accordion-heading__toggle-icon {
+.wp-block-woocommerce-product-details.is-style-accordion-stack .wp-block-accordion-heading__toggle:hover { background: var(--wpds-soft); }
+.wp-block-woocommerce-product-details.is-style-accordion-stack .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle { font-weight: 600; }
+.wp-block-woocommerce-product-details.is-style-accordion-stack .wp-block-accordion-heading__toggle-icon {
   color: var(--wpds-ink-3);
   transition: transform 280ms cubic-bezier(.4,0,.2,1);
 }
-.is-style-accordion-stack .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle-icon { transform: rotate(180deg); }
-.is-style-accordion-stack .wp-block-accordion-panel { padding: 0 26px 26px; }
+.wp-block-woocommerce-product-details.is-style-accordion-stack .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle-icon { transform: rotate(180deg); }
+.wp-block-woocommerce-product-details.is-style-accordion-stack .wp-block-accordion-panel { padding: 0 26px 26px; }
 
 /* ============================================================
    04 — Card Tabs
    Tabs are cards across the top; active tab "lifts" and joins
    a single body card below. Achieved by ordering panels last.
    ============================================================ */
-.is-style-card-tabs .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-card-tabs .wp-block-accordion {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   padding-top: 8px;
 }
-.is-style-card-tabs .wp-block-accordion-item { border: none; display: contents; }
-.is-style-card-tabs .wp-block-accordion-heading {
+.wp-block-woocommerce-product-details.is-style-card-tabs .wp-block-accordion-item { border: none; display: contents; }
+.wp-block-woocommerce-product-details.is-style-card-tabs .wp-block-accordion-heading {
   border: 1px solid var(--wpds-line);
   background: var(--wpds-soft);
   border-radius: 12px 12px 0 0;
@@ -340,18 +340,18 @@
   transition: transform var(--wpds-snap) var(--wpds-ease), background var(--wpds-snap) var(--wpds-ease), box-shadow var(--wpds-snap) var(--wpds-ease), border-color var(--wpds-snap) var(--wpds-ease);
   margin-bottom: -1px;
 }
-.is-style-card-tabs .wp-block-accordion-heading:hover {
+.wp-block-woocommerce-product-details.is-style-card-tabs .wp-block-accordion-heading:hover {
   transform: translateY(-2px);
   background: var(--wpds-soft-2);
   box-shadow: 0 4px 12px -6px rgba(0,0,0,.1);
 }
-.is-style-card-tabs .wp-block-accordion-item.is-open .wp-block-accordion-heading {
+.wp-block-woocommerce-product-details.is-style-card-tabs .wp-block-accordion-item.is-open .wp-block-accordion-heading {
   background: var(--wpds-surface);
   border-bottom-color: var(--wpds-surface);
   transform: translateY(-4px);
   box-shadow: 0 -2px 0 var(--wpds-ink) inset;
 }
-.is-style-card-tabs .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-card-tabs .wp-block-accordion-heading__toggle {
   width: 100%;
   background: transparent; border: none;
   padding: 18px 20px 22px;
@@ -360,8 +360,8 @@
   color: var(--wpds-ink);
   letter-spacing: -0.01em;
 }
-.is-style-card-tabs .wp-block-accordion-heading__toggle-icon { display: none; }
-.is-style-card-tabs .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-card-tabs .wp-block-accordion-heading__toggle-icon { display: none; }
+.wp-block-woocommerce-product-details.is-style-card-tabs .wp-block-accordion-panel {
   flex-basis: 100%;
   order: 99;
   background: var(--wpds-surface);
@@ -375,7 +375,7 @@
    05 — Numbered Index (editorial)
    Top/bottom heavy rules; serif heading + decimal-leading-zero.
    ============================================================ */
-.is-style-numbered-index .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-numbered-index .wp-block-accordion {
   background: var(--wpds-surface);
   border: 1px solid var(--wpds-line);
   border-radius: var(--wpds-radius);
@@ -384,13 +384,13 @@
   border-bottom: 1px solid var(--wpds-ink);
   counter-reset: wpds-num;
 }
-.is-style-numbered-index .wp-block-accordion-item {
+.wp-block-woocommerce-product-details.is-style-numbered-index .wp-block-accordion-item {
   border: none;
   border-top: 1px solid var(--wpds-line);
   counter-increment: wpds-num;
 }
-.is-style-numbered-index .wp-block-accordion-item:first-child { border-top: none; }
-.is-style-numbered-index .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-numbered-index .wp-block-accordion-item:first-child { border-top: none; }
+.wp-block-woocommerce-product-details.is-style-numbered-index .wp-block-accordion-heading__toggle {
   width: 100%;
   background: transparent; border: none;
   padding: 18px 4px;
@@ -402,31 +402,31 @@
   color: var(--wpds-ink-2);
   transition: padding 240ms cubic-bezier(.4,0,.2,1);
 }
-.is-style-numbered-index .wp-block-accordion-heading__toggle:hover { padding-left: 12px; padding-right: 12px; }
-.is-style-numbered-index .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-numbered-index .wp-block-accordion-heading__toggle:hover { padding-left: 12px; padding-right: 12px; }
+.wp-block-woocommerce-product-details.is-style-numbered-index .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
   padding-left: 16px; padding-right: 16px;
   box-shadow: inset 4px 0 0 var(--wpds-ink);
 }
-.is-style-numbered-index .wp-block-accordion-heading__toggle::before {
+.wp-block-woocommerce-product-details.is-style-numbered-index .wp-block-accordion-heading__toggle::before {
   content: counter(wpds-num, decimal-leading-zero);
   font: 500 12px/1 var(--wpds-mono);
   color: var(--wpds-ink-3);
   letter-spacing: 0.06em;
 }
-.is-style-numbered-index .wp-block-accordion-heading__toggle > span:first-of-type {
+.wp-block-woocommerce-product-details.is-style-numbered-index .wp-block-accordion-heading__toggle > span:first-of-type {
   font: 500 28px/1.1 var(--wpds-serif);
   color: var(--wpds-ink);
   letter-spacing: -0.015em;
 }
-.is-style-numbered-index .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle > span:first-of-type { font-weight: 600; }
-.is-style-numbered-index .wp-block-accordion-heading__toggle-icon { display: none; }
-.is-style-numbered-index .wp-block-accordion-panel { padding: 0 4px 24px 84px; }
+.wp-block-woocommerce-product-details.is-style-numbered-index .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle > span:first-of-type { font-weight: 600; }
+.wp-block-woocommerce-product-details.is-style-numbered-index .wp-block-accordion-heading__toggle-icon { display: none; }
+.wp-block-woocommerce-product-details.is-style-numbered-index .wp-block-accordion-panel { padding: 0 4px 24px 84px; }
 
 /* ============================================================
    06 — Underline Slide
    Outer card; tabs along a baseline rule; active tab gets a 2px underline.
    ============================================================ */
-.is-style-underline-slide .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-underline-slide .wp-block-accordion {
   background: var(--wpds-surface);
   border: 1px solid var(--wpds-line);
   border-radius: var(--wpds-radius);
@@ -436,13 +436,13 @@
   align-items: flex-end;
   position: relative;
 }
-.is-style-underline-slide .wp-block-accordion::after {
+.wp-block-woocommerce-product-details.is-style-underline-slide .wp-block-accordion::after {
   content: ""; order: 50; flex-basis: 100%; height: 1px;
   background: var(--wpds-line);
   margin-top: -1px;
 }
-.is-style-underline-slide .wp-block-accordion-item { border: none; display: contents; }
-.is-style-underline-slide .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-underline-slide .wp-block-accordion-item { border: none; display: contents; }
+.wp-block-woocommerce-product-details.is-style-underline-slide .wp-block-accordion-heading__toggle {
   background: transparent; border: none;
   padding: 18px 4px;
   font: 500 14px/1 var(--wpds-sans);
@@ -451,13 +451,13 @@
   margin-bottom: -1px;
   transition: color 200ms, border-color 200ms;
 }
-.is-style-underline-slide .wp-block-accordion-heading__toggle:hover { color: var(--wpds-ink-2); }
-.is-style-underline-slide .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-underline-slide .wp-block-accordion-heading__toggle:hover { color: var(--wpds-ink-2); }
+.wp-block-woocommerce-product-details.is-style-underline-slide .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
   color: var(--wpds-ink); font-weight: 600;
   border-bottom-color: var(--wpds-ink);
 }
-.is-style-underline-slide .wp-block-accordion-heading__toggle-icon { display: none; }
-.is-style-underline-slide .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-underline-slide .wp-block-accordion-heading__toggle-icon { display: none; }
+.wp-block-woocommerce-product-details.is-style-underline-slide .wp-block-accordion-panel {
   flex-basis: 100%; order: 99;
   padding: 24px 0 4px;
 }
@@ -466,7 +466,7 @@
    07 — Chips
    Outer card; rounded chip toggles; dot indicator on active.
    ============================================================ */
-.is-style-chips .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-chips .wp-block-accordion {
   background: var(--wpds-surface);
   border: 1px solid var(--wpds-line);
   border-radius: var(--wpds-radius);
@@ -475,8 +475,8 @@
   gap: 8px;
   align-items: flex-start;
 }
-.is-style-chips .wp-block-accordion-item { border: none; display: contents; }
-.is-style-chips .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-chips .wp-block-accordion-item { border: none; display: contents; }
+.wp-block-woocommerce-product-details.is-style-chips .wp-block-accordion-heading__toggle {
   background: var(--wpds-surface);
   border: 1px solid var(--wpds-line-2);
   padding: 8px 14px;
@@ -486,17 +486,17 @@
   display: inline-flex; align-items: center; gap: 8px;
   transition: all 180ms;
 }
-.is-style-chips .wp-block-accordion-heading__toggle::before {
+.wp-block-woocommerce-product-details.is-style-chips .wp-block-accordion-heading__toggle::before {
   content: ""; width: 8px; height: 8px; border-radius: 50%;
   background: var(--wpds-line-2);
   flex: none;
   transition: background 180ms;
 }
-.is-style-chips .wp-block-accordion-heading__toggle:hover { border-color: var(--wpds-ink-3); color: var(--wpds-ink); }
-.is-style-chips .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-chips .wp-block-accordion-heading__toggle:hover { border-color: var(--wpds-ink-3); color: var(--wpds-ink); }
+.wp-block-woocommerce-product-details.is-style-chips .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
   background: var(--wpds-ink); color: var(--wpds-surface); border-color: var(--wpds-ink);
 }
-.is-style-chips .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle::before {
+.wp-block-woocommerce-product-details.is-style-chips .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle::before {
   background: #4ade80;
   animation: wpds-pulse 2s var(--wpds-ease) infinite;
 }
@@ -504,8 +504,8 @@
   0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, .55); }
   50%      { box-shadow: 0 0 0 5px rgba(74, 222, 128, 0);  }
 }
-.is-style-chips .wp-block-accordion-heading__toggle-icon { display: none; }
-.is-style-chips .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-chips .wp-block-accordion-heading__toggle-icon { display: none; }
+.wp-block-woocommerce-product-details.is-style-chips .wp-block-accordion-panel {
   flex-basis: 100%; order: 99;
   padding: 24px 0 4px;
 }
@@ -514,7 +514,7 @@
    08 — Bottom Tabs
    Outer card; body on top, tabs at bottom in a 3-column grid.
    ============================================================ */
-.is-style-bottom-tabs .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-bottom-tabs .wp-block-accordion {
   background: var(--wpds-surface);
   border: 1px solid var(--wpds-line);
   border-radius: var(--wpds-radius);
@@ -522,8 +522,8 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
-.is-style-bottom-tabs .wp-block-accordion-item { border: none; display: contents; }
-.is-style-bottom-tabs .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-bottom-tabs .wp-block-accordion-item { border: none; display: contents; }
+.wp-block-woocommerce-product-details.is-style-bottom-tabs .wp-block-accordion-heading__toggle {
   width: 100%;
   background: var(--wpds-soft-2); border: none;
   padding: 16px 12px;
@@ -535,22 +535,22 @@
   transition: all 180ms;
   position: relative;
 }
-.is-style-bottom-tabs .wp-block-accordion-item:last-child .wp-block-accordion-heading__toggle { border-right: none; }
-.is-style-bottom-tabs .wp-block-accordion-heading__toggle::before {
+.wp-block-woocommerce-product-details.is-style-bottom-tabs .wp-block-accordion-item:last-child .wp-block-accordion-heading__toggle { border-right: none; }
+.wp-block-woocommerce-product-details.is-style-bottom-tabs .wp-block-accordion-heading__toggle::before {
   content: ""; width: 6px; height: 6px; border-radius: 50%;
   background: var(--wpds-line-2);
   transition: all 200ms;
 }
-.is-style-bottom-tabs .wp-block-accordion-heading__toggle:hover { color: var(--wpds-ink-2); background: rgba(0,0,0,.02); }
-.is-style-bottom-tabs .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-bottom-tabs .wp-block-accordion-heading__toggle:hover { color: var(--wpds-ink-2); background: rgba(0,0,0,.02); }
+.wp-block-woocommerce-product-details.is-style-bottom-tabs .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
   background: var(--wpds-surface); color: var(--wpds-ink); font-weight: 600;
   box-shadow: inset 0 2px 0 var(--wpds-ink);
 }
-.is-style-bottom-tabs .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle::before {
+.wp-block-woocommerce-product-details.is-style-bottom-tabs .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle::before {
   background: var(--wpds-ink); transform: scale(1.4);
 }
-.is-style-bottom-tabs .wp-block-accordion-heading__toggle-icon { display: none; }
-.is-style-bottom-tabs .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-bottom-tabs .wp-block-accordion-heading__toggle-icon { display: none; }
+.wp-block-woocommerce-product-details.is-style-bottom-tabs .wp-block-accordion-panel {
   grid-column: 1 / -1;
   order: -1;
   padding: 32px 36px;
@@ -561,7 +561,7 @@
    09 — Magazine Masthead
    Top double rule + bottom rule; serif headlines; column body.
    ============================================================ */
-.is-style-magazine-masthead .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-magazine-masthead .wp-block-accordion {
   background: var(--wpds-surface);
   border: 1px solid var(--wpds-line);
   border-radius: var(--wpds-radius);
@@ -569,12 +569,12 @@
   border-top: 4px solid var(--wpds-ink);
   border-bottom: 4px solid var(--wpds-ink);
 }
-.is-style-magazine-masthead .wp-block-accordion-item {
+.wp-block-woocommerce-product-details.is-style-magazine-masthead .wp-block-accordion-item {
   border: none;
   border-top: 1px solid var(--wpds-line-2);
 }
-.is-style-magazine-masthead .wp-block-accordion-item:first-child { border-top: none; }
-.is-style-magazine-masthead .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-magazine-masthead .wp-block-accordion-item:first-child { border-top: none; }
+.wp-block-woocommerce-product-details.is-style-magazine-masthead .wp-block-accordion-heading__toggle {
   width: 100%;
   background: transparent; border: none;
   padding: 18px 0;
@@ -584,33 +584,33 @@
   letter-spacing: -0.02em;
   display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
 }
-.is-style-magazine-masthead .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle { font-style: italic; }
-.is-style-magazine-masthead .wp-block-accordion-heading__toggle-icon { display: none; }
-.is-style-magazine-masthead .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-magazine-masthead .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle { font-style: italic; }
+.wp-block-woocommerce-product-details.is-style-magazine-masthead .wp-block-accordion-heading__toggle-icon { display: none; }
+.wp-block-woocommerce-product-details.is-style-magazine-masthead .wp-block-accordion-panel {
   padding: 0 0 24px;
   font: 16px/1.6 var(--wpds-serif);
   column-count: 2; column-gap: 36px;
   column-rule: 1px solid var(--wpds-line);
 }
 @media (max-width: 600px) {
-  .is-style-magazine-masthead .wp-block-accordion-panel { column-count: 1; }
+  .wp-block-woocommerce-product-details.is-style-magazine-masthead .wp-block-accordion-panel { column-count: 1; }
 }
 
 /* ============================================================
    10 — Brutalist
    2px ink border; uppercase mono toggles; active inverts to ink.
    ============================================================ */
-.is-style-brutalist .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-brutalist .wp-block-accordion {
   background: var(--wpds-surface);
   border: 2px solid var(--wpds-ink);
   border-radius: 0;
 }
-.is-style-brutalist .wp-block-accordion-item {
+.wp-block-woocommerce-product-details.is-style-brutalist .wp-block-accordion-item {
   border: none;
   border-bottom: 2px solid var(--wpds-ink);
 }
-.is-style-brutalist .wp-block-accordion-item:last-child { border-bottom: none; }
-.is-style-brutalist .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-brutalist .wp-block-accordion-item:last-child { border-bottom: none; }
+.wp-block-woocommerce-product-details.is-style-brutalist .wp-block-accordion-heading__toggle {
   width: 100%;
   background: var(--wpds-surface); border: none;
   padding: 18px 22px;
@@ -622,36 +622,36 @@
   display: flex; justify-content: space-between; align-items: center; gap: 16px;
   transition: background 140ms, color 140ms;
 }
-.is-style-brutalist .wp-block-accordion-heading__toggle:hover { background: var(--wpds-soft); }
-.is-style-brutalist .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-brutalist .wp-block-accordion-heading__toggle:hover { background: var(--wpds-soft); }
+.wp-block-woocommerce-product-details.is-style-brutalist .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle {
   background: var(--wpds-ink); color: var(--wpds-surface);
 }
-.is-style-brutalist .wp-block-accordion-heading__toggle-icon { font-family: var(--wpds-mono); font-weight: 500; }
-.is-style-brutalist .wp-block-accordion-panel { padding: 22px; }
+.wp-block-woocommerce-product-details.is-style-brutalist .wp-block-accordion-heading__toggle-icon { font-family: var(--wpds-mono); font-weight: 500; }
+.wp-block-woocommerce-product-details.is-style-brutalist .wp-block-accordion-panel { padding: 22px; }
 
 /* ============================================================
    11 — Soft Cards
    Soft gradient outer; tabs as soft cards; active card lifts on white.
    ============================================================ */
-.is-style-soft-cards .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-soft-cards .wp-block-accordion {
   background: linear-gradient(180deg, #ecebe6, #f6f5f2);
   border-radius: 18px;
   padding: 8px;
   display: flex; flex-direction: column;
   gap: 6px;
 }
-.is-style-soft-cards .wp-block-accordion-item {
+.wp-block-woocommerce-product-details.is-style-soft-cards .wp-block-accordion-item {
   border: none;
   background: transparent;
   border-radius: 14px;
   transition: background var(--wpds-snap) var(--wpds-ease), box-shadow var(--wpds-snap) var(--wpds-ease), transform var(--wpds-snap) var(--wpds-ease);
 }
-.is-style-soft-cards .wp-block-accordion-item:hover { background: rgba(255,255,255,.4); transform: translateY(-1px); }
-.is-style-soft-cards .wp-block-accordion-item.is-open {
+.wp-block-woocommerce-product-details.is-style-soft-cards .wp-block-accordion-item:hover { background: rgba(255,255,255,.4); transform: translateY(-1px); }
+.wp-block-woocommerce-product-details.is-style-soft-cards .wp-block-accordion-item.is-open {
   background: var(--wpds-surface);
   box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 12px rgba(0,0,0,.06);
 }
-.is-style-soft-cards .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-soft-cards .wp-block-accordion-heading__toggle {
   width: 100%;
   background: transparent; border: none;
   padding: 14px 18px;
@@ -660,15 +660,15 @@
   color: var(--wpds-ink);
   display: flex; justify-content: space-between; align-items: center; gap: 12px;
 }
-.is-style-soft-cards .wp-block-accordion-heading__toggle-icon { color: var(--wpds-ink-3); }
-.is-style-soft-cards .wp-block-accordion-panel { padding: 0 18px 18px; }
+.wp-block-woocommerce-product-details.is-style-soft-cards .wp-block-accordion-heading__toggle-icon { color: var(--wpds-ink-3); }
+.wp-block-woocommerce-product-details.is-style-soft-cards .wp-block-accordion-panel { padding: 0 18px 18px; }
 
 /* ============================================================
    12 — Preview Strip
    Outer card; tabs in 3-col grid with preview text under each label;
    active panel sits below the strip.
    ============================================================ */
-.is-style-preview-strip .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-preview-strip .wp-block-accordion {
   background: var(--wpds-surface);
   border: 1px solid var(--wpds-line);
   border-radius: var(--wpds-radius);
@@ -677,19 +677,19 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 8px;
 }
-.is-style-preview-strip .wp-block-accordion-item { border: none; display: contents; }
-.is-style-preview-strip .wp-block-accordion-heading {
+.wp-block-woocommerce-product-details.is-style-preview-strip .wp-block-accordion-item { border: none; display: contents; }
+.wp-block-woocommerce-product-details.is-style-preview-strip .wp-block-accordion-heading {
   border: 1.5px solid transparent;
   background: var(--wpds-soft);
   border-radius: 10px;
   transition: background 200ms, border-color 200ms;
 }
-.is-style-preview-strip .wp-block-accordion-heading:hover { background: var(--wpds-soft-2); }
-.is-style-preview-strip .wp-block-accordion-item.is-open .wp-block-accordion-heading {
+.wp-block-woocommerce-product-details.is-style-preview-strip .wp-block-accordion-heading:hover { background: var(--wpds-soft-2); }
+.wp-block-woocommerce-product-details.is-style-preview-strip .wp-block-accordion-item.is-open .wp-block-accordion-heading {
   background: var(--wpds-surface);
   border-color: var(--wpds-ink);
 }
-.is-style-preview-strip .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-preview-strip .wp-block-accordion-heading__toggle {
   width: 100%;
   background: transparent; border: none;
   padding: 14px 16px;
@@ -698,8 +698,8 @@
   color: var(--wpds-ink);
   display: flex; justify-content: space-between; align-items: center;
 }
-.is-style-preview-strip .wp-block-accordion-heading__toggle-icon { display: none; }
-.is-style-preview-strip .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-preview-strip .wp-block-accordion-heading__toggle-icon { display: none; }
+.wp-block-woocommerce-product-details.is-style-preview-strip .wp-block-accordion-panel {
   grid-column: 1 / -1;
   order: 99;
   padding: 16px 18px 12px;
@@ -709,15 +709,15 @@
    13 — Always-on Story
    Force-open editorial stream with mono kickers per section.
    ============================================================ */
-.is-style-always-on-story .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-always-on-story .wp-block-accordion {
   display: flex; flex-direction: column;
   gap: 56px;
 }
-.is-style-always-on-story .wp-block-accordion-item {
+.wp-block-woocommerce-product-details.is-style-always-on-story .wp-block-accordion-item {
   border: none;
   scroll-margin-top: 24px;
 }
-.is-style-always-on-story .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-always-on-story .wp-block-accordion-heading__toggle {
   width: 100%;
   background: transparent; border: none;
   padding: 0 0 8px;
@@ -728,25 +728,25 @@
   color: var(--wpds-ink-3);
   pointer-events: none;
 }
-.is-style-always-on-story .wp-block-accordion-heading__toggle-icon { display: none; }
-.is-style-always-on-story .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-always-on-story .wp-block-accordion-heading__toggle-icon { display: none; }
+.wp-block-woocommerce-product-details.is-style-always-on-story .wp-block-accordion-panel {
   display: block !important; height: auto !important;
   padding: 0;
   font: 16px/1.65 var(--wpds-sans);
   color: var(--wpds-ink-2);
 }
-.is-style-always-on-story .wp-block-accordion-panel > * + * { margin-top: 16px; }
+.wp-block-woocommerce-product-details.is-style-always-on-story .wp-block-accordion-panel > * + * { margin-top: 16px; }
 
 /* ============================================================
    14 — Description-first / At-a-glance
    First item: serif lead. Rest: soft-bordered glance modules.
    ============================================================ */
-.is-style-description-first .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-description-first .wp-block-accordion {
   display: flex; flex-direction: column;
   gap: 32px;
 }
-.is-style-description-first .wp-block-accordion-item { border: none; }
-.is-style-description-first .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-description-first .wp-block-accordion-item { border: none; }
+.wp-block-woocommerce-product-details.is-style-description-first .wp-block-accordion-heading__toggle {
   width: 100%;
   background: transparent; border: none;
   padding: 0 0 14px;
@@ -757,30 +757,30 @@
   color: var(--wpds-ink-3);
   pointer-events: none;
 }
-.is-style-description-first .wp-block-accordion-heading__toggle-icon { display: none; }
-.is-style-description-first .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-description-first .wp-block-accordion-heading__toggle-icon { display: none; }
+.wp-block-woocommerce-product-details.is-style-description-first .wp-block-accordion-panel {
   display: block !important; height: auto !important;
   padding: 0;
 }
 
 /* First item — lead/hero (serif, large). */
-.is-style-description-first .wp-block-accordion-item:first-child .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-description-first .wp-block-accordion-item:first-child .wp-block-accordion-heading__toggle {
   margin-bottom: 6px;
 }
-.is-style-description-first .wp-block-accordion-item:first-child .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-description-first .wp-block-accordion-item:first-child .wp-block-accordion-panel {
   font: 500 26px/1.3 var(--wpds-serif);
   color: var(--wpds-ink);
   letter-spacing: -0.01em;
 }
 
 /* Subsequent items — boxed glance modules. */
-.is-style-description-first .wp-block-accordion-item:not(:first-child) {
+.wp-block-woocommerce-product-details.is-style-description-first .wp-block-accordion-item:not(:first-child) {
   background: var(--wpds-soft-2);
   border: 1px solid var(--wpds-line);
   border-radius: 12px;
   padding: 22px 24px;
 }
-.is-style-description-first .wp-block-accordion-item:not(:first-child) .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-description-first .wp-block-accordion-item:not(:first-child) .wp-block-accordion-heading__toggle {
   font: 600 13px/1 var(--wpds-sans);
   color: var(--wpds-ink);
   letter-spacing: 0;
@@ -794,10 +794,10 @@
    15 — Q&A Format
    Each item is a 280px+1fr row. Q-prefix, serif heading, ink rules.
    ============================================================ */
-.is-style-qa-format .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-qa-format .wp-block-accordion {
   display: flex; flex-direction: column;
 }
-.is-style-qa-format .wp-block-accordion-item {
+.wp-block-woocommerce-product-details.is-style-qa-format .wp-block-accordion-item {
   border: none;
   border-top: 1px solid var(--wpds-ink);
   display: grid;
@@ -805,8 +805,8 @@
   gap: 48px;
   padding: 32px 0;
 }
-.is-style-qa-format .wp-block-accordion-item:last-child { border-bottom: 1px solid var(--wpds-ink); }
-.is-style-qa-format .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-qa-format .wp-block-accordion-item:last-child { border-bottom: 1px solid var(--wpds-ink); }
+.wp-block-woocommerce-product-details.is-style-qa-format .wp-block-accordion-heading__toggle {
   background: transparent; border: none;
   padding: 0;
   text-align: left;
@@ -816,7 +816,7 @@
   letter-spacing: -0.02em;
   position: relative;
 }
-.is-style-qa-format .wp-block-accordion-heading__toggle::before {
+.wp-block-woocommerce-product-details.is-style-qa-format .wp-block-accordion-heading__toggle::before {
   content: "Q.";
   display: block;
   font: 500 11px/1 var(--wpds-mono);
@@ -824,29 +824,29 @@
   color: var(--wpds-warm);
   margin-bottom: 8px;
 }
-.is-style-qa-format .wp-block-accordion-heading__toggle-icon { display: none; }
-.is-style-qa-format .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-qa-format .wp-block-accordion-heading__toggle-icon { display: none; }
+.wp-block-woocommerce-product-details.is-style-qa-format .wp-block-accordion-panel {
   display: block !important; height: auto !important;
   padding: 0;
   font: 16px/1.6 var(--wpds-sans);
   color: var(--wpds-ink-2);
 }
 @media (max-width: 720px) {
-  .is-style-qa-format .wp-block-accordion-item { grid-template-columns: 1fr; gap: 16px; }
+  .wp-block-woocommerce-product-details.is-style-qa-format .wp-block-accordion-item { grid-template-columns: 1fr; gap: 16px; }
 }
 
 /* ============================================================
    16 — Reading View (museum placard)
    Force-open serif body, mono kickers, wide reading column.
    ============================================================ */
-.is-style-reading-view .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-reading-view .wp-block-accordion {
   display: flex; flex-direction: column;
   gap: 36px;
   max-width: 720px;
   margin: 0 auto;
 }
-.is-style-reading-view .wp-block-accordion-item { border: none; }
-.is-style-reading-view .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-reading-view .wp-block-accordion-item { border: none; }
+.wp-block-woocommerce-product-details.is-style-reading-view .wp-block-accordion-heading__toggle {
   width: 100%;
   background: transparent; border: none;
   padding: 0 0 12px;
@@ -859,26 +859,26 @@
   border-bottom: 1px solid var(--wpds-line);
   margin-bottom: 18px;
 }
-.is-style-reading-view .wp-block-accordion-heading__toggle-icon { display: none; }
-.is-style-reading-view .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-reading-view .wp-block-accordion-heading__toggle-icon { display: none; }
+.wp-block-woocommerce-product-details.is-style-reading-view .wp-block-accordion-panel {
   display: block !important; height: auto !important;
   font: 17px/1.7 var(--wpds-serif);
   color: var(--wpds-ink-2);
 }
-.is-style-reading-view .wp-block-accordion-panel > * + * { margin-top: 16px; }
+.wp-block-woocommerce-product-details.is-style-reading-view .wp-block-accordion-panel > * + * { margin-top: 16px; }
 
 /* ============================================================
    17 — Progressive Disclosure (Reveal Layers)
    Crisp dividers, hover slides padding, larger sans heading.
    ============================================================ */
-.is-style-progressive .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-progressive .wp-block-accordion {
   border-top: 1px solid var(--wpds-line);
 }
-.is-style-progressive .wp-block-accordion-item {
+.wp-block-woocommerce-product-details.is-style-progressive .wp-block-accordion-item {
   border: none;
   border-bottom: 1px solid var(--wpds-line);
 }
-.is-style-progressive .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-progressive .wp-block-accordion-heading__toggle {
   width: 100%;
   background: transparent; border: none;
   padding: 22px 4px;
@@ -889,21 +889,21 @@
   display: flex; justify-content: space-between; align-items: center; gap: 16px;
   transition: padding 220ms;
 }
-.is-style-progressive .wp-block-accordion-heading__toggle:hover { padding-left: 12px; padding-right: 12px; }
-.is-style-progressive .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle { padding-bottom: 16px; }
-.is-style-progressive .wp-block-accordion-heading__toggle-icon {
+.wp-block-woocommerce-product-details.is-style-progressive .wp-block-accordion-heading__toggle:hover { padding-left: 12px; padding-right: 12px; }
+.wp-block-woocommerce-product-details.is-style-progressive .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle { padding-bottom: 16px; }
+.wp-block-woocommerce-product-details.is-style-progressive .wp-block-accordion-heading__toggle-icon {
   font-size: 20px;
   color: var(--wpds-ink-3);
   transition: transform 280ms;
 }
-.is-style-progressive .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle-icon { transform: rotate(45deg); }
-.is-style-progressive .wp-block-accordion-panel { padding: 0 4px 24px; }
+.wp-block-woocommerce-product-details.is-style-progressive .wp-block-accordion-item.is-open .wp-block-accordion-heading__toggle-icon { transform: rotate(45deg); }
+.wp-block-woocommerce-product-details.is-style-progressive .wp-block-accordion-panel { padding: 0 4px 24px; }
 
 /* ============================================================
    18 — Filmstrip / Chaptered (dark)
    Dark surface, large numerals, warm kicker, serif titles.
    ============================================================ */
-.is-style-filmstrip .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-filmstrip .wp-block-accordion {
   background: var(--wpds-ink);
   color: var(--wpds-surface);
   border-radius: var(--wpds-radius);
@@ -912,7 +912,7 @@
   gap: 16px;
   counter-reset: wpds-film;
 }
-.is-style-filmstrip .wp-block-accordion-item {
+.wp-block-woocommerce-product-details.is-style-filmstrip .wp-block-accordion-item {
   background: rgba(255,255,255,.04);
   border: 1px solid rgba(255,255,255,.1);
   border-radius: 12px;
@@ -920,12 +920,12 @@
   counter-increment: wpds-film;
   transition: background var(--wpds-snap) var(--wpds-ease), border-color var(--wpds-snap) var(--wpds-ease), transform var(--wpds-snap) var(--wpds-ease);
 }
-.is-style-filmstrip .wp-block-accordion-item:hover {
+.wp-block-woocommerce-product-details.is-style-filmstrip .wp-block-accordion-item:hover {
   background: rgba(255,255,255,.06);
   border-color: rgba(255,255,255,.18);
   transform: translateY(-2px);
 }
-.is-style-filmstrip .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-filmstrip .wp-block-accordion-heading__toggle {
   width: 100%;
   background: transparent; border: none;
   padding: 0;
@@ -933,19 +933,19 @@
   pointer-events: none;
   display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
 }
-.is-style-filmstrip .wp-block-accordion-heading__toggle::before {
+.wp-block-woocommerce-product-details.is-style-filmstrip .wp-block-accordion-heading__toggle::before {
   content: counter(wpds-film, decimal-leading-zero);
   font: 600 80px/0.9 var(--wpds-serif);
   color: rgba(255,255,255,.18);
   letter-spacing: -0.04em;
 }
-.is-style-filmstrip .wp-block-accordion-heading__toggle-title {
+.wp-block-woocommerce-product-details.is-style-filmstrip .wp-block-accordion-heading__toggle-title {
   font: 600 30px/1.2 var(--wpds-serif);
   color: var(--wpds-surface);
   letter-spacing: -0.02em;
 }
-.is-style-filmstrip .wp-block-accordion-heading__toggle-icon { display: none; }
-.is-style-filmstrip .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-filmstrip .wp-block-accordion-heading__toggle-icon { display: none; }
+.wp-block-woocommerce-product-details.is-style-filmstrip .wp-block-accordion-panel {
   display: block !important; height: auto !important;
   margin-top: 18px;
   font: 15px/1.6 var(--wpds-sans);
@@ -956,21 +956,21 @@
    19 — Spec Sheet First (technical)
    Mono datasheet; ink double border at top.
    ============================================================ */
-.is-style-spec-sheet .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-spec-sheet .wp-block-accordion {
   background: var(--wpds-surface);
   border: 1px solid var(--wpds-ink);
   border-radius: 4px;
   padding: 32px;
   font-family: var(--wpds-mono);
 }
-.is-style-spec-sheet .wp-block-accordion-item {
+.wp-block-woocommerce-product-details.is-style-spec-sheet .wp-block-accordion-item {
   border: none;
   border-top: 1px solid var(--wpds-line);
   padding: 14px 0;
 }
-.is-style-spec-sheet .wp-block-accordion-item:first-child { border-top: 2px solid var(--wpds-ink); }
-.is-style-spec-sheet .wp-block-accordion-item:last-child { border-bottom: 1px solid var(--wpds-line); }
-.is-style-spec-sheet .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-spec-sheet .wp-block-accordion-item:first-child { border-top: 2px solid var(--wpds-ink); }
+.wp-block-woocommerce-product-details.is-style-spec-sheet .wp-block-accordion-item:last-child { border-bottom: 1px solid var(--wpds-line); }
+.wp-block-woocommerce-product-details.is-style-spec-sheet .wp-block-accordion-heading__toggle {
   width: 100%;
   background: transparent; border: none;
   padding: 0 0 8px;
@@ -981,8 +981,8 @@
   text-transform: uppercase;
   color: var(--wpds-ink-3);
 }
-.is-style-spec-sheet .wp-block-accordion-heading__toggle-icon { display: none; }
-.is-style-spec-sheet .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-spec-sheet .wp-block-accordion-heading__toggle-icon { display: none; }
+.wp-block-woocommerce-product-details.is-style-spec-sheet .wp-block-accordion-panel {
   display: block !important; height: auto !important;
   padding: 0;
   font: 14px/1.5 var(--wpds-sans);
@@ -993,32 +993,32 @@
    20 — Marginalia / Conversation
    Two-column layout: main prose at left, voiced annotations at right.
    ============================================================ */
-.is-style-marginalia .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion {
   display: grid;
   grid-template-columns: 1fr 240px;
   gap: 48px;
   padding-top: 8px;
 }
-.is-style-marginalia .wp-block-accordion-item { border: none; }
-.is-style-marginalia .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-item { border: none; }
+.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-heading__toggle {
   width: 100%;
   background: transparent; border: none;
   padding: 0;
   text-align: left;
   pointer-events: none;
 }
-.is-style-marginalia .wp-block-accordion-heading__toggle-icon { display: none; }
-.is-style-marginalia .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-heading__toggle-icon { display: none; }
+.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-panel {
   display: block !important; height: auto !important;
   padding: 0;
 }
 
 /* First item — main column. */
-.is-style-marginalia .wp-block-accordion-item:first-child {
+.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-item:first-child {
   grid-column: 1;
   grid-row: 1 / span 99;
 }
-.is-style-marginalia .wp-block-accordion-item:first-child .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-item:first-child .wp-block-accordion-heading__toggle {
   font: 500 11px/1 var(--wpds-mono);
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -1027,33 +1027,33 @@
   border-bottom: 1px solid var(--wpds-line);
   margin-bottom: 18px;
 }
-.is-style-marginalia .wp-block-accordion-item:first-child .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-item:first-child .wp-block-accordion-panel {
   font: 18px/1.65 var(--wpds-serif);
   color: var(--wpds-ink);
 }
 
 /* Subsequent items — margin notes (voice quotes). */
-.is-style-marginalia .wp-block-accordion-item:not(:first-child) {
+.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-item:not(:first-child) {
   padding-left: 14px;
   border-left: 2px solid var(--wpds-warm);
   margin-bottom: 22px;
 }
-.is-style-marginalia .wp-block-accordion-item:not(:first-child) .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-item:not(:first-child) .wp-block-accordion-heading__toggle {
   font: 500 11px/1 var(--wpds-mono);
   color: var(--wpds-warm);
   letter-spacing: 0.06em;
   margin-bottom: 6px;
   text-transform: uppercase;
 }
-.is-style-marginalia .wp-block-accordion-item:not(:first-child) .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-item:not(:first-child) .wp-block-accordion-panel {
   font: italic 14px/1.5 var(--wpds-serif);
   color: var(--wpds-ink-2);
 }
 @media (max-width: 720px) {
-    .is-style-marginalia .wp-block-accordion {
+    .wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion {
     grid-template-columns: 1fr; gap: 28px;
   }
-  .is-style-marginalia .wp-block-accordion-item:first-child {
+  .wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-item:first-child {
     grid-column: 1; grid-row: auto;
   }
 }
@@ -1062,12 +1062,12 @@
    21 — Bento Grid
    First item = lead (dark, full-width); rest = soft beige cells.
    ============================================================ */
-.is-style-bento .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-bento .wp-block-accordion {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
 }
-.is-style-bento .wp-block-accordion-item {
+.wp-block-woocommerce-product-details.is-style-bento .wp-block-accordion-item {
   background: var(--wpds-soft-2);
   border: none;
   border-radius: 12px;
@@ -1076,20 +1076,20 @@
   grid-column: span 2;
   transition: transform var(--wpds-snap) var(--wpds-ease), box-shadow var(--wpds-snap) var(--wpds-ease);
 }
-.is-style-bento .wp-block-accordion-item:hover {
+.wp-block-woocommerce-product-details.is-style-bento .wp-block-accordion-item:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 24px -12px rgba(0,0,0,.18);
 }
-.is-style-bento .wp-block-accordion-item:first-child:hover {
+.wp-block-woocommerce-product-details.is-style-bento .wp-block-accordion-item:first-child:hover {
   box-shadow: 0 16px 32px -12px rgba(0,0,0,.4);
 }
-.is-style-bento .wp-block-accordion-item:first-child {
+.wp-block-woocommerce-product-details.is-style-bento .wp-block-accordion-item:first-child {
   grid-column: 1 / -1;
   background: var(--wpds-ink);
   color: var(--wpds-surface);
   padding: 28px;
 }
-.is-style-bento .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-bento .wp-block-accordion-heading__toggle {
   width: 100%;
   background: transparent; border: none;
   padding: 0 0 14px;
@@ -1100,29 +1100,29 @@
   text-transform: uppercase;
   color: var(--wpds-ink-3);
 }
-.is-style-bento .wp-block-accordion-item:first-child .wp-block-accordion-heading__toggle { color: var(--wpds-warm); }
-.is-style-bento .wp-block-accordion-heading__toggle-icon { display: none; }
-.is-style-bento .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-bento .wp-block-accordion-item:first-child .wp-block-accordion-heading__toggle { color: var(--wpds-warm); }
+.wp-block-woocommerce-product-details.is-style-bento .wp-block-accordion-heading__toggle-icon { display: none; }
+.wp-block-woocommerce-product-details.is-style-bento .wp-block-accordion-panel {
   display: block !important; height: auto !important;
   padding: 0;
   font: 14px/1.5 var(--wpds-sans);
 }
-.is-style-bento .wp-block-accordion-item:first-child .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-bento .wp-block-accordion-item:first-child .wp-block-accordion-panel {
   font: 500 22px/1.4 var(--wpds-serif);
   letter-spacing: -0.01em;
 }
 @media (max-width: 720px) {
-    .is-style-bento .wp-block-accordion {
+    .wp-block-woocommerce-product-details.is-style-bento .wp-block-accordion {
     grid-template-columns: 1fr;
   }
-  .is-style-bento .wp-block-accordion-item { grid-column: 1 / -1; }
+  .wp-block-woocommerce-product-details.is-style-bento .wp-block-accordion-item { grid-column: 1 / -1; }
 }
 
 /* ============================================================
    22 — Newspaper Front Page
    Inked border, masthead rule, serif headlines, columnar body.
    ============================================================ */
-.is-style-newspaper .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-newspaper .wp-block-accordion {
   background: var(--wpds-surface);
   border: 1px solid var(--wpds-ink);
   border-radius: 0;
@@ -1130,14 +1130,14 @@
   font-family: var(--wpds-serif);
   border-top: 4px solid var(--wpds-ink);
 }
-.is-style-newspaper .wp-block-accordion-item {
+.wp-block-woocommerce-product-details.is-style-newspaper .wp-block-accordion-item {
   border: none;
   border-bottom: 1px solid var(--wpds-line-2);
   padding: 16px 0;
 }
-.is-style-newspaper .wp-block-accordion-item:first-child { padding-top: 0; }
-.is-style-newspaper .wp-block-accordion-item:last-child { border-bottom: none; padding-bottom: 0; }
-.is-style-newspaper .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-newspaper .wp-block-accordion-item:first-child { padding-top: 0; }
+.wp-block-woocommerce-product-details.is-style-newspaper .wp-block-accordion-item:last-child { border-bottom: none; padding-bottom: 0; }
+.wp-block-woocommerce-product-details.is-style-newspaper .wp-block-accordion-heading__toggle {
   width: 100%;
   background: transparent; border: none;
   padding: 0 0 12px;
@@ -1148,7 +1148,7 @@
   color: var(--wpds-ink);
   text-wrap: balance;
 }
-.is-style-newspaper .wp-block-accordion-heading__toggle::before {
+.wp-block-woocommerce-product-details.is-style-newspaper .wp-block-accordion-heading__toggle::before {
   content: "Dispatch";
   display: block;
   font: 500 11px/1 var(--wpds-mono);
@@ -1157,10 +1157,10 @@
   text-transform: uppercase;
   margin-bottom: 8px;
 }
-.is-style-newspaper .wp-block-accordion-item:nth-child(2) .wp-block-accordion-heading__toggle::before { content: "Specifications"; }
-.is-style-newspaper .wp-block-accordion-item:nth-child(3) .wp-block-accordion-heading__toggle::before { content: "Verdicts"; }
-.is-style-newspaper .wp-block-accordion-heading__toggle-icon { display: none; }
-.is-style-newspaper .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-newspaper .wp-block-accordion-item:nth-child(2) .wp-block-accordion-heading__toggle::before { content: "Specifications"; }
+.wp-block-woocommerce-product-details.is-style-newspaper .wp-block-accordion-item:nth-child(3) .wp-block-accordion-heading__toggle::before { content: "Verdicts"; }
+.wp-block-woocommerce-product-details.is-style-newspaper .wp-block-accordion-heading__toggle-icon { display: none; }
+.wp-block-woocommerce-product-details.is-style-newspaper .wp-block-accordion-panel {
   display: block !important; height: auto !important;
   padding: 0;
   font: 15px/1.65 var(--wpds-serif);
@@ -1169,15 +1169,15 @@
   column-rule: 1px solid var(--wpds-line-2);
 }
 @media (max-width: 600px) {
-  .is-style-newspaper .wp-block-accordion-panel { column-count: 1; }
-  .is-style-newspaper .wp-block-accordion-heading__toggle { font-size: 24px; }
+  .wp-block-woocommerce-product-details.is-style-newspaper .wp-block-accordion-panel { column-count: 1; }
+  .wp-block-woocommerce-product-details.is-style-newspaper .wp-block-accordion-heading__toggle { font-size: 24px; }
 }
 
 /* ============================================================
    23 — Map / Pinned Coordinates
    Grid background with pinned cards at offset positions.
    ============================================================ */
-.is-style-map-pins .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion {
   background: var(--wpds-soft-2);
   background-image:
     linear-gradient(to right, rgba(0,0,0,.04) 1px, transparent 1px),
@@ -1190,14 +1190,14 @@
   gap: 14px;
   position: relative;
 }
-.is-style-map-pins .wp-block-accordion::after {
+.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion::after {
   content: "° N · ° W";
   position: absolute; bottom: 12px; left: 18px;
   font: 500 11px/1 var(--wpds-mono);
   color: var(--wpds-ink-3);
   letter-spacing: 0.1em;
 }
-.is-style-map-pins .wp-block-accordion-item {
+.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion-item {
   background: var(--wpds-surface);
   border: 1px solid var(--wpds-ink);
   border-radius: 4px;
@@ -1207,11 +1207,11 @@
   box-shadow: 0 4px 12px -4px rgba(0,0,0,.12);
   transition: transform var(--wpds-snap) var(--wpds-ease), box-shadow var(--wpds-snap) var(--wpds-ease);
 }
-.is-style-map-pins .wp-block-accordion-item:hover {
+.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion-item:hover {
   transform: translateY(-2px) translateX(2px);
   box-shadow: 0 12px 24px -8px rgba(0,0,0,.22);
 }
-.is-style-map-pins .wp-block-accordion-item::before {
+.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion-item::before {
   content: ""; width: 14px; height: 14px; border-radius: 50%;
   background: var(--wpds-ink); border: 3px solid var(--wpds-surface);
   box-shadow: 0 0 0 1px var(--wpds-ink);
@@ -1222,11 +1222,11 @@
   0%        { box-shadow: 0 0 0 1px var(--wpds-ink), 0 0 0 0   rgba(26,26,26,.35); }
   60%, 100% { box-shadow: 0 0 0 1px var(--wpds-ink), 0 0 0 16px rgba(26,26,26,0);   }
 }
-.is-style-map-pins .wp-block-accordion-item:nth-child(2) { margin-left: 12%; }
-.is-style-map-pins .wp-block-accordion-item:nth-child(3) { margin-left: 32%; }
-.is-style-map-pins .wp-block-accordion-item:nth-child(4) { margin-left: 8%; }
-.is-style-map-pins .wp-block-accordion-item:nth-child(5) { margin-left: 24%; }
-.is-style-map-pins .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion-item:nth-child(2) { margin-left: 12%; }
+.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion-item:nth-child(3) { margin-left: 32%; }
+.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion-item:nth-child(4) { margin-left: 8%; }
+.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion-item:nth-child(5) { margin-left: 24%; }
+.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion-heading__toggle {
   width: 100%;
   background: transparent; border: none;
   padding: 0 0 4px;
@@ -1235,8 +1235,8 @@
   font: 600 14px/1.2 var(--wpds-serif);
   color: var(--wpds-ink);
 }
-.is-style-map-pins .wp-block-accordion-heading__toggle-icon { display: none; }
-.is-style-map-pins .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion-heading__toggle-icon { display: none; }
+.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion-panel {
   display: block !important; height: auto !important;
   padding: 0;
   font: 500 12px/1.4 var(--wpds-sans);
@@ -1247,7 +1247,7 @@
    24 — Field Notebook
    Cream paper with horizontal rules; serif title; numbered notes.
    ============================================================ */
-.is-style-field-notebook .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-field-notebook .wp-block-accordion {
   background: #fbf6e9;
   background-image: repeating-linear-gradient(
     to bottom, transparent 0 27px,
@@ -1260,17 +1260,17 @@
   box-shadow: 0 12px 32px -16px rgba(0,0,0,.18);
   counter-reset: wpds-note;
 }
-.is-style-field-notebook .wp-block-accordion-item {
+.wp-block-woocommerce-product-details.is-style-field-notebook .wp-block-accordion-item {
   border: none;
   padding: 8px 0;
   counter-increment: wpds-note;
 }
-.is-style-field-notebook .wp-block-accordion-item:not(:last-child) {
+.wp-block-woocommerce-product-details.is-style-field-notebook .wp-block-accordion-item:not(:last-child) {
   border-bottom: 1px solid rgba(80,60,40,.18);
   margin-bottom: 12px;
   padding-bottom: 16px;
 }
-.is-style-field-notebook .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-field-notebook .wp-block-accordion-heading__toggle {
   width: 100%;
   background: transparent; border: none;
   padding: 0;
@@ -1284,13 +1284,13 @@
   align-items: baseline;
   letter-spacing: -0.01em;
 }
-.is-style-field-notebook .wp-block-accordion-heading__toggle::before {
+.wp-block-woocommerce-product-details.is-style-field-notebook .wp-block-accordion-heading__toggle::before {
   content: counter(wpds-note);
   font: 600 18px/1 var(--wpds-serif);
   color: var(--wpds-warm);
 }
-.is-style-field-notebook .wp-block-accordion-heading__toggle-icon { display: none; }
-.is-style-field-notebook .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-field-notebook .wp-block-accordion-heading__toggle-icon { display: none; }
+.wp-block-woocommerce-product-details.is-style-field-notebook .wp-block-accordion-panel {
   display: block !important; height: auto !important;
   padding: 6px 0 0 44px;
   font: 14px/1.5 var(--wpds-sans);
@@ -1301,14 +1301,14 @@
    25 — Stat Block (RPG character sheet)
    Heavy 2px ink border; mono labels; serif headings; soft trait box.
    ============================================================ */
-.is-style-stat-block .wp-block-accordion {
+.wp-block-woocommerce-product-details.is-style-stat-block .wp-block-accordion {
   background: var(--wpds-surface);
   border: 2px solid var(--wpds-ink);
   border-radius: 0;
   padding: 24px 28px;
   font-family: var(--wpds-mono);
 }
-.is-style-stat-block .wp-block-accordion::before {
+.wp-block-woocommerce-product-details.is-style-stat-block .wp-block-accordion::before {
   content: "Object class · Common edition";
   display: block;
   font: 500 11px/1 var(--wpds-mono);
@@ -1319,13 +1319,13 @@
   border-bottom: 2px solid var(--wpds-ink);
   margin-bottom: 16px;
 }
-.is-style-stat-block .wp-block-accordion-item {
+.wp-block-woocommerce-product-details.is-style-stat-block .wp-block-accordion-item {
   border: none;
   border-top: 1px solid var(--wpds-ink);
   padding: 14px 0;
 }
-.is-style-stat-block .wp-block-accordion-item:first-child { border-top: none; padding-top: 0; }
-.is-style-stat-block .wp-block-accordion-heading__toggle {
+.wp-block-woocommerce-product-details.is-style-stat-block .wp-block-accordion-item:first-child { border-top: none; padding-top: 0; }
+.wp-block-woocommerce-product-details.is-style-stat-block .wp-block-accordion-heading__toggle {
   width: 100%;
   background: transparent; border: none;
   padding: 0 0 8px;
@@ -1336,12 +1336,72 @@
   text-transform: uppercase;
   color: var(--wpds-ink-3);
 }
-.is-style-stat-block .wp-block-accordion-heading__toggle-icon { display: none; }
-.is-style-stat-block .wp-block-accordion-panel {
+.wp-block-woocommerce-product-details.is-style-stat-block .wp-block-accordion-heading__toggle-icon { display: none; }
+.wp-block-woocommerce-product-details.is-style-stat-block .wp-block-accordion-panel {
   display: block !important; height: auto !important;
   padding: 10px 14px;
   background: var(--wpds-soft-2);
   border-left: 3px solid var(--wpds-ink);
   font: 14px/1.55 var(--wpds-sans);
   color: var(--wpds-ink);
+}
+
+/* ============================================================
+   WOOdrobe Showcase
+   Front-end block + wp-admin preview gallery.
+   ============================================================ */
+.woodrobe-showcase {
+  --woodrobe-showcase-surface: var(--wp--preset--color--base, #ffffff);
+  --woodrobe-showcase-ink: var(--wp--preset--color--contrast, #1a1a1a);
+  --woodrobe-showcase-line: #e7e2dc;
+  --woodrobe-showcase-soft: #f7f5f2;
+  --woodrobe-showcase-line: color-mix(in srgb, var(--woodrobe-showcase-ink) 14%, var(--woodrobe-showcase-surface));
+  --woodrobe-showcase-soft: color-mix(in srgb, var(--woodrobe-showcase-ink) 4%, var(--woodrobe-showcase-surface));
+  color: var(--woodrobe-showcase-ink);
+  margin-block: clamp(28px, 5vw, 56px);
+}
+.woodrobe-showcase__header {
+  max-width: 760px;
+  margin-block-end: 24px;
+}
+.woodrobe-showcase__title {
+  margin: 0;
+  font: 700 32px/1.1 var(--wpds-serif, var(--wp--preset--font-family--heading, Georgia, serif));
+}
+.woodrobe-showcase__description {
+  margin: 10px 0 0;
+  max-width: 62ch;
+  font: 16px/1.6 var(--wpds-sans, var(--wp--preset--font-family--body, system-ui, sans-serif));
+  color: color-mix(in srgb, var(--woodrobe-showcase-ink) 70%, var(--woodrobe-showcase-surface));
+}
+.woodrobe-showcase__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 520px), 1fr));
+  gap: 22px;
+  align-items: start;
+}
+.woodrobe-showcase__card {
+  min-width: 0;
+  background: var(--woodrobe-showcase-surface);
+  border: 1px solid var(--woodrobe-showcase-line);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 12px 30px -24px rgba(0,0,0,.32);
+}
+.woodrobe-showcase__card-title {
+  margin: 0 0 12px;
+  font: 650 13px/1.2 var(--wpds-sans, var(--wp--preset--font-family--body, system-ui, sans-serif));
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--woodrobe-showcase-ink) 68%, var(--woodrobe-showcase-surface));
+}
+.woodrobe-showcase .wp-block-woocommerce-product-details {
+  margin: 0;
+}
+.woodrobe-showcase .wp-block-accordion-panel[hidden] {
+  display: none !important;
+}
+.woodrobe-showcase-admin .woodrobe-showcase {
+  max-width: none;
+  margin-block-start: 24px;
 }

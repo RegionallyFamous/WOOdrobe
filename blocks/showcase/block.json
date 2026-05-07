@@ -1,0 +1,40 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "woodrobe/showcase",
+  "version": "1.0.0",
+  "title": "WOOdrobe Showcase",
+  "category": "design",
+  "icon": "screenoptions",
+  "description": "Preview every WOOdrobe Product Details style in one live gallery.",
+  "keywords": [
+    "woocommerce",
+    "styles",
+    "product details"
+  ],
+  "textdomain": "woodrobe",
+  "attributes": {
+    "showHeader": {
+      "type": "boolean",
+      "default": true
+    },
+    "title": {
+      "type": "string",
+      "default": "WOOdrobe Style Showcase"
+    },
+    "description": {
+      "type": "string",
+      "default": "A live sampler of every Product Details outfit included with WOOdrobe."
+    }
+  },
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false,
+    "spacing": {
+      "margin": true
+    }
+  }
+}
