@@ -5,7 +5,7 @@
  *   1. Shared design tokens + motion tokens   (cross-block)
  *   2. Resets                                 (per-block, scoped to the block wrapper)
  *   3. Global micro-interactions              (per-block: panel reveal, on-load stagger, focus, motion-reduce)
- *   4. BLOCK: woocommerce/product-details     — 25 variants
+ *   4. BLOCK: woocommerce/product-details     — 23 variants
  *   5. BLOCK: <future block>                  — variants
  *
  * Adding a new block:
@@ -990,76 +990,7 @@
 }
 
 /* ============================================================
-   20 — Marginalia / Conversation
-   Two-column layout: main prose at left, voiced annotations at right.
-   ============================================================ */
-.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion {
-  display: grid;
-  grid-template-columns: 1fr 240px;
-  gap: 48px;
-  padding-top: 8px;
-}
-.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-item { border: none; }
-.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-heading__toggle {
-  width: 100%;
-  background: transparent; border: none;
-  padding: 0;
-  text-align: left;
-  pointer-events: none;
-}
-.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-heading__toggle-icon { display: none; }
-.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-panel {
-  display: block !important; height: auto !important;
-  padding: 0;
-}
-
-/* First item — main column. */
-.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-item:first-child {
-  grid-column: 1;
-  grid-row: 1 / span 99;
-}
-.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-item:first-child .wp-block-accordion-heading__toggle {
-  font: 500 11px/1 var(--wpds-mono);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--wpds-ink-3);
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--wpds-line);
-  margin-bottom: 18px;
-}
-.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-item:first-child .wp-block-accordion-panel {
-  font: 18px/1.65 var(--wpds-serif);
-  color: var(--wpds-ink);
-}
-
-/* Subsequent items — margin notes (voice quotes). */
-.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-item:not(:first-child) {
-  padding-left: 14px;
-  border-left: 2px solid var(--wpds-warm);
-  margin-bottom: 22px;
-}
-.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-item:not(:first-child) .wp-block-accordion-heading__toggle {
-  font: 500 11px/1 var(--wpds-mono);
-  color: var(--wpds-warm);
-  letter-spacing: 0.06em;
-  margin-bottom: 6px;
-  text-transform: uppercase;
-}
-.wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-item:not(:first-child) .wp-block-accordion-panel {
-  font: italic 14px/1.5 var(--wpds-serif);
-  color: var(--wpds-ink-2);
-}
-@media (max-width: 720px) {
-    .wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion {
-    grid-template-columns: 1fr; gap: 28px;
-  }
-  .wp-block-woocommerce-product-details.is-style-marginalia .wp-block-accordion-item:first-child {
-    grid-column: 1; grid-row: auto;
-  }
-}
-
-/* ============================================================
-   21 — Bento Grid
+   20 — Bento Grid
    First item = lead (dark, full-width); rest = soft beige cells.
    ============================================================ */
 .wp-block-woocommerce-product-details.is-style-bento .wp-block-accordion {
@@ -1119,7 +1050,7 @@
 }
 
 /* ============================================================
-   22 — Newspaper Front Page
+   21 — Newspaper Front Page
    Inked border, masthead rule, serif headlines, columnar body.
    ============================================================ */
 .wp-block-woocommerce-product-details.is-style-newspaper .wp-block-accordion {
@@ -1173,78 +1104,7 @@
   .wp-block-woocommerce-product-details.is-style-newspaper .wp-block-accordion-heading__toggle { font-size: 24px; }
 }
 
-/* ============================================================
-   23 — Map / Pinned Coordinates
-   Grid background with pinned cards at offset positions.
-   ============================================================ */
-.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion {
-  background: var(--wpds-soft-2);
-  background-image:
-    linear-gradient(to right, rgba(0,0,0,.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,0,.04) 1px, transparent 1px);
-  background-size: 32px 32px;
-  border: 1px solid var(--wpds-line);
-  border-radius: 12px;
-  padding: 32px 24px 32px 56px;
-  display: flex; flex-direction: column;
-  gap: 14px;
-  position: relative;
-}
-.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion::after {
-  content: "° N · ° W";
-  position: absolute; bottom: 12px; left: 18px;
-  font: 500 11px/1 var(--wpds-mono);
-  color: var(--wpds-ink-3);
-  letter-spacing: 0.1em;
-}
-.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion-item {
-  background: var(--wpds-surface);
-  border: 1px solid var(--wpds-ink);
-  border-radius: 4px;
-  padding: 12px 16px;
-  max-width: 60%;
-  position: relative;
-  box-shadow: 0 4px 12px -4px rgba(0,0,0,.12);
-  transition: transform var(--wpds-snap) var(--wpds-ease), box-shadow var(--wpds-snap) var(--wpds-ease);
-}
-.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion-item:hover {
-  transform: translateY(-2px) translateX(2px);
-  box-shadow: 0 12px 24px -8px rgba(0,0,0,.22);
-}
-.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion-item::before {
-  content: ""; width: 14px; height: 14px; border-radius: 50%;
-  background: var(--wpds-ink); border: 3px solid var(--wpds-surface);
-  box-shadow: 0 0 0 1px var(--wpds-ink);
-  position: absolute; left: -22px; top: 50%; transform: translateY(-50%);
-  animation: wpds-ping 2.4s var(--wpds-ease-out) infinite;
-}
-@keyframes wpds-ping {
-  0%        { box-shadow: 0 0 0 1px var(--wpds-ink), 0 0 0 0   rgba(26,26,26,.35); }
-  60%, 100% { box-shadow: 0 0 0 1px var(--wpds-ink), 0 0 0 16px rgba(26,26,26,0);   }
-}
-.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion-item:nth-child(2) { margin-left: 12%; }
-.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion-item:nth-child(3) { margin-left: 32%; }
-.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion-item:nth-child(4) { margin-left: 8%; }
-.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion-item:nth-child(5) { margin-left: 24%; }
-.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion-heading__toggle {
-  width: 100%;
-  background: transparent; border: none;
-  padding: 0 0 4px;
-  text-align: left;
-  pointer-events: none;
-  font: 600 14px/1.2 var(--wpds-serif);
-  color: var(--wpds-ink);
-}
-.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion-heading__toggle-icon { display: none; }
-.wp-block-woocommerce-product-details.is-style-map-pins .wp-block-accordion-panel {
-  display: block !important; height: auto !important;
-  padding: 0;
-  font: 500 12px/1.4 var(--wpds-sans);
-  color: var(--wpds-ink-2);
-}
-
-/* ============================================================
-   24 — Field Notebook
+   22 — Field Notebook
    Cream paper with horizontal rules; serif title; numbered notes.
    ============================================================ */
 .wp-block-woocommerce-product-details.is-style-field-notebook .wp-block-accordion {
@@ -1298,7 +1158,7 @@
 }
 
 /* ============================================================
-   25 — Stat Block (RPG character sheet)
+   23 — Stat Block (RPG character sheet)
    Heavy 2px ink border; mono labels; serif headings; soft trait box.
    ============================================================ */
 .wp-block-woocommerce-product-details.is-style-stat-block .wp-block-accordion {

@@ -14,12 +14,19 @@
 	var TextControl = components.TextControl;
 	var TextareaControl = components.TextareaControl;
 	var ToggleControl = components.ToggleControl;
+	var SelectControl = components.SelectControl;
 	var ServerSideRender = serverSideRender && ( serverSideRender.default || serverSideRender );
+	var blockOptions = window.woodrobeShowcaseBlocks || [
+		{
+			label: __( 'Product Details (23 styles)', 'woodrobe' ),
+			value: 'woocommerce/product-details',
+		},
+	];
 
 	blocks.registerBlockType( 'woodrobe/showcase', {
 		apiVersion: 3,
 		title: __( 'WOOdrobe Showcase', 'woodrobe' ),
-		description: __( 'Preview every WOOdrobe Product Details style in one live gallery.', 'woodrobe' ),
+		description: __( 'Preview a WOOdrobe style family in one live gallery.', 'woodrobe' ),
 		category: 'design',
 		icon: 'screenoptions',
 		keywords: [
@@ -28,6 +35,10 @@
 			__( 'product details', 'woodrobe' ),
 		],
 		attributes: {
+			blockName: {
+				type: 'string',
+				default: 'woocommerce/product-details',
+			},
 			showHeader: {
 				type: 'boolean',
 				default: true,
@@ -51,6 +62,7 @@
 
 		edit: function ( props ) {
 			var attributes = props.attributes;
+			var selectedBlock = attributes.blockName || 'woocommerce/product-details';
 			var showHeader = attributes.showHeader !== false;
 			var blockProps = useBlockProps( {
 				className: 'woodrobe-showcase-block-editor',
@@ -68,6 +80,14 @@
 							title: __( 'Showcase settings', 'woodrobe' ),
 							initialOpen: true,
 						},
+						el( SelectControl, {
+							label: __( 'Styles to show', 'woodrobe' ),
+							value: selectedBlock,
+							options: blockOptions,
+							onChange: function ( value ) {
+								props.setAttributes( { blockName: value } );
+							},
+						} ),
 						el( ToggleControl, {
 							label: __( 'Show title and description', 'woodrobe' ),
 							checked: showHeader,

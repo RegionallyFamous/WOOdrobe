@@ -57,10 +57,8 @@ function woodrobe_block_styles() {
 			array( 'slug' => 'progressive',         'label' => __( 'Progressive Disclosure', 'woodrobe' ) ),
 			array( 'slug' => 'filmstrip',           'label' => __( 'Filmstrip',              'woodrobe' ) ),
 			array( 'slug' => 'spec-sheet',          'label' => __( 'Spec Sheet',             'woodrobe' ) ),
-			array( 'slug' => 'marginalia',          'label' => __( 'Marginalia',             'woodrobe' ) ),
 			array( 'slug' => 'bento',               'label' => __( 'Bento Grid',             'woodrobe' ) ),
 			array( 'slug' => 'newspaper',           'label' => __( 'Newspaper',              'woodrobe' ) ),
-			array( 'slug' => 'map-pins',            'label' => __( 'Map Pins',               'woodrobe' ) ),
 			array( 'slug' => 'field-notebook',      'label' => __( 'Field Notebook',         'woodrobe' ) ),
 			array( 'slug' => 'stat-block',          'label' => __( 'Stat Block',             'woodrobe' ) ),
 		),
@@ -219,26 +217,184 @@ function woodrobe_showcase_force_open_styles() {
 		'reading-view',
 		'filmstrip',
 		'spec-sheet',
-		'marginalia',
 		'bento',
 		'newspaper',
-		'map-pins',
 		'field-notebook',
 		'stat-block',
 	);
 }
 
 /**
+ * Showcase targets that can be rendered by the dynamic block.
+ *
+ * New WooCommerce block families can opt in here once they have matching
+ * styles in woodrobe_block_styles() and a renderer that knows their markup.
+ *
+ * @return array<string, array{label:string,render_callback:callable}>
+ */
+function woodrobe_showcase_supported_blocks() {
+	return apply_filters(
+		'woodrobe_showcase_supported_blocks',
+		array(
+			'woocommerce/product-details' => array(
+				'label'           => __( 'Product Details', 'woodrobe' ),
+				'render_callback' => 'woodrobe_render_product_details_showcase_cards',
+			),
+		)
+	);
+}
+
+/**
+ * Get supported showcase targets that also have registered WOOdrobe styles.
+ *
+ * @return array<string, array{label:string,render_callback:callable}>
+ */
+function woodrobe_showcase_available_blocks() {
+	$style_map = woodrobe_block_styles();
+	$available = array();
+
+	foreach ( woodrobe_showcase_supported_blocks() as $block_name => $definition ) {
+		if ( empty( $style_map[ $block_name ] ) || empty( $definition['render_callback'] ) || ! is_callable( $definition['render_callback'] ) ) {
+			continue;
+		}
+
+		$available[ $block_name ] = $definition;
+	}
+
+	return $available;
+}
+
+/**
+ * Default showcase target.
+ *
+ * @return string
+ */
+function woodrobe_showcase_default_block_name() {
+	$available = woodrobe_showcase_available_blocks();
+
+	if ( empty( $available ) ) {
+		return 'woocommerce/product-details';
+	}
+
+	$block_names = array_keys( $available );
+
+	return (string) reset( $block_names );
+}
+
+/**
+ * Normalize a requested showcase target to one we can render.
+ *
+ * @param string $block_name Requested block name.
+ * @return string
+ */
+function woodrobe_normalize_showcase_block_name( $block_name ) {
+	$available = woodrobe_showcase_available_blocks();
+
+	if ( isset( $available[ $block_name ] ) ) {
+		return $block_name;
+	}
+
+	return woodrobe_showcase_default_block_name();
+}
+
+/**
+ * Editor options for the showcase target selector.
+ *
+ * @return array<int, array{label:string,value:string,count:int}>
+ */
+function woodrobe_showcase_editor_block_options() {
+	$style_map = woodrobe_block_styles();
+	$options   = array();
+
+	foreach ( woodrobe_showcase_available_blocks() as $block_name => $definition ) {
+		$count     = isset( $style_map[ $block_name ] ) ? count( $style_map[ $block_name ] ) : 0;
+		$options[] = array(
+			'label' => sprintf(
+				/* translators: 1: WooCommerce block label, 2: number of available styles. */
+				_n( '%1$s (%2$d style)', '%1$s (%2$d styles)', $count, 'woodrobe' ),
+				$definition['label'],
+				$count
+			),
+			'value' => $block_name,
+			'count' => $count,
+		);
+	}
+
+	return $options;
+}
+
+/**
  * Default render arguments for the showcase.
  *
- * @return array{title:string,description:string,wrapper_attributes:string}
+ * @return array{block_name:string,title:string,description:string,wrapper_attributes:string}
  */
 function woodrobe_showcase_default_args() {
 	return array(
+		'block_name'          => woodrobe_showcase_default_block_name(),
 		'title'              => __( 'WOOdrobe Style Showcase', 'woodrobe' ),
 		'description'        => __( 'A live sampler of every Product Details outfit included with WOOdrobe.', 'woodrobe' ),
 		'wrapper_attributes' => 'class="woodrobe-showcase"',
 	);
+}
+
+/**
+ * Render Product Details showcase cards.
+ *
+ * @param array<int, array{slug:string,label:string}> $styles Style descriptors.
+ * @param array<int, array{title:string,body:string}> $sample_items Sample accordion rows.
+ * @param string[]                                    $force_open_styles Styles that should render all panels open.
+ * @param string                                      $instance_id Unique showcase instance id.
+ * @return string
+ */
+function woodrobe_render_product_details_showcase_cards( $styles, $sample_items, $force_open_styles, $instance_id ) {
+	ob_start();
+
+	foreach ( $styles as $style ) :
+		$slug       = $style['slug'];
+		$label      = $style['label'];
+		$force_open = in_array( $slug, $force_open_styles, true );
+		$card_id    = $instance_id . '-' . sanitize_html_class( $slug );
+		?>
+		<article class="woodrobe-showcase__card">
+			<h3 class="woodrobe-showcase__card-title"><?php echo esc_html( $label ); ?></h3>
+			<div class="wp-block-woocommerce-product-details is-style-<?php echo esc_attr( $slug ); ?>">
+				<div class="wp-block-accordion">
+					<?php foreach ( $sample_items as $index => $item ) : ?>
+						<?php
+						$is_open   = $force_open || 0 === $index;
+						$item_id   = $card_id . '-panel-' . ( $index + 1 );
+						$button_id = $card_id . '-toggle-' . ( $index + 1 );
+						?>
+						<div class="wp-block-accordion-item<?php echo esc_attr( $is_open ? ' is-open' : '' ); ?>">
+							<h4 class="wp-block-accordion-heading">
+								<button
+									id="<?php echo esc_attr( $button_id ); ?>"
+									class="wp-block-accordion-heading__toggle"
+									type="button"
+									aria-expanded="<?php echo esc_attr( $is_open ? 'true' : 'false' ); ?>"
+									aria-controls="<?php echo esc_attr( $item_id ); ?>"<?php echo $force_open ? '' : ' data-woodrobe-showcase-toggle'; ?>
+								>
+									<span class="wp-block-accordion-heading__toggle-title"><?php echo esc_html( $item['title'] ); ?></span>
+									<span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span>
+								</button>
+							</h4>
+							<div
+								id="<?php echo esc_attr( $item_id ); ?>"
+								class="wp-block-accordion-panel"
+								role="region"
+								aria-labelledby="<?php echo esc_attr( $button_id ); ?>"<?php echo $is_open ? '' : ' hidden'; ?>
+							>
+								<p><?php echo esc_html( $item['body'] ); ?></p>
+							</div>
+						</div>
+					<?php endforeach; ?>
+				</div>
+			</div>
+		</article>
+		<?php
+	endforeach;
+
+	return ob_get_clean();
 }
 
 /**
@@ -254,13 +410,16 @@ function woodrobe_render_showcase( $args = array() ) {
 
 	$args = wp_parse_args( $args, woodrobe_showcase_default_args() );
 
-	$styles            = woodrobe_block_styles();
-	$product_styles    = isset( $styles['woocommerce/product-details'] ) ? $styles['woocommerce/product-details'] : array();
-	$sample_items      = woodrobe_showcase_items();
-	$force_open_styles = woodrobe_showcase_force_open_styles();
-	$instance_id       = 'woodrobe-showcase-' . $instance;
+	$block_name          = woodrobe_normalize_showcase_block_name( (string) $args['block_name'] );
+	$style_map           = woodrobe_block_styles();
+	$supported_blocks    = woodrobe_showcase_available_blocks();
+	$styles              = isset( $style_map[ $block_name ] ) ? $style_map[ $block_name ] : array();
+	$render_callback     = isset( $supported_blocks[ $block_name ]['render_callback'] ) ? $supported_blocks[ $block_name ]['render_callback'] : '';
+	$sample_items        = woodrobe_showcase_items();
+	$force_open_styles   = woodrobe_showcase_force_open_styles();
+	$instance_id         = 'woodrobe-showcase-' . $instance;
 
-	if ( empty( $product_styles ) ) {
+	if ( empty( $styles ) || ! is_callable( $render_callback ) ) {
 		return '';
 	}
 
@@ -279,50 +438,7 @@ function woodrobe_render_showcase( $args = array() ) {
 		<?php endif; ?>
 
 		<div class="woodrobe-showcase__grid">
-			<?php foreach ( $product_styles as $style ) : ?>
-				<?php
-				$slug       = $style['slug'];
-				$label      = $style['label'];
-				$force_open = in_array( $slug, $force_open_styles, true );
-				$card_id    = $instance_id . '-' . sanitize_html_class( $slug );
-				?>
-				<article class="woodrobe-showcase__card">
-					<h3 class="woodrobe-showcase__card-title"><?php echo esc_html( $label ); ?></h3>
-					<div class="wp-block-woocommerce-product-details is-style-<?php echo esc_attr( $slug ); ?>">
-						<div class="wp-block-accordion">
-							<?php foreach ( $sample_items as $index => $item ) : ?>
-								<?php
-								$is_open  = $force_open || 0 === $index;
-								$item_id  = $card_id . '-panel-' . ( $index + 1 );
-								$button_id = $card_id . '-toggle-' . ( $index + 1 );
-								?>
-								<div class="wp-block-accordion-item<?php echo esc_attr( $is_open ? ' is-open' : '' ); ?>">
-									<h4 class="wp-block-accordion-heading">
-										<button
-											id="<?php echo esc_attr( $button_id ); ?>"
-											class="wp-block-accordion-heading__toggle"
-											type="button"
-											aria-expanded="<?php echo esc_attr( $is_open ? 'true' : 'false' ); ?>"
-											aria-controls="<?php echo esc_attr( $item_id ); ?>"<?php echo $force_open ? '' : ' data-woodrobe-showcase-toggle'; ?>
-										>
-											<span class="wp-block-accordion-heading__toggle-title"><?php echo esc_html( $item['title'] ); ?></span>
-											<span class="wp-block-accordion-heading__toggle-icon" aria-hidden="true">+</span>
-										</button>
-									</h4>
-									<div
-										id="<?php echo esc_attr( $item_id ); ?>"
-										class="wp-block-accordion-panel"
-										role="region"
-										aria-labelledby="<?php echo esc_attr( $button_id ); ?>"<?php echo $is_open ? '' : ' hidden'; ?>
-									>
-										<p><?php echo esc_html( $item['body'] ); ?></p>
-									</div>
-								</div>
-							<?php endforeach; ?>
-						</div>
-					</div>
-				</article>
-			<?php endforeach; ?>
+			<?php echo call_user_func( $render_callback, $styles, $sample_items, $force_open_styles, $instance_id ); ?>
 		</div>
 	</div>
 	<?php
@@ -343,11 +459,13 @@ function woodrobe_render_showcase_block( $attributes ) {
 	$attributes  = (array) $attributes;
 	$defaults    = woodrobe_showcase_default_args();
 	$show_header = ! array_key_exists( 'showHeader', $attributes ) || (bool) $attributes['showHeader'];
+	$block_name  = array_key_exists( 'blockName', $attributes ) ? (string) $attributes['blockName'] : $defaults['block_name'];
 	$title       = array_key_exists( 'title', $attributes ) ? (string) $attributes['title'] : $defaults['title'];
 	$description = array_key_exists( 'description', $attributes ) ? (string) $attributes['description'] : $defaults['description'];
 
 	return woodrobe_render_showcase(
 		array(
+			'block_name'          => $block_name,
 			'title'              => $show_header ? $title : '',
 			'description'        => $show_header ? $description : '',
 			'wrapper_attributes' => function_exists( 'get_block_wrapper_attributes' )
@@ -373,6 +491,11 @@ function woodrobe_register_showcase_block() {
 		array( 'wp-blocks', 'wp-block-editor', 'wp-components', 'wp-element', 'wp-i18n', 'wp-server-side-render' ),
 		woodrobe_asset_version( 'blocks/showcase/index.js' ),
 		true
+	);
+	wp_add_inline_script(
+		'woodrobe-showcase-editor',
+		'window.woodrobeShowcaseBlocks = ' . wp_json_encode( woodrobe_showcase_editor_block_options() ) . ';',
+		'before'
 	);
 
 	register_block_type(

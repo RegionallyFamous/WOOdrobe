@@ -6,7 +6,7 @@
   "title": "WOOdrobe Showcase",
   "category": "design",
   "icon": "screenoptions",
-  "description": "Preview every WOOdrobe Product Details style in one live gallery.",
+  "description": "Preview a WOOdrobe style family in one live gallery.",
   "keywords": [
     "woocommerce",
     "styles",
@@ -14,6 +14,10 @@
   ],
   "textdomain": "woodrobe",
   "attributes": {
+    "blockName": {
+      "type": "string",
+      "default": "woocommerce/product-details"
+    },
     "showHeader": {
       "type": "boolean",
       "default": true

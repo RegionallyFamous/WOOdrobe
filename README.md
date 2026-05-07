@@ -37,7 +37,7 @@ For theme makers and store builders, WOOdrobe means you stop hand-rolling CSS fo
 
 ## The wardrobe
 
-**25 variants in three families**, all targeting `woocommerce/product-details` today, with more WooCommerce blocks coming.
+**23 variants in three families**, all targeting `woocommerce/product-details` today, with more WooCommerce blocks coming.
 
 <details open>
 <summary><b>Tab strips</b> — segmented controls and tab bars (7)</summary>
@@ -73,7 +73,7 @@ For theme makers and store builders, WOOdrobe means you stop hand-rolling CSS fo
 </details>
 
 <details open>
-<summary><b>Editorial & expressive</b> — narrative, technical, playful (12)</summary>
+<summary><b>Editorial & expressive</b> — narrative, technical, playful (10)</summary>
 
 <br/>
 
@@ -85,10 +85,8 @@ For theme makers and store builders, WOOdrobe means you stop hand-rolling CSS fo
 | **Reading View** | Centered serif body, mono kickers, clean separators |
 | **Filmstrip** | Dark surface, oversized numerals, warm kicker |
 | **Spec Sheet** | Mono datasheet on inked rules |
-| **Marginalia** | Main column + voiced annotations to the right |
 | **Bento Grid** | 4-col grid with a dark hero card and soft cells |
 | **Newspaper** | Inked masthead, serif headlines, columnar body |
-| **Map Pins** | Grid background with offset cards and pinging dots |
 | **Field Notebook** | Cream paper, horizontal rules, warm numbered notes |
 | **Stat Block** | RPG character sheet — heavy border, mono labels |
 
@@ -102,15 +100,15 @@ For theme makers and store builders, WOOdrobe means you stop hand-rolling CSS fo
 
 ## Why it's different
 
-> **One stylesheet, 25 looks.** Every variant is styled in CSS, with one tiny dependency-free script only for tab-style autoclose behavior.
+> **One stylesheet, 23 looks.** Every variant is styled in CSS, with one tiny dependency-free script only for tab-style autoclose behavior.
 
-> **Built-in showcase block.** Open **Appearance → WOOdrobe Showcase** or insert the **WOOdrobe Showcase** block on a page to see every outfit with the same sample content.
+> **Built-in showcase block.** Open **Appearance → WOOdrobe Showcase** or insert the **WOOdrobe Showcase** block on a page to see a selected style family with the same sample content.
 
 > **Multi-block by design.** Built around a `block_name → variants` map so any WooCommerce block can drop in.
 
 > **Theme-aware tokens.** WOOdrobe reads from your theme's `theme.json` palette and font families first — surface, contrast, accent, body / heading / monospace — and falls back to its own values only when the theme doesn't define a slug. Derived gray tones use `color-mix()`, so the entire tonal ramp follows the theme automatically (including dark themes).
 
-> **Modern motion.** Smooth panel reveals, hover lifts, on-load stagger, pulse and ping accents, all timed off shared motion tokens. `prefers-reduced-motion` honored everywhere.
+> **Modern motion.** Smooth panel reveals, hover lifts, on-load stagger, and pulse accents, all timed off shared motion tokens. `prefers-reduced-motion` honored everywhere.
 
 > **Site Editor friendly.** Loads cleanly in the editor iframe and on the front end through `enqueue_block_assets`. Cache-busts via stylesheet mtime, so iterations show up immediately.
 
@@ -126,7 +124,7 @@ Appearance → Editor → Single Product → Product Details → Styles → pick
 
 That's it. The store-front transforms instantly.
 
-To browse the whole wardrobe at once, open **Appearance → WOOdrobe Showcase** in wp-admin or insert the **WOOdrobe Showcase** block on any page.
+To browse the Product Details wardrobe at once, open **Appearance → WOOdrobe Showcase** in wp-admin or insert the **WOOdrobe Showcase** block on any page. The block includes a **Styles to show** control so future WooCommerce block families can appear in the same gallery.
 
 <br/>
 
@@ -183,7 +181,7 @@ The plugin auto-registers every entry through `register_block_style()` and share
 
 | Status | Block | Variants |
 | :---: | :--- | :---: |
-| ✓ shipped | `woocommerce/product-details` | **25** |
+| ✓ shipped | `woocommerce/product-details` | **23** |
 | next | `woocommerce/cart` | — |
 | next | `woocommerce/checkout` | — |
 | planned | `woocommerce/mini-cart` | — |
