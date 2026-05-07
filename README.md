@@ -25,9 +25,9 @@
 
 <br/>
 
-> WOOdrobe turns the Site Editor into a fitting room for your WooCommerce store. Edit the **Single Product** template, select **Product Details**, open the **Styles** panel, and try a complete look — pre-designed, pre-animated, ready to ship.
+> WOOdrobe turns the Site Editor into a fitting room for your WooCommerce store. Select **Product Details** or **Product Collection**, open the **Styles** panel, and try a complete look — pre-designed, pre-animated, ready to ship.
 
-For theme makers and store builders, WOOdrobe means you stop hand-rolling CSS for the parts of a product page customers actually read. Pick the visual language that fits the brand. Push to production. Move on.
+For theme makers and store builders, WOOdrobe means you stop hand-rolling CSS for the parts of a store customers actually read and browse. Pick the visual language that fits the brand. Push to production. Move on.
 
 <br/>
 
@@ -37,7 +37,9 @@ For theme makers and store builders, WOOdrobe means you stop hand-rolling CSS fo
 
 ## The wardrobe
 
-**23 variants in three families**, all targeting `woocommerce/product-details` today, with more WooCommerce blocks coming.
+**43 variants across two WooCommerce blocks**: 23 for `woocommerce/product-details` and 20 for `woocommerce/product-collection`.
+
+### Product Details
 
 <details open>
 <summary><b>Tab strips</b> — segmented controls and tab bars (7)</summary>
@@ -92,6 +94,38 @@ For theme makers and store builders, WOOdrobe means you stop hand-rolling CSS fo
 
 </details>
 
+### Product Collection
+
+<details open>
+<summary><b>Grid & catalog layouts</b> — product cards, rails, lists, and editorial collections (20)</summary>
+
+<br/>
+
+| Variant | Look |
+| :--- | :--- |
+| **Classic Refined** | Clean baseline grid with generous whitespace |
+| **Editorial Magazine** | Asymmetric feature grid with serif headlines |
+| **Catalog Dense** | Information-rich cards for high-volume shopping |
+| **Hover Reveal** | Image-first cards with details revealed on interaction |
+| **Card Stack (Soft)** | Soft layered cards with friendly shadows |
+| **Brutalist Mono** | Hard borders, mono labels, no softness |
+| **Showcase Hero** | One hero product paired with supporting cards |
+| **Bento Mixed** | Mixed tile sizes for curated collections |
+| **Polaroid Pinboard** | Tilted snapshot cards with tape details |
+| **Index Card** | Library-card rules, stamp-like price treatment |
+| **Marquee Strip** | Horizontal numbered product rail |
+| **Swatch-First** | Variant swatches take visual priority |
+| **Conversational** | Recommendation bubbles for a personal-shopper feel |
+| **Minimal Text-Only** | Type-led product list with images removed |
+| **Image-Left List** | Single-column rows with image and details side by side |
+| **Two-Up Wide** | Wide two-column product cards |
+| **Five Column Dense** | Compact five-column catalog grid |
+| **Info Beside Image** | Tight image-plus-info card layout |
+| **Info Overlay** | Product details layered over the image |
+| **Masonry** | Variable-height cards in masonry columns |
+
+</details>
+
 <br/>
 
 ---
@@ -100,7 +134,7 @@ For theme makers and store builders, WOOdrobe means you stop hand-rolling CSS fo
 
 ## Why it's different
 
-> **One stylesheet, 23 looks.** Every variant is styled in CSS, with one tiny dependency-free script only for tab-style autoclose behavior.
+> **One stylesheet, 43 looks.** Every variant is styled in CSS, with one tiny dependency-free script only for tab-style autoclose behavior.
 
 > **Built-in showcase block.** Open **Appearance → WOOdrobe Showcase** or insert the **WOOdrobe Showcase** block on a page to see a selected style family with the same sample content.
 
@@ -120,11 +154,12 @@ For theme makers and store builders, WOOdrobe means you stop hand-rolling CSS fo
 
 ```
 Appearance → Editor → Single Product → Product Details → Styles → pick one
+Appearance → Editor → Product Catalog → Product Collection → Styles → pick one
 ```
 
 That's it. The store-front transforms instantly.
 
-To browse the Product Details wardrobe at once, open **Appearance → WOOdrobe Showcase** in wp-admin or insert the **WOOdrobe Showcase** block on any page. The block includes a **Styles to show** control so future WooCommerce block families can appear in the same gallery.
+To browse the wardrobe at once, open **Appearance → WOOdrobe Showcase** in wp-admin or insert the **WOOdrobe Showcase** block on any page. The block includes a **Styles to show** control so each WooCommerce block family can appear in the same gallery.
 
 <br/>
 
@@ -182,11 +217,11 @@ The plugin auto-registers every entry through `register_block_style()` and share
 | Status | Block | Variants |
 | :---: | :--- | :---: |
 | ✓ shipped | `woocommerce/product-details` | **23** |
+| ✓ shipped | `woocommerce/product-collection` | **20** |
 | next | `woocommerce/cart` | — |
 | next | `woocommerce/checkout` | — |
 | planned | `woocommerce/mini-cart` | — |
 | planned | `woocommerce/product-image-gallery` | — |
-| planned | `woocommerce/product-collection` | — |
 | planned | `woocommerce/product-rating` | — |
 | planned | `woocommerce/related-products` | — |
 | planned | `woocommerce/product-reviews` | — |

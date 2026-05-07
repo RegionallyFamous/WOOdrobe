@@ -21,6 +21,10 @@
 			label: __( 'Product Details (23 styles)', 'woodrobe' ),
 			value: 'woocommerce/product-details',
 		},
+		{
+			label: __( 'Product Collection (20 styles)', 'woodrobe' ),
+			value: 'woocommerce/product-collection',
+		},
 	];
 
 	blocks.registerBlockType( 'woodrobe/showcase', {
@@ -33,6 +37,7 @@
 			__( 'woocommerce', 'woodrobe' ),
 			__( 'styles', 'woodrobe' ),
 			__( 'product details', 'woodrobe' ),
+			__( 'product collection', 'woodrobe' ),
 		],
 		attributes: {
 			blockName: {
@@ -49,7 +54,7 @@
 			},
 			description: {
 				type: 'string',
-				default: __( 'A live sampler of every Product Details outfit included with WOOdrobe.', 'woodrobe' ),
+				default: __( 'A live sampler of the WooCommerce block-style outfits included with WOOdrobe.', 'woodrobe' ),
 			},
 		},
 		supports: {

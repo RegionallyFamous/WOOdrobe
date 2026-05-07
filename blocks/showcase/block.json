@@ -10,7 +10,8 @@
   "keywords": [
     "woocommerce",
     "styles",
-    "product details"
+    "product details",
+    "product collection"
   ],
   "textdomain": "woodrobe",
   "attributes": {
@@ -28,7 +29,7 @@
     },
     "description": {
       "type": "string",
-      "default": "A live sampler of every Product Details outfit included with WOOdrobe."
+      "default": "A live sampler of the WooCommerce block-style outfits included with WOOdrobe."
     }
   },
   "supports": {
