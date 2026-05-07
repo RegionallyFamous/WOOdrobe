@@ -2024,6 +2024,93 @@
 }
 
 /* ============================================================
+   Playground Demo Homepage
+   Markup is created by blueprint.json; styles live here so WP
+   does not strip <style> tags and print CSS as page text.
+   ============================================================ */
+.woodrobe-demo-home {
+  --wds-bg: #f7f5f0;
+  --wds-ink: #191816;
+  --wds-muted: #6f6a62;
+  --wds-line: #ded8cf;
+  --wds-accent: #a8562d;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: clamp(24px, 5vw, 64px) 0;
+  color: var(--wds-ink);
+}
+.woodrobe-demo-home__intro {
+  max-width: 760px;
+  margin-bottom: clamp(24px, 4vw, 42px);
+}
+.woodrobe-demo-home__eyebrow {
+  margin: 0 0 10px;
+  font: 700 12px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--wds-accent);
+}
+.woodrobe-demo-home__lead {
+  margin: 0;
+  font: 500 clamp(22px, 4vw, 38px)/1.12 Georgia, serif;
+  text-wrap: balance;
+  color: var(--wds-ink);
+}
+.woodrobe-demo-home__sub {
+  max-width: 58ch;
+  margin: 14px 0 0;
+  font: 16px/1.65 system-ui, -apple-system, Segoe UI, sans-serif;
+  color: var(--wds-muted);
+}
+.woodrobe-demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 16px;
+}
+.woodrobe-demo-card {
+  display: flex;
+  min-height: 190px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px;
+  border: 1px solid var(--wds-line);
+  border-radius: 8px;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+  box-shadow: 0 20px 48px -42px rgba(25,24,22,.5);
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.woodrobe-demo-card:hover,
+.woodrobe-demo-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--wds-ink);
+  outline: none;
+  box-shadow: 0 24px 54px -38px rgba(25,24,22,.55);
+}
+.woodrobe-demo-card__kicker {
+  font: 700 11px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--wds-accent);
+}
+.woodrobe-demo-card strong {
+  font: 650 28px/1.05 Georgia, serif;
+  color: var(--wds-ink);
+}
+.woodrobe-demo-card span:not(.woodrobe-demo-card__kicker) {
+  font: 650 13px/1.2 system-ui, -apple-system, Segoe UI, sans-serif;
+  color: var(--wds-ink);
+}
+.woodrobe-demo-card code {
+  display: block;
+  overflow-wrap: anywhere;
+  font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--wds-muted);
+}
+
+/* ============================================================
    WOOdrobe Showcase
    Front-end block + wp-admin preview gallery.
    ============================================================ */
