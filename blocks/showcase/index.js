@@ -25,6 +25,46 @@
 			label: __( 'Product Collection (20 styles)', 'woodrobe' ),
 			value: 'woocommerce/product-collection',
 		},
+		{
+			label: __( 'Product Gallery (6 styles)', 'woodrobe' ),
+			value: 'woocommerce/product-gallery',
+		},
+		{
+			label: __( 'Single Product / Product Page (6 styles)', 'woodrobe' ),
+			value: 'woocommerce/single-product',
+		},
+		{
+			label: __( 'Related Products / Recommendations (6 styles)', 'woodrobe' ),
+			value: 'woocommerce/related-products',
+		},
+		{
+			label: __( 'Product Reviews / Ratings (6 styles)', 'woodrobe' ),
+			value: 'woocommerce/product-reviews',
+		},
+		{
+			label: __( 'Cart (6 styles)', 'woodrobe' ),
+			value: 'woocommerce/cart',
+		},
+		{
+			label: __( 'Checkout (6 styles)', 'woodrobe' ),
+			value: 'woocommerce/checkout',
+		},
+		{
+			label: __( 'Mini Cart (6 styles)', 'woodrobe' ),
+			value: 'woocommerce/mini-cart',
+		},
+		{
+			label: __( 'Product Rating (6 styles)', 'woodrobe' ),
+			value: 'woocommerce/product-rating',
+		},
+		{
+			label: __( 'Customer Account (6 styles)', 'woodrobe' ),
+			value: 'woocommerce/customer-account',
+		},
+		{
+			label: __( 'Store Notices (6 styles)', 'woodrobe' ),
+			value: 'woocommerce/store-notices',
+		},
 	];
 
 	blocks.registerBlockType( 'woodrobe/showcase', {
@@ -38,6 +78,18 @@
 			__( 'styles', 'woodrobe' ),
 			__( 'product details', 'woodrobe' ),
 			__( 'product collection', 'woodrobe' ),
+			__( 'product gallery', 'woodrobe' ),
+			__( 'single product', 'woodrobe' ),
+			__( 'product page', 'woodrobe' ),
+			__( 'related products', 'woodrobe' ),
+			__( 'recommendations', 'woodrobe' ),
+			__( 'product reviews', 'woodrobe' ),
+			__( 'ratings', 'woodrobe' ),
+			__( 'cart', 'woodrobe' ),
+			__( 'checkout', 'woodrobe' ),
+			__( 'mini cart', 'woodrobe' ),
+			__( 'customer account', 'woodrobe' ),
+			__( 'store notices', 'woodrobe' ),
 		],
 		attributes: {
 			blockName: {

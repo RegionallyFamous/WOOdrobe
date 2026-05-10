@@ -84,17 +84,89 @@ function woodrobe_block_styles() {
 			array( 'slug' => 'info-overlay',         'label' => __( 'Info Overlay',           'woodrobe' ) ),
 			array( 'slug' => 'masonry',              'label' => __( 'Masonry',                'woodrobe' ) ),
 		),
+		'woocommerce/product-gallery' => array(
+			array( 'slug' => 'side-rail-gallery',   'label' => __( 'Side Rail Gallery',       'woodrobe' ) ),
+			array( 'slug' => 'bottom-filmstrip',    'label' => __( 'Bottom Filmstrip',        'woodrobe' ) ),
+			array( 'slug' => 'gallery-detail-split', 'label' => __( 'Gallery + Details Split',  'woodrobe' ) ),
+			array( 'slug' => 'mosaic-gallery',      'label' => __( 'Mosaic Gallery',          'woodrobe' ) ),
+			array( 'slug' => 'immersive-viewer',    'label' => __( 'Immersive Viewer',        'woodrobe' ) ),
+			array( 'slug' => 'compact-stack',       'label' => __( 'Compact Stack',           'woodrobe' ) ),
+		),
+		'woocommerce/single-product' => array(
+			array( 'slug' => 'classic-product-page',    'label' => __( 'Classic Product Page',    'woodrobe' ) ),
+			array( 'slug' => 'editorial-product-story', 'label' => __( 'Editorial Product Story', 'woodrobe' ) ),
+			array( 'slug' => 'sticky-purchase-panel',   'label' => __( 'Sticky Purchase Panel',   'woodrobe' ) ),
+			array( 'slug' => 'gallery-led-page',        'label' => __( 'Gallery-Led Page',        'woodrobe' ) ),
+			array( 'slug' => 'compact-buy-box',         'label' => __( 'Compact Buy Box',         'woodrobe' ) ),
+			array( 'slug' => 'details-sidebar',         'label' => __( 'Details Sidebar',         'woodrobe' ) ),
+		),
+		'woocommerce/related-products' => array(
+			array( 'slug' => 'four-up-shelf',             'label' => __( 'Four-Up Shelf',              'woodrobe' ) ),
+			array( 'slug' => 'editorial-reel',            'label' => __( 'Editorial Reel',             'woodrobe' ) ),
+			array( 'slug' => 'compact-recommendations',  'label' => __( 'Compact Recommendations',  'woodrobe' ) ),
+			array( 'slug' => 'feature-and-supporting',   'label' => __( 'Feature + Supporting',      'woodrobe' ) ),
+			array( 'slug' => 'horizontal-scroll',         'label' => __( 'Horizontal Scroll',          'woodrobe' ) ),
+			array( 'slug' => 'minimal-links',             'label' => __( 'Minimal Links',              'woodrobe' ) ),
+		),
+		'woocommerce/product-reviews' => array(
+			array( 'slug' => 'review-snapshot',       'label' => __( 'Review Snapshot',        'woodrobe' ) ),
+			array( 'slug' => 'editorial-quotes',      'label' => __( 'Editorial Quotes',       'woodrobe' ) ),
+			array( 'slug' => 'dense-ledger',          'label' => __( 'Dense Ledger',           'woodrobe' ) ),
+			array( 'slug' => 'trust-stack',           'label' => __( 'Trust Stack',            'woodrobe' ) ),
+			array( 'slug' => 'minimal-proof-strip',   'label' => __( 'Minimal Proof Strip',    'woodrobe' ) ),
+			array( 'slug' => 'qa-feel',               'label' => __( 'Q&A Feel',               'woodrobe' ) ),
+		),
 
-		// Add more blocks here as styles ship for them. Examples:
-		// 'woocommerce/cart'                  => array(),
-		// 'woocommerce/checkout'              => array(),
-		// 'woocommerce/mini-cart'             => array(),
-		// 'woocommerce/product-image-gallery' => array(),
-		// 'woocommerce/product-rating'        => array(),
-		// 'woocommerce/related-products'      => array(),
-		// 'woocommerce/product-reviews'       => array(),
-		// 'woocommerce/customer-account'      => array(),
-		// 'woocommerce/store-notices'         => array(),
+		'woocommerce/cart' => array(
+			array( 'slug' => 'two-column-cart',       'label' => __( 'Two Column Cart',       'woodrobe' ) ),
+			array( 'slug' => 'summary-rail',          'label' => __( 'Summary Rail',          'woodrobe' ) ),
+			array( 'slug' => 'compact-cart',          'label' => __( 'Compact Cart',          'woodrobe' ) ),
+			array( 'slug' => 'checkout-funnel',       'label' => __( 'Checkout Funnel',       'woodrobe' ) ),
+			array( 'slug' => 'empty-state-spotlight', 'label' => __( 'Empty State Spotlight', 'woodrobe' ) ),
+			array( 'slug' => 'coupon-first',          'label' => __( 'Coupon First',          'woodrobe' ) ),
+		),
+		'woocommerce/checkout' => array(
+			array( 'slug' => 'two-step-checkout',     'label' => __( 'Two Step Checkout',     'woodrobe' ) ),
+			array( 'slug' => 'summary-sidebar',       'label' => __( 'Summary Sidebar',       'woodrobe' ) ),
+			array( 'slug' => 'compact-checkout',      'label' => __( 'Compact Checkout',      'woodrobe' ) ),
+			array( 'slug' => 'express-first',         'label' => __( 'Express First',         'woodrobe' ) ),
+			array( 'slug' => 'details-ledger',        'label' => __( 'Details Ledger',        'woodrobe' ) ),
+			array( 'slug' => 'minimal-checkout',      'label' => __( 'Minimal Checkout',      'woodrobe' ) ),
+		),
+		'woocommerce/mini-cart' => array(
+			array( 'slug' => 'header-pill',           'label' => __( 'Header Pill',           'woodrobe' ) ),
+			array( 'slug' => 'icon-badge',            'label' => __( 'Icon Badge',            'woodrobe' ) ),
+			array( 'slug' => 'text-total',            'label' => __( 'Text Total',            'woodrobe' ) ),
+			array( 'slug' => 'utility-cluster',       'label' => __( 'Utility Cluster',       'woodrobe' ) ),
+			array( 'slug' => 'checkout-button',       'label' => __( 'Checkout Button',       'woodrobe' ) ),
+			array( 'slug' => 'drawer-launcher',       'label' => __( 'Drawer Launcher',       'woodrobe' ) ),
+		),
+		'woocommerce/product-rating' => array(
+			array( 'slug' => 'rating-row',            'label' => __( 'Rating Row',            'woodrobe' ) ),
+			array( 'slug' => 'stars-first',           'label' => __( 'Stars First',           'woodrobe' ) ),
+			array( 'slug' => 'score-pill',            'label' => __( 'Score Pill',            'woodrobe' ) ),
+			array( 'slug' => 'review-link-stack',     'label' => __( 'Review Link Stack',     'woodrobe' ) ),
+			array( 'slug' => 'trust-inline',          'label' => __( 'Trust Inline',          'woodrobe' ) ),
+			array( 'slug' => 'compact-stars',         'label' => __( 'Compact Stars',         'woodrobe' ) ),
+		),
+		'woocommerce/customer-account' => array(
+			array( 'slug' => 'account-pill',          'label' => __( 'Account Pill',          'woodrobe' ) ),
+			array( 'slug' => 'icon-only-entry',       'label' => __( 'Icon Only Entry',       'woodrobe' ) ),
+			array( 'slug' => 'text-link-entry',       'label' => __( 'Text Link Entry',       'woodrobe' ) ),
+			array( 'slug' => 'split-login',           'label' => __( 'Split Login',           'woodrobe' ) ),
+			array( 'slug' => 'compact-badge',         'label' => __( 'Compact Badge',         'woodrobe' ) ),
+			array( 'slug' => 'nav-utility',           'label' => __( 'Nav Utility',           'woodrobe' ) ),
+		),
+		'woocommerce/store-notices' => array(
+			array( 'slug' => 'notice-stack',          'label' => __( 'Notice Stack',          'woodrobe' ) ),
+			array( 'slug' => 'inline-alert',          'label' => __( 'Inline Alert',          'woodrobe' ) ),
+			array( 'slug' => 'toast-rail',            'label' => __( 'Toast Rail',            'woodrobe' ) ),
+			array( 'slug' => 'banner-notice',         'label' => __( 'Banner Notice',         'woodrobe' ) ),
+			array( 'slug' => 'compact-notice',        'label' => __( 'Compact Notice',        'woodrobe' ) ),
+			array( 'slug' => 'split-notice',          'label' => __( 'Split Notice',          'woodrobe' ) ),
+		),
+
+		// Add more blocks here as styles ship for them.
 	);
 }
 
@@ -119,7 +191,9 @@ function woodrobe_register_block_styles() {
 		woodrobe_style_version()
 	);
 
-	foreach ( woodrobe_block_styles() as $block_name => $styles ) {
+	$block_styles = woodrobe_block_styles();
+
+	foreach ( $block_styles as $block_name => $styles ) {
 		foreach ( $styles as $style ) {
 			register_block_style(
 				$block_name,
@@ -130,6 +204,20 @@ function woodrobe_register_block_styles() {
 				)
 			);
 		}
+	}
+
+	// WooCommerce's current Related Products inserter uses the Product
+	// Collection block variation, so expose these outfits there too.
+	$related_styles = $block_styles['woocommerce/related-products'] ?? array();
+	foreach ( $related_styles as $style ) {
+		register_block_style(
+			'woocommerce/product-collection',
+			array(
+				'name'         => $style['slug'],
+				'label'        => $style['label'],
+				'style_handle' => 'woodrobe-styles',
+			)
+		);
 	}
 }
 add_action( 'init', 'woodrobe_register_block_styles' );
@@ -223,6 +311,46 @@ function woodrobe_showcase_supported_blocks() {
 				'label'           => __( 'Product Collection', 'woodrobe' ),
 				'render_callback' => 'woodrobe_render_product_collection_showcase_cards',
 			),
+			'woocommerce/product-gallery' => array(
+				'label'           => __( 'Product Gallery', 'woodrobe' ),
+				'render_callback' => 'woodrobe_render_product_gallery_showcase_cards',
+			),
+			'woocommerce/single-product' => array(
+				'label'           => __( 'Single Product / Product Page', 'woodrobe' ),
+				'render_callback' => 'woodrobe_render_single_product_showcase_cards',
+			),
+			'woocommerce/related-products' => array(
+				'label'           => __( 'Related Products / Recommendations', 'woodrobe' ),
+				'render_callback' => 'woodrobe_render_related_products_showcase_cards',
+			),
+			'woocommerce/product-reviews' => array(
+				'label'           => __( 'Product Reviews / Ratings', 'woodrobe' ),
+				'render_callback' => 'woodrobe_render_product_reviews_showcase_cards',
+			),
+			'woocommerce/cart' => array(
+				'label'           => __( 'Cart', 'woodrobe' ),
+				'render_callback' => 'woodrobe_render_cart_showcase_cards',
+			),
+			'woocommerce/checkout' => array(
+				'label'           => __( 'Checkout', 'woodrobe' ),
+				'render_callback' => 'woodrobe_render_checkout_showcase_cards',
+			),
+			'woocommerce/mini-cart' => array(
+				'label'           => __( 'Mini Cart', 'woodrobe' ),
+				'render_callback' => 'woodrobe_render_mini_cart_showcase_cards',
+			),
+			'woocommerce/product-rating' => array(
+				'label'           => __( 'Product Rating', 'woodrobe' ),
+				'render_callback' => 'woodrobe_render_product_rating_showcase_cards',
+			),
+			'woocommerce/customer-account' => array(
+				'label'           => __( 'Customer Account', 'woodrobe' ),
+				'render_callback' => 'woodrobe_render_customer_account_showcase_cards',
+			),
+			'woocommerce/store-notices' => array(
+				'label'           => __( 'Store Notices', 'woodrobe' ),
+				'render_callback' => 'woodrobe_render_store_notices_showcase_cards',
+			),
 		)
 	);
 }
@@ -307,6 +435,21 @@ function woodrobe_showcase_editor_block_options() {
 }
 
 /**
+ * Build consistent card classes for a showcase style.
+ *
+ * @param string $block_modifier Block-specific card modifier.
+ * @param string $slug           Style slug.
+ * @return string
+ */
+function woodrobe_showcase_card_classes( $block_modifier, $slug ) {
+	return sprintf(
+		'woodrobe-showcase__card woodrobe-showcase__card--%1$s woodrobe-showcase__card--style-%2$s',
+		sanitize_html_class( $block_modifier ),
+		sanitize_html_class( $slug )
+	);
+}
+
+/**
  * Default render arguments for the showcase.
  *
  * @return array{block_name:string,title:string,description:string,wrapper_attributes:string}
@@ -323,16 +466,43 @@ function woodrobe_showcase_default_args() {
 /**
  * Render block markup through WordPress so showcase output uses live block HTML.
  *
- * @param string $markup Block markup.
- * @return string
- */
-function woodrobe_render_showcase_block_markup( $markup ) {
-	if ( '' === trim( $markup ) || ! function_exists( 'do_blocks' ) ) {
-		return '';
-	}
+	 * @param string $markup Block markup.
+	 * @param int    $product_id Optional product ID to provide as temporary global post context.
+	 * @return string
+	 */
+	function woodrobe_render_showcase_block_markup( $markup, $product_id = 0 ) {
+		if ( '' === trim( $markup ) || ! function_exists( 'do_blocks' ) ) {
+			return '';
+		}
 
-	return trim( do_blocks( $markup ) );
-}
+		$product_post  = $product_id ? get_post( $product_id ) : null;
+		$restore_post  = false;
+		$original_post = null;
+
+		if ( $product_post instanceof WP_Post ) {
+			global $post;
+
+			$original_post = $post;
+			$post          = $product_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+			setup_postdata( $post );
+			$restore_post = true;
+		}
+
+		$rendered = trim( do_blocks( $markup ) );
+
+		if ( $restore_post ) {
+			global $post;
+
+			$post = $original_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+			if ( $post instanceof WP_Post ) {
+				setup_postdata( $post );
+			} else {
+				wp_reset_postdata();
+			}
+		}
+
+		return $rendered;
+	}
 
 /**
  * Find a real product to provide WooCommerce product context in showcase cards.
@@ -361,6 +531,116 @@ function woodrobe_showcase_product_id() {
 
 		if ( ! empty( $ids ) ) {
 			$product_id = (int) reset( $ids );
+		}
+	}
+
+	return $product_id ? $product_id : woodrobe_showcase_product_gallery_product_id();
+}
+
+/**
+ * Find a real product with gallery images for Product Gallery showcase cards.
+ *
+ * @return int Product ID, or 0 when the store has no products.
+ */
+function woodrobe_showcase_product_gallery_product_id() {
+	static $product_id = null;
+
+	if ( null !== $product_id ) {
+		return $product_id;
+	}
+
+	$product_id = 0;
+
+	if ( function_exists( 'wc_get_products' ) ) {
+		$ids = wc_get_products(
+			array(
+				'status'  => 'publish',
+				'limit'   => 20,
+				'orderby' => 'date',
+				'order'   => 'DESC',
+				'return'  => 'ids',
+			)
+		);
+
+		foreach ( $ids as $id ) {
+			$product = wc_get_product( $id );
+			if ( $product && $product->get_image_id() && count( $product->get_gallery_image_ids() ) > 0 ) {
+				$product_id = (int) $id;
+				break;
+			}
+		}
+	}
+
+	return $product_id ? $product_id : woodrobe_showcase_product_id();
+}
+
+/**
+ * Find a product that can drive WooCommerce's Related Products collection.
+ *
+ * @return int Product ID, or 0 when the store has no products.
+ */
+function woodrobe_showcase_related_products_product_id() {
+	static $product_id = null;
+
+	if ( null !== $product_id ) {
+		return $product_id;
+	}
+
+	$product_id = 0;
+
+	if ( function_exists( 'wc_get_products' ) && function_exists( 'wc_get_related_products' ) ) {
+		$ids = wc_get_products(
+			array(
+				'status'  => 'publish',
+				'limit'   => 30,
+				'orderby' => 'date',
+				'order'   => 'DESC',
+				'return'  => 'ids',
+			)
+		);
+
+		foreach ( $ids as $id ) {
+			if ( ! empty( wc_get_related_products( (int) $id, 4 ) ) ) {
+				$product_id = (int) $id;
+				break;
+			}
+		}
+	}
+
+	return $product_id;
+}
+
+/**
+ * Find a product with approved reviews for Product Reviews showcase cards.
+ *
+ * @return int Product ID, or 0 when the store has no products.
+ */
+function woodrobe_showcase_product_reviews_product_id() {
+	static $product_id = null;
+
+	if ( null !== $product_id ) {
+		return $product_id;
+	}
+
+	$product_id = 0;
+
+	if ( function_exists( 'wc_get_products' ) ) {
+		$ids = wc_get_products(
+			array(
+				'status'  => 'publish',
+				'limit'   => 40,
+				'orderby' => 'date',
+				'order'   => 'DESC',
+				'return'  => 'ids',
+			)
+		);
+
+		foreach ( $ids as $id ) {
+			$product = wc_get_product( $id );
+			if ( $product && $product->get_review_count() > 0 && $product->get_reviews_allowed() ) {
+				$product_id = (int) $id;
+				break;
+			}
 		}
 	}
 
@@ -456,7 +736,7 @@ function woodrobe_render_product_details_showcase_cards( $styles, $sample_items,
 		$label    = $style['label'];
 		$rendered = $product_id ? woodrobe_render_showcase_block_markup( woodrobe_showcase_product_details_block_markup( $slug, $product_id ) ) : '';
 		?>
-		<article class="woodrobe-showcase__card">
+		<article class="<?php echo esc_attr( woodrobe_showcase_card_classes( 'product-details', $slug ) ); ?>">
 			<h3 class="woodrobe-showcase__card-title"><?php echo esc_html( $label ); ?></h3>
 			<?php
 			echo '' !== $rendered
@@ -556,12 +836,828 @@ function woodrobe_render_product_collection_showcase_cards( $styles, $sample_ite
 		$label    = $style['label'];
 		$rendered = woodrobe_render_showcase_block_markup( woodrobe_showcase_product_collection_block_markup( $slug, 500 + (int) $index ) );
 		?>
-		<article class="woodrobe-showcase__card woodrobe-showcase__card--product-collection">
+		<article class="<?php echo esc_attr( woodrobe_showcase_card_classes( 'product-collection', $slug ) ); ?>">
 			<h3 class="woodrobe-showcase__card-title"><?php echo esc_html( $label ); ?></h3>
 			<?php
 			echo '' !== $rendered
 				? $rendered
 				: '<p class="woodrobe-showcase__notice">' . esc_html__( 'Add published WooCommerce products to preview this style with a live Product Collection block.', 'woodrobe' ) . '</p>';
+			?>
+		</article>
+		<?php
+	endforeach;
+
+	return ob_get_clean();
+}
+
+/**
+ * Build actual Product Gallery block markup that can live inside a product context.
+ *
+ * @param string $class_name Optional classes for the Product Gallery wrapper.
+ * @return string Block markup.
+ */
+function woodrobe_showcase_product_gallery_inner_block_markup( $class_name = '' ) {
+	$class_name = trim( (string) $class_name );
+	$gallery_attrs = array(
+		'align'             => 'wide',
+		'hoverZoom'         => true,
+		'fullScreenOnClick' => true,
+	);
+
+	if ( '' !== $class_name ) {
+		$gallery_attrs['className'] = $class_name;
+	}
+
+	$thumbnail_attrs = array(
+		'aspectRatio'   => '1/1',
+		'thumbnailSize' => '80px',
+	);
+	$image_attrs = array(
+		'aspectRatio'                       => '1/1',
+		'isDescendentOfSingleProductBlock'  => true,
+		'showProductLink'                   => false,
+		'showSaleBadge'                     => false,
+	);
+	$sale_badge_attrs = array(
+		'isDescendentOfSingleProductBlock' => true,
+	);
+	$gallery_class = trim( 'wp-block-woocommerce-product-gallery alignwide ' . $class_name );
+
+	return '<!-- wp:woocommerce/product-gallery ' . wp_json_encode( $gallery_attrs ) . ' -->'
+		. '<div class="' . esc_attr( $gallery_class ) . '">'
+		. '<!-- wp:woocommerce/product-gallery-large-image -->'
+		. '<div class="wp-block-woocommerce-product-gallery-large-image">'
+		. '<!-- wp:woocommerce/product-image ' . wp_json_encode( $image_attrs ) . ' /-->'
+		. '<!-- wp:woocommerce/product-sale-badge ' . wp_json_encode( $sale_badge_attrs ) . ' /-->'
+		. '<!-- wp:woocommerce/product-gallery-large-image-next-previous /-->'
+		. '</div>'
+		. '<!-- /wp:woocommerce/product-gallery-large-image -->'
+		. '<!-- wp:woocommerce/product-gallery-thumbnails ' . wp_json_encode( $thumbnail_attrs ) . ' /-->'
+		. '</div>'
+		. '<!-- /wp:woocommerce/product-gallery -->';
+}
+
+/**
+ * Build actual Product Gallery block markup for a specific style.
+ *
+ * @param string $slug Style slug.
+ * @param int    $product_id Product ID used for WooCommerce context.
+ * @return string Block markup.
+ */
+function woodrobe_showcase_product_gallery_block_markup( $slug, $product_id ) {
+	$style_class  = 'is-style-' . sanitize_html_class( $slug );
+	$single_attrs = array( 'productId' => $product_id );
+
+	return '<!-- wp:woocommerce/single-product ' . wp_json_encode( $single_attrs ) . ' -->'
+		. '<div class="wp-block-woocommerce-single-product">'
+		. woodrobe_showcase_product_gallery_inner_block_markup( $style_class )
+		. '</div>'
+		. '<!-- /wp:woocommerce/single-product -->';
+}
+
+/**
+ * Render Product Gallery showcase cards using actual WooCommerce blocks.
+ *
+ * @param array<int, array{slug:string,label:string}> $styles Style descriptors.
+ * @param array<int, array{title:string,body:string}> $sample_items Unused sample accordion rows.
+ * @param string[]                                    $force_open_styles Unused force-open styles.
+ * @param string                                      $instance_id Unused unique showcase instance id.
+ * @return string
+ */
+function woodrobe_render_product_gallery_showcase_cards( $styles, $sample_items, $force_open_styles, $instance_id ) {
+	unset( $sample_items, $force_open_styles, $instance_id );
+
+	$product_id = woodrobe_showcase_product_gallery_product_id();
+
+	ob_start();
+
+	foreach ( $styles as $style ) :
+		$slug     = $style['slug'];
+		$label    = $style['label'];
+		$rendered = $product_id ? woodrobe_render_showcase_block_markup( woodrobe_showcase_product_gallery_block_markup( $slug, $product_id ) ) : '';
+		?>
+		<article class="<?php echo esc_attr( woodrobe_showcase_card_classes( 'product-gallery', $slug ) ); ?>">
+			<h3 class="woodrobe-showcase__card-title"><?php echo esc_html( $label ); ?></h3>
+			<?php
+			echo '' !== $rendered
+				? $rendered
+				: '<p class="woodrobe-showcase__notice">' . esc_html__( 'Add a published WooCommerce product with images to preview this style with a live Product Gallery block.', 'woodrobe' ) . '</p>';
+			?>
+		</article>
+		<?php
+	endforeach;
+
+	return ob_get_clean();
+}
+
+/**
+ * Build actual Single Product block markup for a specific page-layout style.
+ *
+ * @param string $slug Style slug.
+ * @param int    $product_id Product ID used for WooCommerce context.
+ * @return string Block markup.
+ */
+function woodrobe_showcase_single_product_block_markup( $slug, $product_id ) {
+	$style_class   = 'is-style-' . sanitize_html_class( $slug );
+	$single_attrs  = array(
+		'align'     => 'wide',
+		'className' => $style_class,
+		'productId' => $product_id,
+	);
+	$title_attrs   = array(
+		'__woocommerceNamespace' => 'woocommerce/single-product/product-title',
+		'className'              => 'woodrobe-single-product__title',
+		'level'                  => 1,
+	);
+	$rating_attrs  = array(
+		'className'                         => 'woodrobe-single-product__rating',
+		'isDescendentOfSingleProductBlock'  => true,
+		'productId'                         => $product_id,
+	);
+	$price_attrs   = array(
+		'className'                         => 'woodrobe-single-product__price',
+		'fontSize'                          => 'large',
+		'isDescendentOfSingleProductBlock'  => true,
+		'productId'                         => $product_id,
+	);
+	$summary_attrs = array(
+		'className'                         => 'woodrobe-single-product__summary-text',
+		'isDescendentOfSingleProductBlock'  => true,
+		'productId'                         => $product_id,
+		'showDescriptionIfEmpty'            => true,
+		'showLink'                          => false,
+		'summaryLength'                     => 34,
+	);
+	$cart_attrs    = array(
+		'className'             => 'woodrobe-single-product__cart',
+		'quantitySelectorStyle' => 'input',
+	);
+	$meta_attrs    = array(
+		'className' => 'woodrobe-single-product__meta',
+	);
+	$details_attrs = array(
+		'align'     => 'wide',
+		'className' => 'woodrobe-single-product__details-block',
+	);
+
+	return '<!-- wp:woocommerce/single-product ' . wp_json_encode( $single_attrs ) . ' -->'
+		. '<div class="wp-block-woocommerce-single-product alignwide ' . esc_attr( $style_class ) . '">'
+		. '<!-- wp:group {"className":"woodrobe-single-product__hero","layout":{"type":"default"}} -->'
+		. '<div class="wp-block-group woodrobe-single-product__hero">'
+		. '<!-- wp:group {"className":"woodrobe-single-product__media","layout":{"type":"default"}} -->'
+		. '<div class="wp-block-group woodrobe-single-product__media">'
+		. woodrobe_showcase_product_gallery_inner_block_markup( 'woodrobe-single-product__media-gallery' )
+		. '</div>'
+		. '<!-- /wp:group -->'
+		. '<!-- wp:group {"className":"woodrobe-single-product__summary","layout":{"type":"default"}} -->'
+		. '<div class="wp-block-group woodrobe-single-product__summary">'
+		. '<!-- wp:post-title ' . wp_json_encode( $title_attrs ) . ' /-->'
+		. '<!-- wp:woocommerce/product-rating ' . wp_json_encode( $rating_attrs ) . ' /-->'
+		. '<!-- wp:woocommerce/product-price ' . wp_json_encode( $price_attrs ) . ' /-->'
+		. '<!-- wp:woocommerce/product-summary ' . wp_json_encode( $summary_attrs ) . ' /-->'
+		. '<!-- wp:woocommerce/add-to-cart-form ' . wp_json_encode( $cart_attrs ) . ' /-->'
+		. '<!-- wp:woocommerce/product-meta ' . wp_json_encode( $meta_attrs ) . ' /-->'
+		. '</div>'
+		. '<!-- /wp:group -->'
+		. '</div>'
+		. '<!-- /wp:group -->'
+		. '<!-- wp:group {"className":"woodrobe-single-product__details","layout":{"type":"default"}} -->'
+		. '<div class="wp-block-group woodrobe-single-product__details">'
+		. '<!-- wp:woocommerce/product-details ' . wp_json_encode( $details_attrs ) . ' -->'
+		. '<div class="wp-block-woocommerce-product-details alignwide woodrobe-single-product__details-block">'
+		. woodrobe_showcase_product_details_inner_blocks()
+		. '</div>'
+		. '<!-- /wp:woocommerce/product-details -->'
+		. '</div>'
+		. '<!-- /wp:group -->'
+		. '</div>'
+		. '<!-- /wp:woocommerce/single-product -->';
+}
+
+/**
+ * Render Single Product showcase cards using actual WooCommerce blocks.
+ *
+ * @param array<int, array{slug:string,label:string}> $styles Style descriptors.
+ * @param array<int, array{title:string,body:string}> $sample_items Unused sample accordion rows.
+ * @param string[]                                    $force_open_styles Unused force-open styles.
+ * @param string                                      $instance_id Unused unique showcase instance id.
+ * @return string
+ */
+function woodrobe_render_single_product_showcase_cards( $styles, $sample_items, $force_open_styles, $instance_id ) {
+	unset( $sample_items, $force_open_styles, $instance_id );
+
+	$product_id = woodrobe_showcase_product_gallery_product_id();
+
+	ob_start();
+
+	foreach ( $styles as $style ) :
+		$slug     = $style['slug'];
+		$label    = $style['label'];
+		$rendered = $product_id ? woodrobe_render_showcase_block_markup( woodrobe_showcase_single_product_block_markup( $slug, $product_id ) ) : '';
+		?>
+		<article class="<?php echo esc_attr( woodrobe_showcase_card_classes( 'single-product', $slug ) ); ?>">
+			<h3 class="woodrobe-showcase__card-title"><?php echo esc_html( $label ); ?></h3>
+			<?php
+			echo '' !== $rendered
+				? $rendered
+				: '<p class="woodrobe-showcase__notice">' . esc_html__( 'Add a published WooCommerce product with images to preview this style with a live Single Product block.', 'woodrobe' ) . '</p>';
+			?>
+		</article>
+		<?php
+	endforeach;
+
+	return ob_get_clean();
+}
+
+/**
+ * Build actual Related Products collection block markup for a specific style.
+ *
+ * @param string $slug Style slug.
+ * @param int    $product_id Product ID used for WooCommerce related-product context.
+ * @param int    $query_id Query ID.
+ * @return string Block markup.
+ */
+function woodrobe_showcase_related_products_block_markup( $slug, $product_id, $query_id ) {
+	$style_class = 'is-style-' . sanitize_html_class( $slug );
+	$class_name  = trim( 'woodrobe-related-products ' . $style_class );
+	$attrs       = array(
+		'queryId'              => $query_id,
+		'query'                => array(
+			'perPage'                         => 6,
+			'pages'                           => 1,
+			'offset'                          => 0,
+			'postType'                        => 'product',
+			'order'                           => 'asc',
+			'orderBy'                         => 'title',
+			'search'                          => '',
+			'exclude'                         => array(),
+			'inherit'                         => false,
+			'taxQuery'                        => array(),
+			'isProductCollectionBlock'        => true,
+			'woocommerceOnSale'               => false,
+			'woocommerceStockStatus'          => array( 'instock', 'outofstock', 'onbackorder' ),
+			'woocommerceAttributes'           => array(),
+			'woocommerceHandPickedProducts'   => array(),
+			'productReference'                => $product_id,
+			'relatedBy'                       => array(
+				'categories' => true,
+				'tags'       => true,
+			),
+		),
+		'tagName'              => 'div',
+		'dimensions'           => array(
+			'widthType'  => 'fill',
+			'fixedWidth' => '',
+		),
+		'displayLayout'        => array(
+			'type'          => 'flex',
+			'columns'       => 4,
+			'shrinkColumns' => true,
+		),
+		'queryContextIncludes' => array( 'collection' ),
+		'collection'           => 'woocommerce/product-collection/related',
+		'align'                => 'wide',
+		'className'            => $class_name,
+	);
+
+	return '<!-- wp:woocommerce/product-collection ' . wp_json_encode( $attrs ) . ' -->'
+		. '<div class="wp-block-woocommerce-product-collection alignwide ' . esc_attr( $class_name ) . '">'
+		. '<!-- wp:woocommerce/product-template -->'
+		. '<!-- wp:woocommerce/product-image {"showSaleBadge":false,"isDescendentOfQueryLoop":true,"aspectRatio":"4/5","className":"woodrobe-product-image"} /-->'
+		. '<!-- wp:group {"className":"woodrobe-product-meta","layout":{"type":"default"}} -->'
+		. '<div class="wp-block-group woodrobe-product-meta">'
+		. '<!-- wp:post-title {"textAlign":"left","level":3,"isLink":true,"style":{"spacing":{"margin":{"bottom":"0.5rem","top":"0"}}},"fontSize":"medium","__woocommerceNamespace":"woocommerce/product-collection/product-title","className":"woodrobe-product-name"} /-->'
+		. '<!-- wp:woocommerce/product-rating {"isDescendentOfQueryLoop":true,"className":"woodrobe-product-rating"} /-->'
+		. '<!-- wp:woocommerce/product-price {"isDescendentOfQueryLoop":true,"fontSize":"small","className":"woodrobe-product-price"} /-->'
+		. '<!-- wp:woocommerce/product-button {"isDescendentOfQueryLoop":true,"className":"woodrobe-product-action"} /-->'
+		. '</div>'
+		. '<!-- /wp:group -->'
+		. '<!-- /wp:woocommerce/product-template -->'
+		. '<!-- wp:woocommerce/product-collection-no-results -->'
+		. '<div class="wp-block-woocommerce-product-collection-no-results">'
+		. '<!-- wp:paragraph --><p>' . esc_html__( 'No related products were found.', 'woocommerce' ) . '</p><!-- /wp:paragraph -->'
+		. '</div>'
+		. '<!-- /wp:woocommerce/product-collection-no-results -->'
+		. '</div>'
+		. '<!-- /wp:woocommerce/product-collection -->';
+}
+
+/**
+ * Render Related Products showcase cards using actual WooCommerce blocks.
+ *
+ * @param array<int, array{slug:string,label:string}> $styles Style descriptors.
+ * @param array<int, array{title:string,body:string}> $sample_items Unused sample accordion rows.
+ * @param string[]                                    $force_open_styles Unused force-open styles.
+ * @param string                                      $instance_id Unused unique showcase instance id.
+ * @return string
+ */
+function woodrobe_render_related_products_showcase_cards( $styles, $sample_items, $force_open_styles, $instance_id ) {
+	unset( $sample_items, $force_open_styles, $instance_id );
+
+	$product_id = woodrobe_showcase_related_products_product_id();
+
+	ob_start();
+
+	foreach ( $styles as $index => $style ) :
+		$slug     = $style['slug'];
+		$label    = $style['label'];
+		$rendered = $product_id ? woodrobe_render_showcase_block_markup( woodrobe_showcase_related_products_block_markup( $slug, $product_id, 900 + (int) $index ) ) : '';
+		?>
+		<article class="<?php echo esc_attr( woodrobe_showcase_card_classes( 'related-products', $slug ) ); ?>">
+			<h3 class="woodrobe-showcase__card-title"><?php echo esc_html( $label ); ?></h3>
+			<?php
+			echo '' !== $rendered
+				? $rendered
+				: '<p class="woodrobe-showcase__notice">' . esc_html__( 'Add published WooCommerce products in shared categories to preview this style with a live Related Products block.', 'woodrobe' ) . '</p>';
+			?>
+		</article>
+		<?php
+	endforeach;
+
+	return ob_get_clean();
+}
+
+/**
+ * Build actual Product Reviews block markup for a specific style.
+ *
+ * @param string $slug Style slug.
+ * @param int    $product_id Product ID used for WooCommerce review context.
+ * @return string Block markup.
+ */
+function woodrobe_showcase_product_reviews_block_markup( $slug, $product_id ) {
+	$style_class   = 'is-style-' . sanitize_html_class( $slug );
+	$single_attrs  = array( 'productId' => $product_id );
+	$reviews_attrs = array(
+		'align'     => 'wide',
+		'className' => $style_class,
+	);
+	$title_attrs   = array(
+		'level'            => 3,
+		'showProductTitle' => false,
+		'showReviewsCount' => true,
+		'className'        => 'woodrobe-reviews__title',
+	);
+		$rating_attrs     = array(
+			'className'                        => 'woodrobe-reviews__rating',
+			'isDescendentOfSingleProductBlock' => true,
+		);
+	$pagination_attrs = array(
+		'className' => 'woodrobe-reviews__pagination',
+		'layout'    => array(
+			'type'           => 'flex',
+			'justifyContent' => 'center',
+		),
+	);
+	$previous_attrs   = array( 'label' => __( 'Previous', 'woodrobe' ) );
+	$next_attrs       = array( 'label' => __( 'Next', 'woodrobe' ) );
+
+	return '<!-- wp:woocommerce/single-product ' . wp_json_encode( $single_attrs ) . ' -->'
+		. '<div class="wp-block-woocommerce-single-product">'
+		. '<!-- wp:woocommerce/product-reviews ' . wp_json_encode( $reviews_attrs ) . ' -->'
+		. '<div class="wp-block-woocommerce-product-reviews alignwide ' . esc_attr( $style_class ) . '">'
+		. '<!-- wp:woocommerce/product-reviews-title ' . wp_json_encode( $title_attrs ) . ' /-->'
+		. '<!-- wp:group {"className":"woodrobe-reviews__summary","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->'
+		. '<div class="wp-block-group woodrobe-reviews__summary">'
+		. '<!-- wp:woocommerce/product-rating ' . wp_json_encode( $rating_attrs ) . ' /-->'
+		. '<!-- wp:woocommerce/product-average-rating {"className":"woodrobe-reviews__average"} /-->'
+		. '<!-- wp:woocommerce/product-rating-counter {"className":"woodrobe-reviews__counter"} /-->'
+		. '</div>'
+		. '<!-- /wp:group -->'
+		. '<!-- wp:woocommerce/product-review-template {"className":"woodrobe-reviews__list"} -->'
+		. '<!-- wp:group {"className":"woodrobe-review","layout":{"type":"default"}} -->'
+		. '<div class="wp-block-group woodrobe-review">'
+		. '<!-- wp:group {"className":"woodrobe-review__header","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->'
+		. '<div class="wp-block-group woodrobe-review__header">'
+		. '<!-- wp:group {"className":"woodrobe-review__person","layout":{"type":"flex","flexWrap":"nowrap"}} -->'
+		. '<div class="wp-block-group woodrobe-review__person">'
+		. '<!-- wp:avatar {"size":40,"className":"woodrobe-review__avatar"} /-->'
+		. '<!-- wp:group {"className":"woodrobe-review__byline","layout":{"type":"default"}} -->'
+		. '<div class="wp-block-group woodrobe-review__byline">'
+		. '<!-- wp:woocommerce/product-review-author-name {"fontSize":"small","className":"woodrobe-review__author"} /-->'
+		. '<!-- wp:woocommerce/product-review-date {"fontSize":"small","className":"woodrobe-review__date"} /-->'
+		. '</div>'
+		. '<!-- /wp:group -->'
+		. '</div>'
+		. '<!-- /wp:group -->'
+		. '<!-- wp:woocommerce/product-review-rating {"className":"woodrobe-review__score"} /-->'
+		. '</div>'
+		. '<!-- /wp:group -->'
+		. '<!-- wp:woocommerce/product-review-content {"className":"woodrobe-review__content"} /-->'
+		. '</div>'
+		. '<!-- /wp:group -->'
+		. '<!-- /wp:woocommerce/product-review-template -->'
+		. '<!-- wp:woocommerce/product-reviews-pagination ' . wp_json_encode( $pagination_attrs ) . ' -->'
+		. '<!-- wp:woocommerce/product-reviews-pagination-previous ' . wp_json_encode( $previous_attrs ) . ' /-->'
+		. '<!-- wp:woocommerce/product-reviews-pagination-numbers /-->'
+		. '<!-- wp:woocommerce/product-reviews-pagination-next ' . wp_json_encode( $next_attrs ) . ' /-->'
+		. '<!-- /wp:woocommerce/product-reviews-pagination -->'
+		. '<!-- wp:woocommerce/product-review-form {"className":"woodrobe-reviews__form"} /-->'
+		. '</div>'
+		. '<!-- /wp:woocommerce/product-reviews -->'
+		. '</div>'
+		. '<!-- /wp:woocommerce/single-product -->';
+}
+
+/**
+ * Render Product Reviews showcase cards using actual WooCommerce blocks.
+ *
+ * @param array<int, array{slug:string,label:string}> $styles Style descriptors.
+ * @param array<int, array{title:string,body:string}> $sample_items Unused sample accordion rows.
+ * @param string[]                                    $force_open_styles Unused force-open styles.
+ * @param string                                      $instance_id Unused unique showcase instance id.
+ * @return string
+ */
+function woodrobe_render_product_reviews_showcase_cards( $styles, $sample_items, $force_open_styles, $instance_id ) {
+	unset( $sample_items, $force_open_styles, $instance_id );
+
+	$product_id = woodrobe_showcase_product_reviews_product_id();
+
+	ob_start();
+
+	foreach ( $styles as $style ) :
+		$slug     = $style['slug'];
+		$label    = $style['label'];
+		$rendered = $product_id ? woodrobe_render_showcase_block_markup( woodrobe_showcase_product_reviews_block_markup( $slug, $product_id ), $product_id ) : '';
+		?>
+		<article class="<?php echo esc_attr( woodrobe_showcase_card_classes( 'product-reviews', $slug ) ); ?>">
+			<h3 class="woodrobe-showcase__card-title"><?php echo esc_html( $label ); ?></h3>
+			<?php
+			echo '' !== $rendered
+				? $rendered
+				: '<p class="woodrobe-showcase__notice">' . esc_html__( 'Add approved reviews to a published WooCommerce product to preview this style with a live Product Reviews block.', 'woodrobe' ) . '</p>';
+			?>
+		</article>
+		<?php
+	endforeach;
+
+	return ob_get_clean();
+}
+
+
+/**
+ * Build actual Cart block markup for a specific style.
+ *
+ * @param string $slug Style slug.
+ * @return string Block markup.
+ */
+function woodrobe_showcase_cart_block_markup( $slug ) {
+	$style_class = 'is-style-' . sanitize_html_class( $slug );
+
+	if ( 'empty-state-spotlight' === $slug ) {
+		return '<div class="wp-block-woocommerce-cart ' . esc_attr( $style_class ) . ' woodrobe-cart-preview-shell">'
+			. '<div class="wp-block-woocommerce-empty-cart-block">'
+			. '<div class="woodrobe-cart-empty-preview"><span aria-hidden="true"></span><strong>' . esc_html__( 'Your cart is ready for a new outfit.', 'woodrobe' ) . '</strong><small>' . esc_html__( 'Use this style when the empty state should feel intentional instead of abandoned.', 'woodrobe' ) . '</small><div class="wp-block-button"><a class="wp-block-button__link" href="#">' . esc_html__( 'Browse products', 'woodrobe' ) . '</a></div></div>'
+			. '</div>'
+			. '</div>';
+	}
+
+	return '<div class="wp-block-woocommerce-cart ' . esc_attr( $style_class ) . ' woodrobe-cart-preview-shell">'
+		. '<div class="wp-block-woocommerce-filled-cart-block">'
+		. '<div class="wp-block-woocommerce-cart-items-block">'
+		. '<div class="wp-block-woocommerce-cart-line-items-block">'
+		. '<div class="woodrobe-cart-preview">'
+		. '<div class="woodrobe-cart-preview__row"><span class="woodrobe-cart-preview__media" aria-hidden="true"></span><span class="woodrobe-cart-preview__item"><strong>' . esc_html__( 'Sample product', 'woodrobe' ) . '</strong><small>' . esc_html__( 'Qty 1 · Ready to ship', 'woodrobe' ) . '</small></span><span class="woodrobe-cart-preview__price">' . esc_html__( '$42.00', 'woodrobe' ) . '</span></div>'
+		. '<div class="woodrobe-cart-preview__row"><span class="woodrobe-cart-preview__media" aria-hidden="true"></span><span class="woodrobe-cart-preview__item"><strong>' . esc_html__( 'Second cart item', 'woodrobe' ) . '</strong><small>' . esc_html__( 'Qty 1 · Gift wrap', 'woodrobe' ) . '</small></span><span class="woodrobe-cart-preview__price">' . esc_html__( '$18.00', 'woodrobe' ) . '</span></div>'
+		. '</div>'
+		. '</div>'
+		. '</div>'
+		. '<div class="wp-block-woocommerce-cart-totals-block">'
+		. '<div class="wp-block-woocommerce-cart-order-summary-block">'
+		. '<div class="woodrobe-cart-summary"><div class="woodrobe-cart-summary__row"><span>' . esc_html__( 'Subtotal', 'woodrobe' ) . '</span><strong>' . esc_html__( '$60.00', 'woodrobe' ) . '</strong></div><div class="woodrobe-cart-summary__row"><span>' . esc_html__( 'Shipping', 'woodrobe' ) . '</span><span>' . esc_html__( 'Calculated at checkout', 'woodrobe' ) . '</span></div><div class="woodrobe-cart-summary__row woodrobe-cart-summary__row--total"><span>' . esc_html__( 'Estimated total', 'woodrobe' ) . '</span><strong>' . esc_html__( '$60.00', 'woodrobe' ) . '</strong></div></div>'
+		. '</div>'
+		. '<div class="wp-block-woocommerce-cart-order-summary-coupon-form-block"><span>' . esc_html__( 'Coupon code', 'woodrobe' ) . '</span><span aria-hidden="true"></span></div>'
+		. '<div class="wp-block-woocommerce-proceed-to-checkout-block"><div class="wp-block-button"><a class="wp-block-button__link" href="#">' . esc_html__( 'Proceed to checkout', 'woodrobe' ) . '</a></div></div>'
+		. '</div>'
+		. '</div>'
+		. '<div class="wp-block-woocommerce-empty-cart-block"></div>'
+		. '</div>';
+}
+
+/**
+ * Render Cart showcase cards using actual WooCommerce blocks.
+ *
+ * @param array<int, array{slug:string,label:string}> $styles Style descriptors.
+ * @param array<int, array{title:string,body:string}> $sample_items Unused sample accordion rows.
+ * @param string[]                                    $force_open_styles Unused force-open styles.
+ * @param string                                      $instance_id Unused unique showcase instance id.
+ * @return string
+ */
+function woodrobe_render_cart_showcase_cards( $styles, $sample_items, $force_open_styles, $instance_id ) {
+	unset( $sample_items, $force_open_styles, $instance_id );
+
+	ob_start();
+
+	foreach ( $styles as $style ) :
+		$slug     = $style['slug'];
+		$label    = $style['label'];
+		$rendered = woodrobe_render_showcase_block_markup( woodrobe_showcase_cart_block_markup( $slug ) );
+		?>
+		<article class="<?php echo esc_attr( woodrobe_showcase_card_classes( 'cart', $slug ) ); ?>">
+			<h3 class="woodrobe-showcase__card-title"><?php echo esc_html( $label ); ?></h3>
+			<?php
+			echo '' !== $rendered
+				? $rendered
+				: '<p class="woodrobe-showcase__notice">' . esc_html__( 'Activate WooCommerce cart blocks to preview this Cart style.', 'woodrobe' ) . '</p>';
+			?>
+		</article>
+		<?php
+	endforeach;
+
+	return ob_get_clean();
+}
+
+/**
+ * Build actual Checkout block markup for a specific style.
+ *
+ * @param string $slug Style slug.
+ * @return string Block markup.
+ */
+function woodrobe_showcase_checkout_block_markup( $slug ) {
+	$style_class = 'is-style-' . sanitize_html_class( $slug );
+
+	return '<div class="wp-block-woocommerce-checkout ' . esc_attr( $style_class ) . ' woodrobe-checkout-preview-shell">'
+		. '<div class="wp-block-woocommerce-checkout-fields-block">'
+		. '<div class="wp-block-woocommerce-checkout-express-payment-block"><span>' . esc_html__( 'Express payment', 'woodrobe' ) . '</span><span aria-hidden="true"></span></div>'
+		. '<div class="woodrobe-checkout-preview">'
+		. '<section class="woodrobe-checkout-preview__section"><div class="woodrobe-checkout-preview__heading"><span>1</span><h4>' . esc_html__( 'Contact', 'woodrobe' ) . '</h4></div><span>' . esc_html__( 'email@example.com', 'woodrobe' ) . '</span></section>'
+		. '<section class="woodrobe-checkout-preview__section"><div class="woodrobe-checkout-preview__heading"><span>2</span><h4>' . esc_html__( 'Shipping', 'woodrobe' ) . '</h4></div><span>' . esc_html__( '1 Demo Lane, Demoville', 'woodrobe' ) . '</span></section>'
+		. '<section class="woodrobe-checkout-preview__section"><div class="woodrobe-checkout-preview__heading"><span>3</span><h4>' . esc_html__( 'Payment', 'woodrobe' ) . '</h4></div><span>' . esc_html__( 'Payment method', 'woodrobe' ) . '</span></section>'
+		. '</div>'
+		. '<div class="wp-block-woocommerce-checkout-actions-block"><div class="wp-block-button"><a class="wp-block-button__link" href="#">' . esc_html__( 'Place order', 'woodrobe' ) . '</a></div></div>'
+		. '</div>'
+		. '<div class="wp-block-woocommerce-checkout-totals-block">'
+		. '<div class="wp-block-woocommerce-checkout-order-summary-block">'
+		. '<div class="woodrobe-checkout-summary"><span class="woodrobe-checkout-summary__title">' . esc_html__( 'Order summary', 'woodrobe' ) . '</span><div class="woodrobe-checkout-summary__row"><span>' . esc_html__( 'Sample product × 1', 'woodrobe' ) . '</span><span>' . esc_html__( '$42.00', 'woodrobe' ) . '</span></div><div class="woodrobe-checkout-summary__row"><span>' . esc_html__( 'Second item × 1', 'woodrobe' ) . '</span><span>' . esc_html__( '$18.00', 'woodrobe' ) . '</span></div><div class="woodrobe-checkout-summary__row woodrobe-checkout-summary__row--total"><span>' . esc_html__( 'Total', 'woodrobe' ) . '</span><strong>' . esc_html__( '$60.00', 'woodrobe' ) . '</strong></div></div>'
+		. '</div>'
+		. '</div>'
+		. '</div>';
+}
+
+/**
+ * Render Checkout showcase cards using actual WooCommerce blocks.
+ *
+ * @param array<int, array{slug:string,label:string}> $styles Style descriptors.
+ * @param array<int, array{title:string,body:string}> $sample_items Unused sample accordion rows.
+ * @param string[]                                    $force_open_styles Unused force-open styles.
+ * @param string                                      $instance_id Unused unique showcase instance id.
+ * @return string
+ */
+function woodrobe_render_checkout_showcase_cards( $styles, $sample_items, $force_open_styles, $instance_id ) {
+	unset( $sample_items, $force_open_styles, $instance_id );
+
+	ob_start();
+
+	foreach ( $styles as $style ) :
+		$slug     = $style['slug'];
+		$label    = $style['label'];
+		$rendered = woodrobe_render_showcase_block_markup( woodrobe_showcase_checkout_block_markup( $slug ) );
+		?>
+		<article class="<?php echo esc_attr( woodrobe_showcase_card_classes( 'checkout', $slug ) ); ?>">
+			<h3 class="woodrobe-showcase__card-title"><?php echo esc_html( $label ); ?></h3>
+			<?php
+			echo '' !== $rendered
+				? $rendered
+				: '<p class="woodrobe-showcase__notice">' . esc_html__( 'Activate WooCommerce checkout blocks to preview this Checkout style.', 'woodrobe' ) . '</p>';
+			?>
+		</article>
+		<?php
+	endforeach;
+
+	return ob_get_clean();
+}
+
+/**
+ * Build actual Mini Cart block markup for a specific style.
+ *
+ * @param string $slug Style slug.
+ * @return string Block markup.
+ */
+function woodrobe_showcase_mini_cart_block_markup( $slug ) {
+	$style_class = 'is-style-' . sanitize_html_class( $slug );
+	$attrs       = array(
+		'className'              => $style_class,
+		'miniCartIcon'           => 'bag-alt',
+		'productCountVisibility' => 'always',
+		'hasHiddenPrice'         => false,
+	);
+
+	return '<div class="woodrobe-utility-preview woodrobe-utility-preview--mini-cart woodrobe-utility-preview--' . esc_attr( sanitize_html_class( $slug ) ) . '">'
+		. '<span class="woodrobe-utility-preview__brand">' . esc_html__( 'Shop', 'woodrobe' ) . '</span>'
+		. '<span class="woodrobe-utility-preview__nav" aria-hidden="true"><span></span><span></span><span></span></span>'
+		. '<!-- wp:woocommerce/mini-cart ' . wp_json_encode( $attrs ) . ' /-->'
+		. '</div>';
+}
+
+/**
+ * Render Mini Cart showcase cards using actual WooCommerce blocks.
+ *
+ * @param array<int, array{slug:string,label:string}> $styles Style descriptors.
+ * @param array<int, array{title:string,body:string}> $sample_items Unused sample accordion rows.
+ * @param string[]                                    $force_open_styles Unused force-open styles.
+ * @param string                                      $instance_id Unused unique showcase instance id.
+ * @return string
+ */
+function woodrobe_render_mini_cart_showcase_cards( $styles, $sample_items, $force_open_styles, $instance_id ) {
+	unset( $sample_items, $force_open_styles, $instance_id );
+
+	ob_start();
+
+	foreach ( $styles as $style ) :
+		$slug     = $style['slug'];
+		$label    = $style['label'];
+		$rendered = woodrobe_render_showcase_block_markup( woodrobe_showcase_mini_cart_block_markup( $slug ) );
+		?>
+		<article class="<?php echo esc_attr( woodrobe_showcase_card_classes( 'mini-cart', $slug ) ); ?>">
+			<h3 class="woodrobe-showcase__card-title"><?php echo esc_html( $label ); ?></h3>
+			<?php
+			echo '' !== $rendered
+				? $rendered
+				: '<p class="woodrobe-showcase__notice">' . esc_html__( 'Activate WooCommerce mini cart blocks to preview this Mini Cart style.', 'woodrobe' ) . '</p>';
+			?>
+		</article>
+		<?php
+	endforeach;
+
+	return ob_get_clean();
+}
+
+/**
+ * Build actual Product Rating block markup for a specific style.
+ *
+ * @param string $slug Style slug.
+ * @param int    $product_id Product ID used for WooCommerce rating context.
+ * @return string Block markup.
+ */
+function woodrobe_showcase_product_rating_block_markup( $slug, $product_id ) {
+	$style_class  = 'is-style-' . sanitize_html_class( $slug );
+	$single_attrs = array( 'productId' => $product_id );
+	$rating_attrs = array(
+		'className'                        => $style_class,
+		'isDescendentOfSingleProductBlock' => true,
+		'productId'                        => $product_id,
+	);
+
+	return '<!-- wp:woocommerce/single-product ' . wp_json_encode( $single_attrs ) . ' -->'
+		. '<div class="wp-block-woocommerce-single-product">'
+		. '<div class="woodrobe-rating-preview">'
+		. '<div class="woodrobe-rating-preview__context"><strong>' . esc_html__( 'Spare Key to Nowhere', 'woodrobe' ) . '</strong><span>' . esc_html__( 'Customer sentiment', 'woodrobe' ) . '</span></div>'
+		. '<!-- wp:woocommerce/product-rating ' . wp_json_encode( $rating_attrs ) . ' /-->'
+		. '</div>'
+		. '</div>'
+		. '<!-- /wp:woocommerce/single-product -->';
+}
+
+/**
+ * Render Product Rating showcase cards using actual WooCommerce blocks.
+ *
+ * @param array<int, array{slug:string,label:string}> $styles Style descriptors.
+ * @param array<int, array{title:string,body:string}> $sample_items Unused sample accordion rows.
+ * @param string[]                                    $force_open_styles Unused force-open styles.
+ * @param string                                      $instance_id Unused unique showcase instance id.
+ * @return string
+ */
+function woodrobe_render_product_rating_showcase_cards( $styles, $sample_items, $force_open_styles, $instance_id ) {
+	unset( $sample_items, $force_open_styles, $instance_id );
+
+	$product_id = woodrobe_showcase_product_reviews_product_id();
+
+	ob_start();
+
+	foreach ( $styles as $style ) :
+		$slug     = $style['slug'];
+		$label    = $style['label'];
+		$rendered = $product_id ? woodrobe_render_showcase_block_markup( woodrobe_showcase_product_rating_block_markup( $slug, $product_id ), $product_id ) : '';
+		?>
+		<article class="<?php echo esc_attr( woodrobe_showcase_card_classes( 'product-rating', $slug ) ); ?>">
+			<h3 class="woodrobe-showcase__card-title"><?php echo esc_html( $label ); ?></h3>
+			<?php
+			echo '' !== $rendered
+				? $rendered
+				: '<p class="woodrobe-showcase__notice">' . esc_html__( 'Add approved reviews to a published WooCommerce product to preview this Product Rating style.', 'woodrobe' ) . '</p>';
+			?>
+		</article>
+		<?php
+	endforeach;
+
+	return ob_get_clean();
+}
+
+/**
+ * Build actual Customer Account block markup for a specific style.
+ *
+ * @param string $slug Style slug.
+ * @return string Block markup.
+ */
+function woodrobe_showcase_customer_account_block_markup( $slug ) {
+	$style_class = 'is-style-' . sanitize_html_class( $slug );
+	$display     = in_array( $slug, array( 'icon-only-entry', 'compact-badge' ), true ) ? 'icon_only' : 'text_only';
+	$attrs       = array(
+		'className'             => $style_class,
+		'displayStyle'          => $display,
+		'iconStyle'             => 'line',
+		'iconClass'             => 'wc-block-customer-account__account-icon',
+		'hasDropdownNavigation' => false,
+	);
+
+	return '<div class="woodrobe-utility-preview woodrobe-utility-preview--customer-account woodrobe-utility-preview--' . esc_attr( sanitize_html_class( $slug ) ) . '">'
+		. '<span class="woodrobe-utility-preview__brand">' . esc_html__( 'Member area', 'woodrobe' ) . '</span>'
+		. '<span class="woodrobe-utility-preview__nav" aria-hidden="true"><span></span><span></span></span>'
+		. '<!-- wp:woocommerce/customer-account ' . wp_json_encode( $attrs ) . ' /-->'
+		. '</div>';
+}
+
+/**
+ * Render Customer Account showcase cards using actual WooCommerce blocks.
+ *
+ * @param array<int, array{slug:string,label:string}> $styles Style descriptors.
+ * @param array<int, array{title:string,body:string}> $sample_items Unused sample accordion rows.
+ * @param string[]                                    $force_open_styles Unused force-open styles.
+ * @param string                                      $instance_id Unused unique showcase instance id.
+ * @return string
+ */
+function woodrobe_render_customer_account_showcase_cards( $styles, $sample_items, $force_open_styles, $instance_id ) {
+	unset( $sample_items, $force_open_styles, $instance_id );
+
+	ob_start();
+
+	foreach ( $styles as $style ) :
+		$slug     = $style['slug'];
+		$label    = $style['label'];
+		$rendered = woodrobe_render_showcase_block_markup( woodrobe_showcase_customer_account_block_markup( $slug ) );
+		?>
+		<article class="<?php echo esc_attr( woodrobe_showcase_card_classes( 'customer-account', $slug ) ); ?>">
+			<h3 class="woodrobe-showcase__card-title"><?php echo esc_html( $label ); ?></h3>
+			<?php
+			echo '' !== $rendered
+				? $rendered
+				: '<p class="woodrobe-showcase__notice">' . esc_html__( 'Activate WooCommerce account pages to preview this Customer Account style.', 'woodrobe' ) . '</p>';
+			?>
+		</article>
+		<?php
+	endforeach;
+
+	return ob_get_clean();
+}
+
+/**
+ * Build actual Store Notices block markup for a specific style.
+ *
+ * @param string $slug Style slug.
+ * @return string Block markup.
+ */
+function woodrobe_showcase_store_notices_block_markup( $slug ) {
+	$style_class = 'is-style-' . sanitize_html_class( $slug );
+	$attrs       = array( 'className' => $style_class );
+
+	return '<!-- wp:woocommerce/store-notices ' . wp_json_encode( $attrs ) . ' /-->';
+}
+
+/**
+ * Render Store Notices showcase cards using actual WooCommerce blocks.
+ *
+ * @param array<int, array{slug:string,label:string}> $styles Style descriptors.
+ * @param array<int, array{title:string,body:string}> $sample_items Unused sample accordion rows.
+ * @param string[]                                    $force_open_styles Unused force-open styles.
+ * @param string                                      $instance_id Unused unique showcase instance id.
+ * @return string
+ */
+function woodrobe_render_store_notices_showcase_cards( $styles, $sample_items, $force_open_styles, $instance_id ) {
+	unset( $sample_items, $force_open_styles, $instance_id );
+
+	$notice_types = array( 'success', 'notice', 'error' );
+
+	ob_start();
+
+	foreach ( $styles as $index => $style ) :
+		$slug  = $style['slug'];
+		$label = $style['label'];
+
+		if ( function_exists( 'wc_clear_notices' ) ) {
+			wc_clear_notices();
+		}
+		if ( function_exists( 'wc_add_notice' ) ) {
+			wc_add_notice(
+				sprintf(
+					/* translators: %s: store notice style label. */
+					__( '%s preview notice. This is live WooCommerce notice markup using the selected WOOdrobe layout.', 'woodrobe' ),
+					$label
+				),
+				$notice_types[ $index % count( $notice_types ) ]
+			);
+		}
+
+		$rendered = woodrobe_render_showcase_block_markup( woodrobe_showcase_store_notices_block_markup( $slug ) );
+
+		if ( function_exists( 'wc_clear_notices' ) ) {
+			wc_clear_notices();
+		}
+		?>
+		<article class="<?php echo esc_attr( woodrobe_showcase_card_classes( 'store-notices', $slug ) ); ?>">
+			<h3 class="woodrobe-showcase__card-title"><?php echo esc_html( $label ); ?></h3>
+			<?php
+			echo '' !== $rendered
+				? $rendered
+				: '<p class="woodrobe-showcase__notice">' . esc_html__( 'Add a WooCommerce notice to preview this Store Notices style.', 'woodrobe' ) . '</p>';
 			?>
 		</article>
 		<?php

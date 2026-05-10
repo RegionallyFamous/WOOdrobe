@@ -7,7 +7,16 @@
  *   3. Global micro-interactions              (per-block: panel reveal, on-load stagger, focus, motion-reduce)
  *   4. BLOCK: woocommerce/product-details     — 23 variants
  *   5. BLOCK: woocommerce/product-collection  — 20 variants
- *   6. BLOCK: <future block>                  — variants
+ *   6. BLOCK: woocommerce/product-gallery     — 6 variants
+ *   7. BLOCK: woocommerce/single-product      — 6 variants
+ *   8. BLOCK: woocommerce/related-products    — 6 variants
+ *   9. BLOCK: woocommerce/product-reviews     — 6 variants
+ *   10. BLOCK: woocommerce/cart                — 6 variants
+ *   11. BLOCK: woocommerce/checkout            — 6 variants
+ *   12. BLOCK: woocommerce/mini-cart           — 6 variants
+ *   13. BLOCK: woocommerce/product-rating      — 6 variants
+ *   14. BLOCK: woocommerce/customer-account    — 6 variants
+ *   15. BLOCK: woocommerce/store-notices       — 6 variants
  *
  * Adding a new block:
  *   - Append a section banner: BLOCK: woocommerce/<name>
@@ -137,6 +146,123 @@
 ):focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 2px;
+}
+.wp-block-woocommerce-product-gallery[class*="is-style-"] {
+  --wp--style--block-gap: var(--wpds-gallery-gap, 1rem);
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.wp-block-woocommerce-product-gallery[class*="is-style-"] :where(
+  .wp-block-woocommerce-product-gallery-large-image,
+  .wc-block-product-gallery-large-image,
+  .wp-block-woocommerce-product-gallery-thumbnails,
+  .wc-block-product-gallery-thumbnails
+) {
+  min-width: 0;
+  margin: 0;
+}
+.wp-block-woocommerce-single-product[class*="is-style-"] {
+  --wp--style--block-gap: var(--wpds-single-gap, 1.5rem);
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.wp-block-woocommerce-single-product[class*="is-style-"] :where(
+  .woodrobe-single-product__hero,
+  .woodrobe-single-product__media,
+  .woodrobe-single-product__summary,
+  .woodrobe-single-product__details,
+  .woodrobe-single-product__media-gallery,
+  .wp-block-woocommerce-product-gallery,
+  .wp-block-woocommerce-product-gallery-large-image,
+  .wc-block-product-gallery-large-image,
+  .wp-block-woocommerce-product-gallery-thumbnails,
+  .wc-block-product-gallery-thumbnails
+) {
+  min-width: 0;
+  margin: 0;
+}
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products)[class*="is-style-"] {
+  --wp--style--block-gap: var(--wpds-related-gap, 1.25rem);
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products)[class*="is-style-"] :where(
+  .related,
+  .products,
+  .wc-block-grid__products,
+  .wc-block-product-template,
+  .wp-block-post-template
+) {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+.wp-block-woocommerce-product-reviews[class*="is-style-"] {
+  --wp--style--block-gap: var(--wpds-reviews-gap, 1.25rem);
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.wp-block-woocommerce-product-reviews[class*="is-style-"] :where(
+  .woodrobe-reviews__summary,
+  .woodrobe-reviews__list,
+  .woodrobe-reviews__form,
+  .woodrobe-reviews__pagination,
+  .woodrobe-review,
+  .woodrobe-review__header,
+  .woodrobe-review__person,
+  .woodrobe-review__byline
+) {
+  min-width: 0;
+  margin: 0;
+}
+
+
+.wp-block-woocommerce-cart[class*="is-style-"],
+.wp-block-woocommerce-checkout[class*="is-style-"],
+.wp-block-woocommerce-mini-cart[class*="is-style-"],
+.wp-block-woocommerce-product-rating[class*="is-style-"],
+.wp-block-woocommerce-customer-account[class*="is-style-"],
+.wp-block-woocommerce-store-notices[class*="is-style-"] {
+  --wp--style--block-gap: var(--wpds-commerce-gap, 1.25rem);
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.wp-block-woocommerce-cart[class*="is-style-"] :where(
+  .wp-block-woocommerce-filled-cart-block,
+  .wp-block-woocommerce-cart-items-block,
+  .wp-block-woocommerce-cart-line-items-block,
+  .wp-block-woocommerce-cart-totals-block,
+  .wp-block-woocommerce-cart-order-summary-block,
+  .wp-block-woocommerce-empty-cart-block
+),
+.wp-block-woocommerce-checkout[class*="is-style-"] :where(
+  .wp-block-woocommerce-checkout-fields-block,
+  .wp-block-woocommerce-checkout-totals-block,
+  .wp-block-woocommerce-checkout-order-summary-block,
+  .wp-block-woocommerce-checkout-express-payment-block,
+  .wp-block-woocommerce-checkout-actions-block
+),
+.wp-block-woocommerce-mini-cart[class*="is-style-"] :where(
+  .wc-block-mini-cart__button,
+  .wc-block-mini-cart__amount,
+  .wc-block-mini-cart__badge
+),
+.wp-block-woocommerce-product-rating[class*="is-style-"] :where(
+  .wc-block-components-product-rating__stars,
+  .wc-block-components-product-rating__reviews_count
+),
+.wp-block-woocommerce-customer-account[class*="is-style-"] :where(
+  .wc-block-customer-account__link,
+  .label
+),
+.wp-block-woocommerce-store-notices[class*="is-style-"] :where(
+  .woocommerce-message,
+  .woocommerce-info,
+  .woocommerce-error,
+  .button
+) {
+  min-width: 0;
+  margin: 0;
 }
 
 /* ============================================================
@@ -1324,11 +1450,17 @@
   grid-column: span 3;
 }
 .wp-block-woocommerce-product-collection.is-style-editorial-magazine :where(.wc-block-product-template, .wp-block-post-template, .products-block-post-template) > :nth-child(3) {
-  grid-column: span 4;
+  grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(12rem, 0.75fr);
-  align-items: end;
+  grid-template-columns: minmax(0, 1.05fr) minmax(13rem, 0.95fr);
+  align-items: center;
   gap: var(--wpds-grid-gap);
+}
+.wp-block-woocommerce-product-collection.is-style-editorial-magazine :where(.wc-block-product-template, .wp-block-post-template, .products-block-post-template) > :nth-child(3) :where(.wp-block-woocommerce-product-image, .wc-block-components-product-image, .woodrobe-product-image) {
+  --wpds-image-ratio: 16 / 10;
+}
+.wp-block-woocommerce-product-collection.is-style-editorial-magazine :where(.wc-block-product-template, .wp-block-post-template, .products-block-post-template) > :nth-child(3) :where(.woodrobe-product-meta) {
+  justify-content: center;
 }
 .wp-block-woocommerce-product-collection.is-style-editorial-magazine :where(.wc-block-product-template, .wp-block-post-template, .products-block-post-template) > :nth-child(n+4) {
   grid-column: span 2;
@@ -1548,10 +1680,14 @@
 .wp-block-woocommerce-product-collection.is-style-two-up-wide {
   --wpds-grid-min: 310px;
   --wpds-grid-gap: 1rem;
+  --wpds-image-ratio: 16 / 10;
+}
+.wp-block-woocommerce-product-collection.is-style-two-up-wide :where(.wc-block-product-template, .wp-block-post-template, .products-block-post-template) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .wp-block-woocommerce-product-collection.is-style-two-up-wide :where(.wc-block-product, .wp-block-post, .product) {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
   align-items: stretch;
 }
@@ -1569,7 +1705,7 @@
   --wpds-image-ratio: 1 / 1;
 }
 .wp-block-woocommerce-product-collection.is-style-five-column-dense :where(.wc-block-product-template, .wp-block-post-template, .products-block-post-template) {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.5rem), 1fr));
 }
 .wp-block-woocommerce-product-collection.is-style-five-column-dense :where(.wc-block-product, .wp-block-post, .product) {
   gap: 0.4rem;
@@ -1596,7 +1732,7 @@
 
 /* 19 — Info Overlay */
 .wp-block-woocommerce-product-collection.is-style-info-overlay {
-  --wpds-grid-min: 180px;
+  --wpds-grid-min: 240px;
   --wpds-grid-gap: 1rem;
 }
 .wp-block-woocommerce-product-collection.is-style-info-overlay :where(.wc-block-product, .wp-block-post, .product) {
@@ -1620,7 +1756,11 @@
 .wp-block-woocommerce-product-collection.is-style-info-overlay :where(.wc-block-product, .wp-block-post, .product) > :where(.wp-block-post-title, .wp-block-woocommerce-product-price, .wp-block-woocommerce-product-button) {
   position: relative;
   z-index: 1;
-  padding: clamp(0.875rem, 2vw, 1.25rem);
+  margin: clamp(0.625rem, 1.4vw, 0.875rem);
+  padding: clamp(0.75rem, 1.6vw, 1rem);
+  border-radius: calc(var(--wpds-radius) * 0.55);
+  background: color-mix(in srgb, var(--wpds-surface) 82%, transparent);
+  backdrop-filter: blur(8px);
 }
 
 /* 20 — Masonry */
@@ -1659,6 +1799,19 @@
     grid-row: auto !important;
   }
 }
+@media (min-width: 920px) {
+  .wp-block-woocommerce-product-collection.is-style-five-column-dense :where(.wc-block-product-template, .wp-block-post-template, .products-block-post-template) {
+    grid-template-columns: repeat(5, minmax(8.5rem, 1fr));
+  }
+}
+@media (max-width: 720px) {
+  .wp-block-woocommerce-product-collection.is-style-two-up-wide :where(.wc-block-product-template, .wp-block-post-template, .products-block-post-template) {
+    grid-template-columns: 1fr;
+  }
+  .wp-block-woocommerce-product-collection.is-style-info-beside-image :where(.wc-block-product, .wp-block-post, .product) {
+    grid-template-columns: 1fr;
+  }
+}
 @media (max-width: 560px) {
   .wp-block-woocommerce-product-collection[class*="is-style-"] :where(.wc-block-product-template, .wp-block-post-template, .products-block-post-template) {
     grid-template-columns: 1fr;
@@ -1694,6 +1847,1471 @@
 }
 
 /* ============================================================
+   BLOCK: woocommerce/product-gallery
+   6 layout variants for Product Gallery media arrangements.
+   Product Gallery styles are intentionally layout-only:
+   themes own colors, typography, borders, shadows, and controls.
+   ============================================================ */
+.wp-block-woocommerce-product-gallery[class*="is-style-"] {
+  --wpds-gallery-gap: clamp(0.75rem, 2vw, 1rem);
+  --wpds-gallery-thumb-size: clamp(4rem, 12vw, 5.5rem);
+  --wpds-gallery-viewer-ratio: 1 / 1;
+  display: grid;
+  gap: var(--wpds-gallery-gap);
+  align-items: start;
+}
+.wp-block-woocommerce-product-gallery[class*="is-style-"] :where(.wp-block-woocommerce-product-gallery-large-image, .wc-block-product-gallery-large-image) {
+  position: relative;
+  min-width: 0;
+  aspect-ratio: var(--wpds-gallery-viewer-ratio);
+  overflow: hidden;
+}
+.wp-block-woocommerce-product-gallery[class*="is-style-"] :where(.wc-block-product-gallery-large-image__container, .wc-block-product-gallery-large-image__wrapper, .wc-block-product-gallery-large-image__container > li) {
+  width: 100%;
+  height: 100%;
+}
+.wp-block-woocommerce-product-gallery[class*="is-style-"] :where(.wp-block-woocommerce-product-image, .wc-block-components-product-image) {
+  width: 100%;
+  height: 100%;
+}
+.wp-block-woocommerce-product-gallery[class*="is-style-"] :where(.wp-block-woocommerce-product-image a, .wc-block-components-product-image a) {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.wp-block-woocommerce-product-gallery[class*="is-style-"] :where(.wp-block-woocommerce-product-image img, .wc-block-components-product-image img, .woocommerce-product-gallery__image img) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.wp-block-woocommerce-product-gallery[class*="is-style-"] :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails) {
+  display: grid;
+  gap: calc(var(--wpds-gallery-gap) * 0.65);
+  min-width: 0;
+}
+.wp-block-woocommerce-product-gallery[class*="is-style-"] :where(.wc-block-product-gallery-thumbnails__scrollable) {
+  display: grid;
+  gap: inherit;
+  height: auto;
+  overflow: visible;
+}
+.wp-block-woocommerce-product-gallery[class*="is-style-"] :where(.wc-block-product-gallery-thumbnails__thumbnail) {
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+}
+.wp-block-woocommerce-product-gallery[class*="is-style-"] :where(.wp-block-woocommerce-product-gallery-thumbnails img, .wc-block-product-gallery-thumbnails img, .woocommerce-product-gallery__wrapper img) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+.wp-block-woocommerce-product-gallery[class*="is-style-"] :where(.wp-block-woocommerce-product-sale-badge, .wc-block-components-product-sale-badge, .onsale) {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 2;
+}
+.wp-block-woocommerce-product-gallery[class*="is-style-"] :where(.wp-block-woocommerce-product-gallery-large-image-next-previous, .wc-block-product-gallery-large-image-next-previous) {
+  position: absolute;
+  inset-inline: 0.75rem;
+  top: 50%;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+.wp-block-woocommerce-product-gallery[class*="is-style-"] :where(.wp-block-woocommerce-product-gallery-large-image-next-previous button, .wc-block-product-gallery-large-image-next-previous button) {
+  pointer-events: auto;
+}
+
+/* 01 — Side Rail Gallery */
+.wp-block-woocommerce-product-gallery.is-style-side-rail-gallery {
+  grid-template-columns: var(--wpds-gallery-thumb-size) minmax(0, 1fr);
+  --wpds-gallery-viewer-ratio: 4 / 5;
+}
+.wp-block-woocommerce-product-gallery.is-style-side-rail-gallery :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails) {
+  order: 1;
+}
+.wp-block-woocommerce-product-gallery.is-style-side-rail-gallery :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails__scrollable) {
+  grid-template-columns: 1fr;
+  grid-auto-rows: var(--wpds-gallery-thumb-size);
+}
+.wp-block-woocommerce-product-gallery.is-style-side-rail-gallery :where(.wp-block-woocommerce-product-gallery-large-image, .wc-block-product-gallery-large-image) {
+  order: 2;
+}
+
+/* 02 — Bottom Filmstrip */
+.wp-block-woocommerce-product-gallery.is-style-bottom-filmstrip {
+  --wpds-gallery-viewer-ratio: 4 / 5;
+}
+.wp-block-woocommerce-product-gallery.is-style-bottom-filmstrip :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails) {
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x proximity;
+}
+.wp-block-woocommerce-product-gallery.is-style-bottom-filmstrip :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails__scrollable) {
+  grid-auto-flow: column;
+  grid-auto-columns: var(--wpds-gallery-thumb-size);
+  grid-template-columns: none;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x proximity;
+}
+.wp-block-woocommerce-product-gallery.is-style-bottom-filmstrip :where(.wp-block-woocommerce-product-gallery-thumbnails > *, .wc-block-product-gallery-thumbnails__thumbnail) {
+  scroll-snap-align: start;
+}
+
+/* 03 — Gallery + Details Split */
+.wp-block-woocommerce-product-gallery.is-style-gallery-detail-split {
+  grid-template-columns: minmax(0, 1fr) minmax(8rem, 0.36fr);
+  --wpds-gallery-viewer-ratio: 4 / 5;
+}
+.wp-block-woocommerce-product-gallery.is-style-gallery-detail-split :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails) {
+  align-self: end;
+}
+.wp-block-woocommerce-product-gallery.is-style-gallery-detail-split :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails__scrollable) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-self: end;
+}
+
+/* 04 — Mosaic Gallery */
+.wp-block-woocommerce-product-gallery.is-style-mosaic-gallery {
+  grid-template-columns: minmax(0, 1.25fr) minmax(8rem, 0.75fr);
+  --wpds-gallery-viewer-ratio: 4 / 5;
+}
+.wp-block-woocommerce-product-gallery.is-style-mosaic-gallery :where(.wp-block-woocommerce-product-gallery-large-image, .wc-block-product-gallery-large-image) {
+  grid-row: auto;
+}
+.wp-block-woocommerce-product-gallery.is-style-mosaic-gallery :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails) {
+  align-self: stretch;
+  height: 100%;
+  overflow: hidden;
+}
+.wp-block-woocommerce-product-gallery.is-style-mosaic-gallery :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails__scrollable) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: minmax(0, 1fr);
+  height: 100%;
+}
+.wp-block-woocommerce-product-gallery.is-style-mosaic-gallery :where(.wp-block-woocommerce-product-gallery-thumbnails img, .wc-block-product-gallery-thumbnails img) {
+  aspect-ratio: 1 / 1;
+}
+
+/* 05 — Immersive Viewer */
+.wp-block-woocommerce-product-gallery.is-style-immersive-viewer {
+  position: relative;
+  --wpds-gallery-viewer-ratio: 16 / 11;
+}
+.wp-block-woocommerce-product-gallery.is-style-immersive-viewer :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails) {
+  position: absolute;
+  left: var(--wpds-gallery-gap);
+  right: var(--wpds-gallery-gap);
+  bottom: var(--wpds-gallery-gap);
+  z-index: 2;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x proximity;
+}
+.wp-block-woocommerce-product-gallery.is-style-immersive-viewer :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails__scrollable) {
+  grid-auto-flow: column;
+  grid-auto-columns: var(--wpds-gallery-thumb-size);
+  grid-template-columns: none;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x proximity;
+}
+.wp-block-woocommerce-product-gallery.is-style-immersive-viewer :where(.wp-block-woocommerce-product-gallery-thumbnails > *, .wc-block-product-gallery-thumbnails__thumbnail) {
+  scroll-snap-align: start;
+}
+
+/* 06 — Compact Stack */
+.wp-block-woocommerce-product-gallery.is-style-compact-stack {
+  --wpds-gallery-gap: 0.75rem;
+  --wpds-gallery-thumb-size: clamp(3.25rem, 10vw, 4.5rem);
+  --wpds-gallery-viewer-ratio: 4 / 3;
+}
+.wp-block-woocommerce-product-gallery.is-style-compact-stack :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails) {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--wpds-gallery-thumb-size)), 1fr));
+}
+.wp-block-woocommerce-product-gallery.is-style-compact-stack :where(.wc-block-product-gallery-thumbnails__scrollable) {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--wpds-gallery-thumb-size)), 1fr));
+}
+
+@media (max-width: 700px) {
+  .wp-block-woocommerce-product-gallery[class*="is-style-"],
+  .wp-block-woocommerce-product-gallery.is-style-side-rail-gallery,
+  .wp-block-woocommerce-product-gallery.is-style-gallery-detail-split,
+  .wp-block-woocommerce-product-gallery.is-style-mosaic-gallery {
+    grid-template-columns: 1fr;
+    --wpds-gallery-viewer-ratio: 4 / 3;
+  }
+  .wp-block-woocommerce-product-gallery[class*="is-style-"] :where(.wp-block-woocommerce-product-gallery-large-image, .wc-block-product-gallery-large-image),
+  .wp-block-woocommerce-product-gallery[class*="is-style-"] :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails) {
+    order: initial;
+    grid-row: auto;
+  }
+  .wp-block-woocommerce-product-gallery[class*="is-style-"] :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails),
+  .wp-block-woocommerce-product-gallery.is-style-side-rail-gallery :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails),
+  .wp-block-woocommerce-product-gallery.is-style-gallery-detail-split :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails),
+  .wp-block-woocommerce-product-gallery.is-style-mosaic-gallery :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails) {
+    overflow-x: auto;
+    height: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x proximity;
+  }
+  .wp-block-woocommerce-product-gallery[class*="is-style-"] :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails__scrollable),
+  .wp-block-woocommerce-product-gallery.is-style-side-rail-gallery :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails__scrollable),
+  .wp-block-woocommerce-product-gallery.is-style-gallery-detail-split :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails__scrollable),
+  .wp-block-woocommerce-product-gallery.is-style-mosaic-gallery :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails__scrollable) {
+    grid-auto-flow: column;
+    grid-auto-columns: var(--wpds-gallery-thumb-size);
+    grid-template-columns: none;
+    overflow-x: auto;
+    height: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x proximity;
+  }
+}
+
+/* ============================================================
+   BLOCK: woocommerce/single-product
+   6 layout variants for full Product Page compositions.
+   Single Product styles are intentionally layout-first:
+   themes own colors, typography, borders, shadows, and controls.
+   ============================================================ */
+.wp-block-woocommerce-single-product[class*="is-style-"] {
+  --wpds-single-gap: clamp(1rem, 2.4vw, 1.75rem);
+  --wpds-single-flow-gap: clamp(0.75rem, 1.7vw, 1.25rem);
+  --wpds-single-thumb-size: clamp(3.75rem, 9vw, 5rem);
+  --wpds-single-media-ratio: 4 / 5;
+  display: grid;
+  gap: var(--wpds-single-gap);
+  align-items: start;
+}
+.wp-block-woocommerce-single-product[class*="is-style-"] .woodrobe-single-product__hero {
+  display: grid;
+  gap: var(--wpds-single-gap);
+  align-items: start;
+}
+.wp-block-woocommerce-single-product[class*="is-style-"] .woodrobe-single-product__summary {
+  display: grid;
+  gap: var(--wpds-single-flow-gap);
+  align-content: start;
+}
+.wp-block-woocommerce-single-product[class*="is-style-"] .woodrobe-single-product__media-gallery {
+  display: grid;
+  gap: calc(var(--wpds-single-gap) * 0.5);
+}
+.wp-block-woocommerce-single-product[class*="is-style-"] .woodrobe-single-product__media-gallery :where(.wp-block-woocommerce-product-gallery-large-image, .wc-block-product-gallery-large-image) {
+  position: relative;
+  aspect-ratio: var(--wpds-single-media-ratio);
+  overflow: hidden;
+}
+.wp-block-woocommerce-single-product[class*="is-style-"] .woodrobe-single-product__media-gallery :where(.wc-block-product-gallery-large-image__container, .wc-block-product-gallery-large-image__wrapper, .wc-block-product-gallery-large-image__container > li) {
+  width: 100%;
+  height: 100%;
+}
+.wp-block-woocommerce-single-product[class*="is-style-"] .woodrobe-single-product__media-gallery :where(.wp-block-woocommerce-product-image, .wc-block-components-product-image) {
+  width: 100%;
+  height: 100%;
+}
+.wp-block-woocommerce-single-product[class*="is-style-"] .woodrobe-single-product__media-gallery :where(.wp-block-woocommerce-product-image a, .wc-block-components-product-image a) {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.wp-block-woocommerce-single-product[class*="is-style-"] .woodrobe-single-product__media-gallery :where(.wp-block-woocommerce-product-image img, .wc-block-components-product-image img, .woocommerce-product-gallery__image img) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.wp-block-woocommerce-single-product[class*="is-style-"] .woodrobe-single-product__media-gallery :where(.wp-block-woocommerce-product-gallery-thumbnails, .wc-block-product-gallery-thumbnails) {
+  display: grid;
+  gap: calc(var(--wpds-single-gap) * 0.45);
+}
+.wp-block-woocommerce-single-product[class*="is-style-"] .woodrobe-single-product__media-gallery :where(.wc-block-product-gallery-thumbnails__scrollable) {
+  display: grid;
+  gap: inherit;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--wpds-single-thumb-size);
+  grid-template-columns: none;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x proximity;
+}
+.wp-block-woocommerce-single-product[class*="is-style-"] .woodrobe-single-product__media-gallery :where(.wc-block-product-gallery-thumbnails__thumbnail) {
+  min-width: 0;
+  width: 100%;
+  scroll-snap-align: start;
+}
+.wp-block-woocommerce-single-product[class*="is-style-"] .woodrobe-single-product__media-gallery :where(.wc-block-product-gallery-thumbnails img) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+.wp-block-woocommerce-single-product[class*="is-style-"] :where(.woodrobe-single-product__cart form.cart, .wp-block-woocommerce-add-to-cart-form form.cart, .wc-block-add-to-cart-form form.cart) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--wpds-single-flow-gap) * 0.75);
+  align-items: stretch;
+}
+.wp-block-woocommerce-single-product[class*="is-style-"] :where(.woodrobe-single-product__cart .quantity, .wp-block-woocommerce-add-to-cart-form .quantity, .wc-block-add-to-cart-form .quantity) {
+  flex: 0 0 auto;
+  margin: 0;
+}
+.wp-block-woocommerce-single-product[class*="is-style-"] :where(.woodrobe-single-product__cart .single_add_to_cart_button, .wp-block-woocommerce-add-to-cart-form .single_add_to_cart_button, .wc-block-add-to-cart-form .single_add_to_cart_button) {
+  flex: 1 1 12rem;
+}
+.wp-block-woocommerce-single-product[class*="is-style-"] .woodrobe-single-product__meta :where(.wp-block-group) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--wpds-single-flow-gap) * 0.5) var(--wpds-single-flow-gap);
+}
+.wp-block-woocommerce-single-product[class*="is-style-"] .woodrobe-single-product__details {
+  min-width: 0;
+}
+.wp-block-woocommerce-single-product[class*="is-style-"] .woodrobe-single-product__details :where(.wp-block-accordion) {
+  max-width: none;
+}
+
+/* 01 - Classic Product Page */
+.wp-block-woocommerce-single-product.is-style-classic-product-page .woodrobe-single-product__hero {
+  grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.85fr);
+}
+
+/* 02 - Editorial Product Story */
+.wp-block-woocommerce-single-product.is-style-editorial-product-story {
+  --wpds-single-media-ratio: 16 / 11;
+}
+.wp-block-woocommerce-single-product.is-style-editorial-product-story .woodrobe-single-product__hero {
+  grid-template-columns: minmax(17rem, 0.78fr) minmax(0, 1.22fr);
+  align-items: center;
+}
+.wp-block-woocommerce-single-product.is-style-editorial-product-story .woodrobe-single-product__summary {
+  order: 1;
+}
+.wp-block-woocommerce-single-product.is-style-editorial-product-story .woodrobe-single-product__media {
+  order: 2;
+}
+.wp-block-woocommerce-single-product.is-style-editorial-product-story .woodrobe-single-product__details {
+  max-width: 72ch;
+}
+
+/* 03 - Sticky Purchase Panel */
+.wp-block-woocommerce-single-product.is-style-sticky-purchase-panel .woodrobe-single-product__hero {
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.42fr);
+}
+.wp-block-woocommerce-single-product.is-style-sticky-purchase-panel .woodrobe-single-product__summary {
+  position: sticky;
+  top: clamp(1rem, 3vw, 2rem);
+}
+
+/* 04 - Gallery-Led Page */
+.wp-block-woocommerce-single-product.is-style-gallery-led-page {
+  --wpds-single-media-ratio: 16 / 9;
+}
+.wp-block-woocommerce-single-product.is-style-gallery-led-page .woodrobe-single-product__hero {
+  grid-template-columns: 1fr;
+}
+.wp-block-woocommerce-single-product.is-style-gallery-led-page .woodrobe-single-product__summary {
+  max-width: 48rem;
+  justify-self: center;
+}
+
+/* 05 - Compact Buy Box */
+.wp-block-woocommerce-single-product.is-style-compact-buy-box {
+  --wpds-single-media-ratio: 1 / 1;
+}
+.wp-block-woocommerce-single-product.is-style-compact-buy-box .woodrobe-single-product__hero {
+  grid-template-columns: minmax(12rem, 0.42fr) minmax(0, 1fr);
+}
+.wp-block-woocommerce-single-product.is-style-compact-buy-box .woodrobe-single-product__summary {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.wp-block-woocommerce-single-product.is-style-compact-buy-box .woodrobe-single-product__summary > :where(.woodrobe-single-product__breadcrumbs, .woodrobe-single-product__title, .woodrobe-single-product__summary-text, .woodrobe-single-product__cart, .woodrobe-single-product__meta) {
+  grid-column: 1 / -1;
+}
+
+/* 06 - Details Sidebar */
+.wp-block-woocommerce-single-product.is-style-details-sidebar {
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.38fr);
+}
+.wp-block-woocommerce-single-product.is-style-details-sidebar .woodrobe-single-product__hero {
+  grid-template-columns: minmax(0, 0.95fr) minmax(16rem, 0.68fr);
+  grid-column: 1;
+}
+.wp-block-woocommerce-single-product.is-style-details-sidebar .woodrobe-single-product__details {
+  grid-column: 2;
+  grid-row: 1;
+  position: sticky;
+  top: clamp(1rem, 3vw, 2rem);
+}
+
+@media (min-width: 1100px) {
+  .woodrobe-showcase__card--single-product {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 800px) {
+  .wp-block-woocommerce-single-product[class*="is-style-"],
+  .wp-block-woocommerce-single-product[class*="is-style-"] .woodrobe-single-product__hero,
+  .wp-block-woocommerce-single-product.is-style-classic-product-page .woodrobe-single-product__hero,
+  .wp-block-woocommerce-single-product.is-style-editorial-product-story .woodrobe-single-product__hero,
+  .wp-block-woocommerce-single-product.is-style-sticky-purchase-panel .woodrobe-single-product__hero,
+  .wp-block-woocommerce-single-product.is-style-compact-buy-box .woodrobe-single-product__hero,
+  .wp-block-woocommerce-single-product.is-style-details-sidebar,
+  .wp-block-woocommerce-single-product.is-style-details-sidebar .woodrobe-single-product__hero {
+    grid-template-columns: 1fr;
+  }
+  .wp-block-woocommerce-single-product[class*="is-style-"] {
+    --wpds-single-media-ratio: 4 / 3;
+  }
+  .wp-block-woocommerce-single-product.is-style-editorial-product-story .woodrobe-single-product__summary,
+  .wp-block-woocommerce-single-product.is-style-editorial-product-story .woodrobe-single-product__media,
+  .wp-block-woocommerce-single-product.is-style-details-sidebar .woodrobe-single-product__details {
+    order: initial;
+    grid-column: auto;
+    grid-row: auto;
+    position: static;
+  }
+  .wp-block-woocommerce-single-product.is-style-compact-buy-box .woodrobe-single-product__summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   BLOCK: woocommerce/related-products
+   6 layout variants for recommendation shelves.
+   Related Products styles are layout-only:
+   themes own colors, typography, borders, shadows, and controls.
+   ============================================================ */
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products)[class*="is-style-"] {
+  --wpds-related-gap: clamp(0.875rem, 2vw, 1.25rem);
+  --wpds-related-card-gap: clamp(0.625rem, 1.4vw, 0.875rem);
+  --wpds-image-ratio: var(--wpds-related-image-ratio, 4 / 5);
+}
+.wp-block-woocommerce-product-collection:is(
+  .is-style-four-up-shelf,
+  .is-style-editorial-reel,
+  .is-style-compact-recommendations,
+  .is-style-feature-and-supporting,
+  .is-style-horizontal-scroll,
+  .is-style-minimal-links
+) {
+  --wpds-related-gap: clamp(0.875rem, 2vw, 1.25rem);
+  --wpds-related-card-gap: clamp(0.625rem, 1.4vw, 0.875rem);
+  --wpds-grid-gap: var(--wpds-related-gap);
+  --wpds-card-gap: var(--wpds-related-card-gap);
+  --wpds-image-ratio: var(--wpds-related-image-ratio, 4 / 5);
+}
+.wp-block-woocommerce-product-collection:is(
+  .is-style-four-up-shelf,
+  .is-style-editorial-reel,
+  .is-style-compact-recommendations,
+  .is-style-feature-and-supporting,
+  .is-style-horizontal-scroll,
+  .is-style-minimal-links
+) :where(.wc-block-product-template, .wp-block-post-template, .products-block-post-template) {
+  list-style: none;
+}
+.wp-block-woocommerce-product-collection:is(
+  .is-style-four-up-shelf,
+  .is-style-editorial-reel,
+  .is-style-compact-recommendations,
+  .is-style-feature-and-supporting,
+  .is-style-horizontal-scroll
+) :where(.wp-block-woocommerce-product-button, .woodrobe-product-action) {
+  width: 100%;
+}
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products)[class*="is-style-"] :where(.related, .wc-block-grid) {
+  display: grid;
+  gap: var(--wpds-related-gap);
+}
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products)[class*="is-style-"] :where(
+  .products,
+  .wc-block-grid__products,
+  .wc-block-product-template,
+  .wp-block-post-template
+) {
+  display: grid;
+  gap: var(--wpds-related-gap);
+  list-style: none;
+}
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products)[class*="is-style-"] :where(
+  .product,
+  .wc-block-grid__product,
+  .wc-block-product,
+  .wp-block-post
+) {
+  float: none;
+  min-width: 0;
+  width: auto;
+  margin: 0;
+}
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products)[class*="is-style-"] :where(
+  .product > *,
+  .wc-block-grid__product > *,
+  .wc-block-product > *,
+  .wp-block-post > *
+) {
+  margin-block-start: 0;
+  margin-block-end: var(--wpds-related-card-gap);
+}
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products)[class*="is-style-"] :where(
+  .product > *:last-child,
+  .wc-block-grid__product > *:last-child,
+  .wc-block-product > *:last-child,
+  .wp-block-post > *:last-child
+) {
+  margin-block-end: 0;
+}
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products)[class*="is-style-"] :where(
+  img,
+  .wp-block-woocommerce-product-image img,
+  .wc-block-components-product-image img
+) {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--wpds-related-image-ratio, 4 / 5);
+  object-fit: cover;
+}
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products)[class*="is-style-"] :where(
+  .button,
+  .wp-block-button,
+  .wp-block-button__link,
+  .wc-block-components-product-button
+) {
+  width: 100%;
+}
+
+/* 01 - Four-Up Shelf */
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-four-up-shelf :where(.products, .wc-block-grid__products, .wc-block-product-template, .wp-block-post-template) {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* 02 - Editorial Reel */
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-editorial-reel {
+  --wpds-related-image-ratio: 3 / 4;
+}
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-editorial-reel :where(.products, .wc-block-grid__products, .wc-block-product-template, .wp-block-post-template) {
+  grid-template-columns: minmax(0, 1.35fr) repeat(3, minmax(0, 0.85fr));
+  align-items: end;
+}
+
+/* 03 - Compact Recommendations */
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-compact-recommendations {
+  --wpds-related-image-ratio: 1 / 1;
+  --wpds-related-gap: clamp(0.625rem, 1.5vw, 0.875rem);
+}
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-compact-recommendations :where(.products, .wc-block-grid__products, .wc-block-product-template, .wp-block-post-template) {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+/* 04 - Feature + Supporting */
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-feature-and-supporting {
+  --wpds-related-image-ratio: 1 / 1;
+}
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-feature-and-supporting :where(.products, .wc-block-grid__products, .wc-block-product-template, .wp-block-post-template) {
+  grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(0, 1fr));
+}
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-feature-and-supporting :where(.product, .wc-block-grid__product, .wc-block-product, .wp-block-post):first-child {
+  grid-row: span 2;
+}
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-feature-and-supporting :where(.product, .wc-block-grid__product, .wc-block-product, .wp-block-post):first-child img {
+  aspect-ratio: 4 / 5;
+}
+
+/* 05 - Horizontal Scroll */
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-horizontal-scroll :where(.products, .wc-block-grid__products, .wc-block-product-template, .wp-block-post-template) {
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(14rem, 24%);
+  grid-template-columns: none;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x proximity;
+}
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-horizontal-scroll :where(.product, .wc-block-grid__product, .wc-block-product, .wp-block-post) {
+  scroll-snap-align: start;
+}
+
+/* 06 - Minimal Links */
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-minimal-links {
+  --wpds-related-image-ratio: 1 / 1;
+}
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-minimal-links :where(.products, .wc-block-grid__products, .wc-block-product-template, .wp-block-post-template) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-minimal-links :where(.product, .wc-block-grid__product, .wc-block-product, .wp-block-post) {
+  display: grid;
+  grid-template-columns: clamp(4rem, 10vw, 5.5rem) minmax(0, 1fr);
+  gap: var(--wpds-related-card-gap);
+  align-items: center;
+}
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-minimal-links :where(.product > a:first-child, .wc-block-grid__product-image, .wp-block-woocommerce-product-image, .wc-block-components-product-image) {
+  grid-row: span 4;
+}
+:is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-minimal-links :where(.button, .wp-block-button, .wp-block-button__link, .wc-block-components-product-button) {
+  width: auto;
+  justify-self: start;
+}
+
+@media (min-width: 1100px) {
+  .woodrobe-showcase__card--related-products {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 900px) {
+  :is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-four-up-shelf :where(.products, .wc-block-grid__products, .wc-block-product-template, .wp-block-post-template),
+  :is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-editorial-reel :where(.products, .wc-block-grid__products, .wc-block-product-template, .wp-block-post-template),
+  :is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-compact-recommendations :where(.products, .wc-block-grid__products, .wc-block-product-template, .wp-block-post-template),
+  :is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-feature-and-supporting :where(.products, .wc-block-grid__products, .wc-block-product-template, .wp-block-post-template),
+  :is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-minimal-links :where(.products, .wc-block-grid__products, .wc-block-product-template, .wp-block-post-template) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  :is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-feature-and-supporting :where(.product, .wc-block-grid__product, .wc-block-product, .wp-block-post):first-child {
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  :is(.wp-block-woocommerce-related-products, .woodrobe-related-products)[class*="is-style-"] :where(.products, .wc-block-grid__products, .wc-block-product-template, .wp-block-post-template),
+  .wp-block-woocommerce-product-collection:is(
+    .is-style-four-up-shelf,
+    .is-style-editorial-reel,
+    .is-style-compact-recommendations,
+    .is-style-feature-and-supporting,
+    .is-style-horizontal-scroll,
+    .is-style-minimal-links
+  ) :where(.products, .wc-block-grid__products, .wc-block-product-template, .wp-block-post-template),
+  :is(.wp-block-woocommerce-related-products, .woodrobe-related-products, .wp-block-woocommerce-product-collection).is-style-minimal-links :where(.products, .wc-block-grid__products, .wc-block-product-template, .wp-block-post-template) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   BLOCK: woocommerce/product-reviews
+   6 layout variants for Product Reviews / Ratings.
+   Product Reviews styles are layout-only:
+   themes own colors, typography, borders, shadows, and controls.
+   ============================================================ */
+.wp-block-woocommerce-product-reviews[class*="is-style-"] {
+  --wpds-reviews-gap: clamp(1rem, 2vw, 1.5rem);
+  --wpds-reviews-card-gap: clamp(0.625rem, 1.4vw, 0.875rem);
+  display: grid;
+  gap: var(--wpds-reviews-gap);
+  align-items: start;
+}
+.wp-block-woocommerce-product-reviews[class*="is-style-"] :where(
+  .woodrobe-reviews__title,
+  .woodrobe-reviews__summary,
+  .woodrobe-reviews__list,
+  .woodrobe-reviews__pagination,
+  .woodrobe-reviews__form,
+  .woodrobe-review,
+  .woodrobe-review__header,
+  .woodrobe-review__person,
+  .woodrobe-review__byline,
+  .woodrobe-review__content
+) {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.wp-block-woocommerce-product-reviews[class*="is-style-"] :where(.woodrobe-reviews__summary) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wpds-reviews-card-gap);
+  align-items: center;
+  justify-content: space-between;
+}
+.wp-block-woocommerce-product-reviews[class*="is-style-"] :where(.woodrobe-reviews__list) {
+  display: grid;
+  gap: var(--wpds-reviews-gap);
+  padding: 0;
+  list-style: none;
+}
+.wp-block-woocommerce-product-reviews[class*="is-style-"] :where(.woodrobe-reviews__list > li) {
+  min-width: 0;
+  margin: 0;
+}
+.wp-block-woocommerce-product-reviews[class*="is-style-"] :where(.woodrobe-review) {
+  display: grid;
+  gap: var(--wpds-reviews-card-gap);
+  min-width: 0;
+}
+.wp-block-woocommerce-product-reviews[class*="is-style-"] :where(.woodrobe-review__header) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wpds-reviews-card-gap);
+  align-items: center;
+  justify-content: space-between;
+}
+.wp-block-woocommerce-product-reviews[class*="is-style-"] :where(.woodrobe-review__person) {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--wpds-reviews-card-gap);
+  align-items: center;
+  min-width: 0;
+}
+.wp-block-woocommerce-product-reviews[class*="is-style-"] :where(.woodrobe-review__avatar) {
+  flex: 0 0 auto;
+}
+.wp-block-woocommerce-product-reviews[class*="is-style-"] :where(.woodrobe-review__byline) {
+  display: grid;
+  gap: calc(var(--wpds-reviews-card-gap) * 0.35);
+  min-width: 0;
+}
+.wp-block-woocommerce-product-reviews[class*="is-style-"] :where(.woodrobe-review__score) {
+  justify-self: end;
+}
+.wp-block-woocommerce-product-reviews[class*="is-style-"] :where(.woodrobe-review__content > *) {
+  margin-block-start: 0;
+}
+.wp-block-woocommerce-product-reviews[class*="is-style-"] :where(.woodrobe-review__content > *:last-child) {
+  margin-block-end: 0;
+}
+.wp-block-woocommerce-product-reviews[class*="is-style-"] :where(.woodrobe-reviews__pagination) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wpds-reviews-card-gap);
+  justify-content: center;
+}
+.wp-block-woocommerce-product-reviews[class*="is-style-"] :where(.woodrobe-reviews__form, #review_form_wrapper, #review_form, .comment-form) {
+  display: grid;
+  gap: var(--wpds-reviews-card-gap);
+}
+.wp-block-woocommerce-product-reviews[class*="is-style-"] :where(
+  .comment-form-author,
+  .comment-form-email,
+  .comment-form-comment,
+  .comment-form-rating,
+  .form-submit
+) {
+  display: grid;
+  gap: calc(var(--wpds-reviews-card-gap) * 0.45);
+  margin: 0;
+}
+.wp-block-woocommerce-product-reviews[class*="is-style-"] :where(input, select, textarea) {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* 01 - Review Snapshot */
+.wp-block-woocommerce-product-reviews.is-style-review-snapshot {
+  grid-template-columns: minmax(12rem, 0.34fr) minmax(0, 1fr);
+}
+.wp-block-woocommerce-product-reviews.is-style-review-snapshot :where(.woodrobe-reviews__title, .woodrobe-reviews__summary) {
+  grid-column: 1;
+}
+.wp-block-woocommerce-product-reviews.is-style-review-snapshot :where(.woodrobe-reviews__list) {
+  grid-column: 2;
+  grid-row: 1 / span 3;
+}
+.wp-block-woocommerce-product-reviews.is-style-review-snapshot :where(.woodrobe-reviews__form, .woodrobe-reviews__pagination) {
+  grid-column: 1 / -1;
+}
+
+/* 02 - Editorial Quotes */
+.wp-block-woocommerce-product-reviews.is-style-editorial-quotes :where(.woodrobe-reviews__list) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.wp-block-woocommerce-product-reviews.is-style-editorial-quotes :where(.woodrobe-reviews__list > li:first-child) {
+  grid-column: 1 / -1;
+}
+.wp-block-woocommerce-product-reviews.is-style-editorial-quotes :where(.woodrobe-review__content) {
+  order: -1;
+}
+
+/* 03 - Dense Ledger */
+.wp-block-woocommerce-product-reviews.is-style-dense-ledger {
+  --wpds-reviews-gap: clamp(0.625rem, 1.5vw, 0.875rem);
+}
+.wp-block-woocommerce-product-reviews.is-style-dense-ledger :where(.woodrobe-review) {
+  grid-template-columns: minmax(10rem, 0.32fr) minmax(0, 1fr);
+  align-items: start;
+}
+.wp-block-woocommerce-product-reviews.is-style-dense-ledger :where(.woodrobe-review__header) {
+  display: grid;
+  justify-content: stretch;
+}
+.wp-block-woocommerce-product-reviews.is-style-dense-ledger :where(.woodrobe-review__content) {
+  min-width: 0;
+}
+.wp-block-woocommerce-product-reviews.is-style-dense-ledger :where(.woodrobe-reviews__form .comment-form) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.wp-block-woocommerce-product-reviews.is-style-dense-ledger :where(.comment-form-comment, .comment-form-rating, .form-submit) {
+  grid-column: 1 / -1;
+}
+
+/* 04 - Trust Stack */
+.wp-block-woocommerce-product-reviews.is-style-trust-stack {
+  grid-template-columns: minmax(12rem, 0.32fr) minmax(0, 1fr) minmax(14rem, 0.36fr);
+}
+.wp-block-woocommerce-product-reviews.is-style-trust-stack :where(.woodrobe-reviews__title, .woodrobe-reviews__summary) {
+  grid-column: 1;
+}
+.wp-block-woocommerce-product-reviews.is-style-trust-stack :where(.woodrobe-reviews__list, .woodrobe-reviews__pagination) {
+  grid-column: 2;
+}
+.wp-block-woocommerce-product-reviews.is-style-trust-stack :where(.woodrobe-reviews__form) {
+  grid-column: 3;
+  grid-row: 1 / span 4;
+}
+
+/* 05 - Minimal Proof Strip */
+.wp-block-woocommerce-product-reviews.is-style-minimal-proof-strip :where(.woodrobe-reviews__title, .woodrobe-reviews__summary) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wpds-reviews-card-gap);
+  align-items: center;
+}
+.wp-block-woocommerce-product-reviews.is-style-minimal-proof-strip :where(.woodrobe-reviews__list) {
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(16rem, 1fr);
+  grid-template-columns: none;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x proximity;
+}
+.wp-block-woocommerce-product-reviews.is-style-minimal-proof-strip :where(.woodrobe-reviews__list > li) {
+  scroll-snap-align: start;
+}
+.wp-block-woocommerce-product-reviews.is-style-minimal-proof-strip :where(.woodrobe-reviews__form, .woodrobe-reviews__pagination) {
+  display: none;
+}
+
+/* 06 - Q&A Feel */
+.wp-block-woocommerce-product-reviews.is-style-qa-feel :where(.woodrobe-reviews__list) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.wp-block-woocommerce-product-reviews.is-style-qa-feel :where(.woodrobe-review) {
+  grid-template-columns: minmax(5rem, 0.24fr) minmax(0, 1fr);
+  align-items: start;
+}
+.wp-block-woocommerce-product-reviews.is-style-qa-feel :where(.woodrobe-review__header) {
+  display: grid;
+  justify-content: stretch;
+}
+.wp-block-woocommerce-product-reviews.is-style-qa-feel :where(.woodrobe-review__content) {
+  min-width: 0;
+}
+.wp-block-woocommerce-product-reviews.is-style-qa-feel :where(.woodrobe-reviews__form) {
+  max-width: 48rem;
+}
+
+@media (min-width: 1100px) {
+  .woodrobe-showcase__card--product-reviews {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 1000px) {
+  .wp-block-woocommerce-product-reviews.is-style-review-snapshot,
+  .wp-block-woocommerce-product-reviews.is-style-trust-stack {
+    grid-template-columns: 1fr;
+  }
+  .wp-block-woocommerce-product-reviews.is-style-review-snapshot :where(.woodrobe-reviews__title, .woodrobe-reviews__summary, .woodrobe-reviews__list, .woodrobe-reviews__form, .woodrobe-reviews__pagination),
+  .wp-block-woocommerce-product-reviews.is-style-trust-stack :where(.woodrobe-reviews__title, .woodrobe-reviews__summary, .woodrobe-reviews__list, .woodrobe-reviews__form, .woodrobe-reviews__pagination) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .wp-block-woocommerce-product-reviews.is-style-editorial-quotes :where(.woodrobe-reviews__list),
+  .wp-block-woocommerce-product-reviews.is-style-qa-feel :where(.woodrobe-reviews__list) {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .wp-block-woocommerce-product-reviews.is-style-dense-ledger :where(.woodrobe-review),
+  .wp-block-woocommerce-product-reviews.is-style-qa-feel :where(.woodrobe-review),
+  .wp-block-woocommerce-product-reviews.is-style-dense-ledger :where(.woodrobe-reviews__form .comment-form) {
+    grid-template-columns: 1fr;
+  }
+  .wp-block-woocommerce-product-reviews[class*="is-style-"] :where(.woodrobe-review__header) {
+    justify-content: stretch;
+  }
+  .wp-block-woocommerce-product-reviews[class*="is-style-"] :where(.woodrobe-review__score) {
+    justify-self: start;
+  }
+}
+
+
+/* ============================================================
+   BLOCK: woocommerce/cart
+   6 layout variants for Cart.
+   Cart styles are layout-only: themes own colors, typography,
+   borders, shadows, buttons, and form controls.
+   ============================================================ */
+.wp-block-woocommerce-cart[class*="is-style-"] {
+  --wpds-commerce-gap: clamp(1rem, 2vw, 1.5rem);
+  display: grid;
+  gap: var(--wpds-commerce-gap);
+}
+.wp-block-woocommerce-cart[class*="is-style-"] :where(.wp-block-woocommerce-filled-cart-block) {
+  display: grid;
+  gap: var(--wpds-commerce-gap);
+  align-items: start;
+}
+.wp-block-woocommerce-cart[class*="is-style-"] :where(.wp-block-woocommerce-cart-totals-block, .wp-block-woocommerce-cart-order-summary-block) {
+  display: grid;
+  gap: calc(var(--wpds-commerce-gap) * 0.75);
+}
+.wp-block-woocommerce-cart[class*="is-style-"] :where(.woodrobe-cart-preview, .woodrobe-cart-summary) {
+  display: grid;
+  gap: calc(var(--wpds-commerce-gap) * 0.75);
+}
+.wp-block-woocommerce-cart[class*="is-style-"] :where(.woodrobe-cart-preview__row) {
+  display: grid;
+  grid-template-columns: minmax(3rem, 0.16fr) minmax(0, 1fr) auto;
+  gap: calc(var(--wpds-commerce-gap) * 0.75);
+  align-items: center;
+}
+.wp-block-woocommerce-cart[class*="is-style-"] :where(.woodrobe-cart-preview__media) {
+  aspect-ratio: 1;
+  width: 100%;
+  max-width: 4rem;
+}
+.wp-block-woocommerce-cart.is-style-two-column-cart :where(.wp-block-woocommerce-filled-cart-block) {
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.34fr);
+}
+.wp-block-woocommerce-cart.is-style-summary-rail :where(.wp-block-woocommerce-filled-cart-block) {
+  grid-template-columns: minmax(0, 0.7fr) minmax(14rem, 0.3fr);
+}
+.wp-block-woocommerce-cart.is-style-summary-rail :where(.wp-block-woocommerce-cart-totals-block) {
+  position: sticky;
+  top: 2rem;
+}
+.wp-block-woocommerce-cart.is-style-compact-cart {
+  --wpds-commerce-gap: clamp(0.625rem, 1.4vw, 0.875rem);
+}
+.wp-block-woocommerce-cart.is-style-checkout-funnel :where(.wp-block-woocommerce-filled-cart-block) {
+  grid-template-columns: minmax(0, 0.62fr) minmax(18rem, 0.38fr);
+}
+.wp-block-woocommerce-cart.is-style-checkout-funnel :where(.wp-block-woocommerce-cart-totals-block) {
+  max-width: 34rem;
+  width: 100%;
+  justify-self: end;
+}
+.wp-block-woocommerce-cart.is-style-empty-state-spotlight :where(.wp-block-woocommerce-empty-cart-block) {
+  min-height: 22rem;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+.wp-block-woocommerce-cart.is-style-coupon-first :where(.wp-block-woocommerce-cart-order-summary-coupon-form-block) {
+  order: -1;
+}
+.wp-block-woocommerce-cart.is-style-coupon-first :where(.wp-block-woocommerce-filled-cart-block) {
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.36fr);
+}
+
+/* ============================================================
+   BLOCK: woocommerce/checkout
+   6 layout variants for Checkout.
+   Checkout styles are layout-only: themes own colors, typography,
+   borders, shadows, buttons, and form controls.
+   ============================================================ */
+.wp-block-woocommerce-checkout[class*="is-style-"] {
+  --wpds-commerce-gap: clamp(1rem, 2vw, 1.5rem);
+  display: grid;
+  gap: var(--wpds-commerce-gap);
+}
+.wp-block-woocommerce-checkout[class*="is-style-"] :where(.wp-block-woocommerce-checkout-fields-block, .wp-block-woocommerce-checkout-totals-block, .wp-block-woocommerce-checkout-order-summary-block) {
+  display: grid;
+  gap: var(--wpds-commerce-gap);
+  align-content: start;
+}
+.wp-block-woocommerce-checkout[class*="is-style-"] :where(.woodrobe-checkout-preview, .woodrobe-checkout-summary, .woodrobe-checkout-preview__section) {
+  display: grid;
+  gap: calc(var(--wpds-commerce-gap) * 0.75);
+}
+.wp-block-woocommerce-checkout[class*="is-style-"] :where(.woodrobe-checkout-preview__section > *) {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.wp-block-woocommerce-checkout.is-style-two-step-checkout {
+  grid-template-columns: minmax(0, 0.64fr) minmax(16rem, 0.36fr);
+}
+.wp-block-woocommerce-checkout.is-style-summary-sidebar {
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.34fr);
+}
+.wp-block-woocommerce-checkout.is-style-summary-sidebar :where(.wp-block-woocommerce-checkout-totals-block) {
+  position: sticky;
+  top: 2rem;
+}
+.wp-block-woocommerce-checkout.is-style-compact-checkout {
+  --wpds-commerce-gap: clamp(0.625rem, 1.4vw, 0.875rem);
+}
+.wp-block-woocommerce-checkout.is-style-express-first :where(.wp-block-woocommerce-checkout-express-payment-block) {
+  order: -2;
+}
+.wp-block-woocommerce-checkout.is-style-express-first :where(.wp-block-woocommerce-checkout-totals-block) {
+  order: -1;
+}
+.wp-block-woocommerce-checkout.is-style-details-ledger {
+  grid-template-columns: minmax(0, 0.58fr) minmax(18rem, 0.42fr);
+}
+.wp-block-woocommerce-checkout.is-style-details-ledger :where(.wp-block-woocommerce-checkout-order-summary-block) {
+  grid-auto-rows: min-content;
+}
+.wp-block-woocommerce-checkout.is-style-minimal-checkout {
+  max-width: 58rem;
+  margin-inline: auto;
+}
+
+/* ============================================================
+   BLOCK: woocommerce/mini-cart
+   6 layout variants for Mini Cart.
+   Mini Cart styles are layout-only: themes own colors, typography,
+   borders, shadows, badges, and buttons.
+   ============================================================ */
+.wp-block-woocommerce-mini-cart[class*="is-style-"] {
+  --wpds-commerce-gap: 0.625rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+.wp-block-woocommerce-mini-cart[class*="is-style-"] :where(.wc-block-mini-cart__button) {
+  display: inline-flex;
+  gap: var(--wpds-commerce-gap);
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+.wp-block-woocommerce-mini-cart.is-style-header-pill :where(.wc-block-mini-cart__button) {
+  padding-inline: 1em;
+  padding-block: 0.55em;
+}
+.wp-block-woocommerce-mini-cart.is-style-icon-badge :where(.wc-block-mini-cart__button) {
+  position: relative;
+  aspect-ratio: 1;
+  width: 3rem;
+  overflow: visible;
+}
+.wp-block-woocommerce-mini-cart.is-style-icon-badge :where(.wc-block-mini-cart__amount) {
+  display: none;
+}
+.wp-block-woocommerce-mini-cart.is-style-icon-badge :where(.wc-block-mini-cart__badge) {
+  position: absolute;
+  left: auto;
+  inset-block-start: 0.1rem;
+  inset-inline-end: -0.15rem;
+  margin-left: 0;
+  transform: translateY(-50%);
+}
+.wp-block-woocommerce-mini-cart.is-style-text-total :where(.wc-block-mini-cart__button) {
+  flex-direction: row-reverse;
+}
+.wp-block-woocommerce-mini-cart.is-style-utility-cluster :where(.wc-block-mini-cart__button) {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.wp-block-woocommerce-mini-cart.is-style-checkout-button :where(.wc-block-mini-cart__button) {
+  min-width: 10rem;
+  padding-inline: 1.25em;
+  padding-block: 0.7em;
+}
+.wp-block-woocommerce-mini-cart.is-style-drawer-launcher {
+  justify-self: end;
+}
+.wp-block-woocommerce-mini-cart.is-style-drawer-launcher :where(.wc-block-mini-cart__button) {
+  min-width: 12rem;
+  justify-content: space-between;
+}
+
+/* ============================================================
+   BLOCK: woocommerce/product-rating
+   6 layout variants for Product Rating.
+   Product Rating styles are layout-only: themes own star color,
+   typography, links, and surrounding surfaces.
+   ============================================================ */
+.wp-block-woocommerce-product-rating[class*="is-style-"] {
+  --wpds-commerce-gap: 0.625rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wpds-commerce-gap);
+  align-items: center;
+}
+.wp-block-woocommerce-product-rating[class*="is-style-"] :where(.wc-block-components-product-rating__stars) {
+  display: inline-flex;
+}
+.wp-block-woocommerce-product-rating.is-style-rating-row {
+  justify-content: flex-start;
+}
+.wp-block-woocommerce-product-rating.is-style-stars-first :where(.wc-block-components-product-rating__stars) {
+  order: -1;
+}
+.wp-block-woocommerce-product-rating.is-style-score-pill {
+  width: max-content;
+  max-width: 100%;
+  padding-inline: 0.75em;
+  padding-block: 0.45em;
+}
+.wp-block-woocommerce-product-rating.is-style-review-link-stack {
+  display: grid;
+  justify-items: start;
+}
+.wp-block-woocommerce-product-rating.is-style-trust-inline {
+  justify-content: space-between;
+  width: 100%;
+}
+.wp-block-woocommerce-product-rating.is-style-compact-stars {
+  --wpds-commerce-gap: 0.35rem;
+  width: max-content;
+  max-width: 100%;
+}
+
+/* ============================================================
+   BLOCK: woocommerce/customer-account
+   6 layout variants for Customer Account.
+   Customer Account styles are layout-only: themes own icon color,
+   typography, links, borders, and dropdown surfaces.
+   ============================================================ */
+.wp-block-woocommerce-customer-account[class*="is-style-"] {
+  --wpds-commerce-gap: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}
+.wp-block-woocommerce-customer-account[class*="is-style-"] :where(.wc-block-customer-account__link) {
+  display: inline-flex;
+  gap: var(--wpds-commerce-gap);
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+.wp-block-woocommerce-customer-account.is-style-account-pill :where(.wc-block-customer-account__link) {
+  padding-inline: 1em;
+  padding-block: 0.55em;
+}
+.wp-block-woocommerce-customer-account.is-style-icon-only-entry :where(.wc-block-customer-account__link) {
+  aspect-ratio: 1;
+  width: 3rem;
+}
+.wp-block-woocommerce-customer-account.is-style-text-link-entry :where(.wc-block-customer-account__link) {
+  padding-inline: 0;
+}
+.wp-block-woocommerce-customer-account.is-style-split-login :where(.wc-block-customer-account__link) {
+  justify-content: space-between;
+  min-width: 12rem;
+}
+.wp-block-woocommerce-customer-account.is-style-compact-badge :where(.wc-block-customer-account__link) {
+  aspect-ratio: 1;
+  width: 2.5rem;
+  padding: 0;
+}
+.wp-block-woocommerce-customer-account.is-style-nav-utility :where(.wc-block-customer-account__link) {
+  min-width: 9rem;
+  justify-content: flex-end;
+}
+
+/* ============================================================
+   BLOCK: woocommerce/store-notices
+   6 layout variants for Store Notices.
+   Store Notices styles are layout-only: themes own notice colors,
+   typography, icons, borders, and buttons.
+   ============================================================ */
+.wp-block-woocommerce-store-notices[class*="is-style-"] {
+  --wpds-commerce-gap: 0.875rem;
+  display: grid;
+  gap: var(--wpds-commerce-gap);
+}
+.wp-block-woocommerce-store-notices[class*="is-style-"] :where(.woocommerce-message, .woocommerce-info, .woocommerce-error) {
+  display: grid;
+  gap: var(--wpds-commerce-gap);
+  align-items: center;
+}
+.wp-block-woocommerce-store-notices.is-style-notice-stack :where(.woocommerce-message, .woocommerce-info, .woocommerce-error) {
+  grid-template-columns: 1fr;
+}
+.wp-block-woocommerce-store-notices.is-style-inline-alert :where(.woocommerce-message, .woocommerce-info, .woocommerce-error) {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+.wp-block-woocommerce-store-notices.is-style-toast-rail {
+  max-width: 28rem;
+  margin-inline-start: auto;
+}
+.wp-block-woocommerce-store-notices.is-style-banner-notice {
+  max-width: none;
+  width: 100%;
+}
+.wp-block-woocommerce-store-notices.is-style-compact-notice {
+  --wpds-commerce-gap: 0.5rem;
+}
+.wp-block-woocommerce-store-notices.is-style-split-notice :where(.woocommerce-message, .woocommerce-info, .woocommerce-error) {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+}
+
+.woodrobe-cart-preview-shell,
+.woodrobe-checkout-preview-shell,
+.woodrobe-utility-preview,
+.woodrobe-rating-preview {
+  --wpds-commerce-surface: var(--wp--preset--color--base, #fff);
+  --wpds-commerce-ink: var(--wp--preset--color--contrast, #111);
+  --wpds-commerce-line: color-mix(in srgb, var(--wpds-commerce-ink) 14%, var(--wpds-commerce-surface));
+  --wpds-commerce-soft: color-mix(in srgb, var(--wpds-commerce-ink) 4%, var(--wpds-commerce-surface));
+  --wpds-commerce-muted: color-mix(in srgb, var(--wpds-commerce-ink) 62%, var(--wpds-commerce-surface));
+}
+.woodrobe-cart-preview-shell :where(.woodrobe-cart-preview, .wp-block-woocommerce-cart-totals-block),
+.woodrobe-checkout-preview-shell :where(.wp-block-woocommerce-checkout-express-payment-block, .woodrobe-checkout-preview__section, .woodrobe-checkout-summary) {
+  border: 1px solid var(--wpds-commerce-line);
+  border-radius: 8px;
+  background: var(--wpds-commerce-surface);
+  padding: clamp(0.875rem, 2vw, 1rem);
+}
+.woodrobe-cart-preview-shell :where(.woodrobe-cart-preview__row) {
+  grid-template-columns: clamp(3.25rem, 8vw, 4.5rem) minmax(0, 1fr) auto;
+  padding-block: 0.75rem;
+  border-block-end: 1px solid var(--wpds-commerce-line);
+}
+.woodrobe-cart-preview-shell :where(.woodrobe-cart-preview__row:first-child) {
+  padding-block-start: 0;
+}
+.woodrobe-cart-preview-shell :where(.woodrobe-cart-preview__row:last-child) {
+  padding-block-end: 0;
+  border-block-end: 0;
+}
+.woodrobe-cart-preview-shell :where(.woodrobe-cart-preview__media) {
+  border-radius: 6px;
+  background:
+    linear-gradient(135deg, transparent 43%, var(--wpds-commerce-surface) 44% 56%, transparent 57%),
+    var(--wpds-commerce-soft);
+  border: 1px solid var(--wpds-commerce-line);
+}
+.woodrobe-cart-preview-shell :where(.woodrobe-cart-preview__item) {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+.woodrobe-cart-preview-shell :where(.woodrobe-cart-preview__item small) {
+  color: var(--wpds-commerce-muted);
+  font-size: 0.85em;
+}
+.woodrobe-cart-preview-shell :where(.woodrobe-cart-preview__price) {
+  font-weight: 650;
+  white-space: nowrap;
+}
+.woodrobe-cart-preview-shell :where(.wp-block-woocommerce-cart-totals-block) {
+  align-content: start;
+}
+.woodrobe-cart-preview-shell :where(.woodrobe-cart-summary__row, .wp-block-woocommerce-cart-order-summary-coupon-form-block) {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+.woodrobe-cart-preview-shell :where(.woodrobe-cart-summary__row) {
+  padding-block: 0.45rem;
+  border-block-end: 1px solid var(--wpds-commerce-line);
+}
+.woodrobe-cart-preview-shell :where(.woodrobe-cart-summary__row:first-child) {
+  padding-block-start: 0;
+}
+.woodrobe-cart-preview-shell :where(.woodrobe-cart-summary__row--total) {
+  border-block-end: 0;
+}
+.woodrobe-cart-preview-shell :where(.wp-block-woocommerce-cart-order-summary-coupon-form-block) {
+  border: 1px dashed var(--wpds-commerce-line);
+  border-radius: 6px;
+  padding: 0.7rem;
+  color: var(--wpds-commerce-muted);
+}
+.woodrobe-cart-preview-shell :where(.wp-block-woocommerce-cart-order-summary-coupon-form-block span[aria-hidden="true"]) {
+  min-width: min(9rem, 45%);
+  min-height: 2rem;
+  border-radius: 999px;
+  background: var(--wpds-commerce-soft);
+}
+.woodrobe-cart-preview-shell :where(.woodrobe-cart-empty-preview) {
+  display: grid;
+  gap: 0.85rem;
+  justify-items: center;
+  max-width: 34rem;
+  margin-inline: auto;
+  text-align: center;
+}
+.woodrobe-cart-preview-shell :where(.woodrobe-cart-empty-preview > span[aria-hidden="true"]) {
+  width: clamp(4rem, 9vw, 5.5rem);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background:
+    linear-gradient(135deg, transparent 43%, var(--wpds-commerce-surface) 44% 56%, transparent 57%),
+    var(--wpds-commerce-soft);
+  border: 1px solid var(--wpds-commerce-line);
+}
+.woodrobe-cart-preview-shell :where(.woodrobe-cart-empty-preview small) {
+  color: var(--wpds-commerce-muted);
+}
+.woodrobe-checkout-preview-shell :where(.wp-block-woocommerce-checkout-express-payment-block) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(7rem, 0.4fr);
+  gap: 0.75rem;
+  align-items: center;
+}
+.woodrobe-checkout-preview-shell :where(.wp-block-woocommerce-checkout-express-payment-block span[aria-hidden="true"]) {
+  min-height: 2.25rem;
+  border-radius: 999px;
+  background: var(--wpds-commerce-soft);
+}
+.woodrobe-checkout-preview-shell :where(.woodrobe-checkout-preview__section) {
+  align-content: start;
+}
+.woodrobe-checkout-preview-shell :where(.woodrobe-checkout-preview__heading) {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+}
+.woodrobe-checkout-preview-shell :where(.woodrobe-checkout-preview__heading span) {
+  display: inline-grid;
+  width: 1.65rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--wpds-commerce-soft);
+  color: var(--wpds-commerce-muted);
+  font-size: 0.78em;
+  font-weight: 700;
+}
+.woodrobe-checkout-preview-shell :where(.woodrobe-checkout-preview__heading h4) {
+  margin: 0;
+}
+.woodrobe-checkout-preview-shell :where(.woodrobe-checkout-summary__title) {
+  font-weight: 700;
+}
+.woodrobe-checkout-preview-shell :where(.woodrobe-checkout-summary__row) {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.55rem;
+  border-block-end: 1px solid var(--wpds-commerce-line);
+}
+.woodrobe-checkout-preview-shell :where(.woodrobe-checkout-summary__row--total) {
+  border-block-end: 0;
+}
+.woodrobe-utility-preview {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: clamp(0.75rem, 2vw, 1rem);
+  align-items: center;
+  min-height: 5rem;
+  padding: clamp(0.875rem, 2vw, 1rem);
+  overflow: visible;
+  border: 1px solid var(--wpds-commerce-line);
+  border-radius: 8px;
+  background: var(--wpds-commerce-surface);
+}
+.woodrobe-utility-preview__brand {
+  font-weight: 700;
+}
+.woodrobe-utility-preview__nav {
+  display: flex;
+  gap: 0.45rem;
+  justify-content: flex-end;
+  min-width: 0;
+}
+.woodrobe-utility-preview__nav span {
+  width: clamp(1.5rem, 4vw, 3rem);
+  height: 0.45rem;
+  border-radius: 999px;
+  background: var(--wpds-commerce-soft);
+}
+.woodrobe-utility-preview :where(.wp-block-woocommerce-mini-cart, .wp-block-woocommerce-customer-account) {
+  justify-self: end;
+}
+.woodrobe-utility-preview--mini-cart :where(.wp-block-woocommerce-mini-cart, .wc-block-mini-cart__button, .wc-block-mini-cart__quantity-badge) {
+  overflow: visible;
+}
+.woodrobe-utility-preview--mini-cart :where(.wp-block-woocommerce-mini-cart.is-style-icon-badge) {
+  margin-inline-end: 0.55rem;
+}
+.woodrobe-rating-preview {
+  display: grid;
+  gap: 0.875rem;
+  padding: clamp(0.875rem, 2vw, 1rem);
+  border: 1px solid var(--wpds-commerce-line);
+  border-radius: 8px;
+  background: var(--wpds-commerce-surface);
+}
+.woodrobe-rating-preview__context {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  justify-content: space-between;
+  color: var(--wpds-commerce-muted);
+}
+.woodrobe-rating-preview__context strong {
+  color: var(--wpds-commerce-ink);
+}
+.wp-block-woocommerce-product-rating[class*="is-style-"] :where(.wc-block-components-product-rating__container) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wpds-commerce-gap);
+  align-items: center;
+}
+.wp-block-woocommerce-product-rating.is-style-review-link-stack :where(.wc-block-components-product-rating__container) {
+  display: grid;
+  justify-items: start;
+}
+.wp-block-woocommerce-product-rating.is-style-trust-inline :where(.wc-block-components-product-rating__container) {
+  width: 100%;
+  justify-content: space-between;
+}
+.wp-block-woocommerce-product-rating.is-style-compact-stars :where(.wc-block-components-product-rating__container) {
+  gap: 0.35rem;
+}
+
+@media (min-width: 1100px) {
+  .woodrobe-showcase__card--style-marquee-strip,
+  .woodrobe-showcase__card--style-two-up-wide,
+  .woodrobe-showcase__card--style-five-column-dense,
+  .woodrobe-showcase__card--style-info-beside-image,
+  .woodrobe-showcase__card--style-info-overlay,
+  .woodrobe-showcase__card--style-feature-and-supporting,
+  .woodrobe-showcase__card--cart,
+  .woodrobe-showcase__card--checkout {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 900px) {
+  .wp-block-woocommerce-cart.is-style-two-column-cart :where(.wp-block-woocommerce-filled-cart-block),
+  .wp-block-woocommerce-cart.is-style-summary-rail :where(.wp-block-woocommerce-filled-cart-block),
+  .wp-block-woocommerce-cart.is-style-checkout-funnel :where(.wp-block-woocommerce-filled-cart-block),
+  .wp-block-woocommerce-cart.is-style-coupon-first :where(.wp-block-woocommerce-filled-cart-block),
+  .wp-block-woocommerce-checkout.is-style-two-step-checkout,
+  .wp-block-woocommerce-checkout.is-style-summary-sidebar,
+  .wp-block-woocommerce-checkout.is-style-details-ledger {
+    grid-template-columns: 1fr;
+  }
+  .wp-block-woocommerce-cart.is-style-summary-rail :where(.wp-block-woocommerce-cart-totals-block),
+  .wp-block-woocommerce-checkout.is-style-summary-sidebar :where(.wp-block-woocommerce-checkout-totals-block) {
+    position: static;
+  }
+}
+
+@media (max-width: 560px) {
+  .wp-block-woocommerce-store-notices.is-style-inline-alert :where(.woocommerce-message, .woocommerce-info, .woocommerce-error),
+  .wp-block-woocommerce-store-notices.is-style-split-notice :where(.woocommerce-message, .woocommerce-info, .woocommerce-error) {
+    grid-template-columns: 1fr;
+  }
+  .wp-block-woocommerce-mini-cart.is-style-drawer-launcher :where(.wc-block-mini-cart__button),
+  .wp-block-woocommerce-customer-account.is-style-split-login :where(.wc-block-customer-account__link) {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+/* ============================================================
    Playground Demo Homepage
    Markup is created by blueprint.json; styles live here so WP
    does not strip <style> tags and print CSS as page text.
@@ -1706,7 +3324,7 @@
   --wds-accent: #a8562d;
   max-width: 1120px;
   margin: 0 auto;
-  padding: clamp(24px, 5vw, 64px) 0;
+  padding: clamp(12px, 3vw, 36px) 0 clamp(32px, 5vw, 64px);
   color: var(--wds-ink);
 }
 .woodrobe-demo-home__intro {
@@ -1780,6 +3398,19 @@
   color: var(--wds-muted);
 }
 
+body:has(.woodrobe-demo-home, .woodrobe-showcase) .wp-site-blocks > main.wp-block-group {
+  margin-top: clamp(24px, 4vw, 48px) !important;
+}
+body:has(.woodrobe-demo-home) .wp-block-post-title {
+  display: none;
+}
+body:has(.woodrobe-demo-home, .woodrobe-showcase) .wp-site-blocks > main.wp-block-group > .wp-block-group.alignfull {
+  padding-top: clamp(28px, 5vw, 56px) !important;
+}
+body:has(.woodrobe-demo-home) .wp-site-blocks > main.wp-block-group > .wp-block-group.alignfull {
+  padding-top: clamp(16px, 3vw, 32px) !important;
+}
+
 /* ============================================================
    WOOdrobe Showcase
    Front-end block + wp-admin preview gallery.
@@ -1796,7 +3427,7 @@
 }
 .woodrobe-showcase__header {
   max-width: 760px;
-  margin-block-end: 24px;
+  margin-block-end: clamp(22px, 4vw, 34px);
 }
 .woodrobe-showcase__title {
   margin: 0;
@@ -1811,7 +3442,7 @@
 .woodrobe-showcase__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 520px), 1fr));
-  gap: 22px;
+  gap: clamp(18px, 3vw, 30px);
   align-items: start;
 }
 .woodrobe-showcase__card {
@@ -1819,15 +3450,25 @@
   background: var(--woodrobe-showcase-surface);
   border: 1px solid var(--woodrobe-showcase-line);
   border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 12px 30px -24px rgba(0,0,0,.32);
+  padding: clamp(16px, 2.2vw, 22px);
+  box-shadow: 0 18px 44px -34px rgba(0,0,0,.34);
 }
 .woodrobe-showcase__card-title {
+  display: flex;
+  gap: 10px;
+  align-items: center;
   margin: 0 0 12px;
   font: 650 13px/1.2 var(--wpds-sans, var(--wp--preset--font-family--body, system-ui, sans-serif));
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: color-mix(in srgb, var(--woodrobe-showcase-ink) 68%, var(--woodrobe-showcase-surface));
+}
+.woodrobe-showcase__card-title::after {
+  content: "";
+  flex: 1 1 auto;
+  min-width: 2rem;
+  height: 1px;
+  background: var(--woodrobe-showcase-line);
 }
 .woodrobe-showcase__notice {
   margin: 0;
