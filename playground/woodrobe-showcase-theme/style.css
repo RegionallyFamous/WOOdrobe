@@ -5,7 +5,7 @@ Description: A polished Twenty Twenty-Five child theme for the WOOdrobe Playgrou
 Author: Regionally Famous
 Author URI: https://regionallyfamous.com
 Template: twentytwentyfive
-Version: 1.0.0
+Version: 1.0.1
 Requires at least: 6.7
 Tested up to: 6.9
 Requires PHP: 7.4
@@ -101,10 +101,13 @@ body:has(.woodrobe-demo-home, .woodrobe-showcase) .wp-site-blocks > main.wp-bloc
 }
 
 .woodrobe-demo-home {
-  max-width: 1180px;
+  width: min(100%, 1680px);
+  max-width: min(100%, 1680px);
+  max-width: min(100%, 1680px) !important;
+  margin-inline: auto;
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: clamp(28px, 5vw, 72px);
+  grid-template-columns: minmax(360px, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(32px, 5vw, 76px);
   align-items: start;
   padding-block: clamp(12px, 3vw, 28px) clamp(44px, 7vw, 92px);
 }
@@ -142,7 +145,7 @@ body:has(.woodrobe-demo-home, .woodrobe-showcase) .wp-site-blocks > main.wp-bloc
 
 .woodrobe-demo-card {
   position: relative;
-  min-height: clamp(170px, 18vw, 220px);
+  min-height: clamp(178px, 14vw, 250px);
   overflow: hidden;
   border-color: var(--wds-theme-line);
   background:
@@ -168,7 +171,7 @@ body:has(.woodrobe-demo-home, .woodrobe-showcase) .wp-site-blocks > main.wp-bloc
 }
 
 .woodrobe-demo-card strong {
-  max-width: 11ch;
+  max-width: 14ch;
   letter-spacing: -0.035em;
 }
 
@@ -184,7 +187,9 @@ body:has(.woodrobe-demo-home, .woodrobe-showcase) .wp-site-blocks > main.wp-bloc
 }
 
 .woodrobe-showcase {
-  max-width: min(100%, 1280px);
+  width: min(100%, 1680px);
+  max-width: min(100%, 1680px);
+  max-width: min(100%, 1680px) !important;
   margin-inline: auto;
 }
 
