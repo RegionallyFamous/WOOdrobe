@@ -2,7 +2,7 @@
   "$schema": "https://playground.wordpress.net/blueprint-schema.json",
   "meta": {
     "title": "WOOdrobe — try the styles",
-    "description": "A fresh WordPress + WooCommerce site with WOOdrobe pre-installed, a homepage linking to every showcase page, and the Wonders & Oddities sample catalog.",
+    "description": "A fresh WordPress + WooCommerce site with WOOdrobe pre-installed, a custom Twenty Twenty-Five child theme, a homepage linking to every showcase page, and the Wonders & Oddities sample catalog.",
     "author": "Regionally Famous"
   },
   "preferredVersions": {
@@ -52,6 +52,32 @@
       },
       "options": {
         "activate": true
+      }
+    },
+    {
+      "step": "installTheme",
+      "themeData": {
+        "resource": "wordpress.org/themes",
+        "slug": "twentytwentyfive"
+      },
+      "ifAlreadyInstalled": "skip",
+      "options": {
+        "activate": false
+      }
+    },
+    {
+      "step": "installTheme",
+      "themeData": {
+        "resource": "git:directory",
+        "url": "https://github.com/RegionallyFamous/WOOdrobe",
+        "ref": "main",
+        "refType": "branch",
+        "path": "/playground/woodrobe-showcase-theme"
+      },
+      "ifAlreadyInstalled": "overwrite",
+      "options": {
+        "activate": true,
+        "targetFolderName": "woodrobe-showcase"
       }
     },
     {

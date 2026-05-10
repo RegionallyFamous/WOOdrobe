@@ -1,0 +1,245 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "useRootPaddingAwareAlignments": true,
+    "layout": {
+      "contentSize": "760px",
+      "wideSize": "1280px"
+    },
+    "color": {
+      "palette": [
+        {
+          "name": "Paper",
+          "slug": "paper",
+          "color": "#fffdf7"
+        },
+        {
+          "name": "Surface",
+          "slug": "surface",
+          "color": "#ffffff"
+        },
+        {
+          "name": "Ink",
+          "slug": "ink",
+          "color": "#11110f"
+        },
+        {
+          "name": "Muted",
+          "slug": "muted",
+          "color": "#62635f"
+        },
+        {
+          "name": "Coral",
+          "slug": "coral",
+          "color": "#ef5a3c"
+        },
+        {
+          "name": "Teal",
+          "slug": "teal",
+          "color": "#0f8a83"
+        },
+        {
+          "name": "Lime",
+          "slug": "lime",
+          "color": "#c6f04a"
+        },
+        {
+          "name": "Blue",
+          "slug": "blue",
+          "color": "#3346ff"
+        },
+        {
+          "name": "Pink",
+          "slug": "pink",
+          "color": "#f4b7cf"
+        }
+      ]
+    },
+    "typography": {
+      "fluid": true,
+      "fontFamilies": [
+        {
+          "name": "Display",
+          "slug": "display",
+          "fontFamily": "Georgia, 'Times New Roman', serif"
+        },
+        {
+          "name": "Body",
+          "slug": "body",
+          "fontFamily": "Manrope, Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        },
+        {
+          "name": "Mono",
+          "slug": "mono",
+          "fontFamily": "'Fira Code', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        }
+      ],
+      "fontSizes": [
+        {
+          "name": "Small",
+          "slug": "small",
+          "size": "0.875rem"
+        },
+        {
+          "name": "Medium",
+          "slug": "medium",
+          "size": "1rem"
+        },
+        {
+          "name": "Large",
+          "slug": "large",
+          "size": "1.35rem"
+        },
+        {
+          "name": "XL",
+          "slug": "x-large",
+          "size": "2.1rem"
+        },
+        {
+          "name": "Huge",
+          "slug": "huge",
+          "size": "4.8rem"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingScale": {
+        "steps": 0
+      },
+      "spacingSizes": [
+        {
+          "name": "2XS",
+          "slug": "20",
+          "size": "0.5rem"
+        },
+        {
+          "name": "XS",
+          "slug": "30",
+          "size": "0.875rem"
+        },
+        {
+          "name": "S",
+          "slug": "40",
+          "size": "1.25rem"
+        },
+        {
+          "name": "M",
+          "slug": "50",
+          "size": "clamp(1.5rem, 3vw, 2.5rem)"
+        },
+        {
+          "name": "L",
+          "slug": "60",
+          "size": "clamp(2.5rem, 6vw, 5rem)"
+        },
+        {
+          "name": "XL",
+          "slug": "70",
+          "size": "clamp(4rem, 9vw, 8rem)"
+        }
+      ]
+    },
+    "border": {
+      "radius": true
+    },
+    "shadow": {
+      "presets": [
+        {
+          "name": "Soft Lift",
+          "slug": "soft-lift",
+          "shadow": "0 26px 70px -54px rgba(17, 17, 15, 0.64)"
+        },
+        {
+          "name": "Sharp",
+          "slug": "sharp",
+          "shadow": "6px 6px 0 #11110f"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var:preset|color|paper",
+      "text": "var:preset|color|ink"
+    },
+    "spacing": {
+      "blockGap": "var:preset|spacing|40",
+      "padding": {
+        "right": "var:preset|spacing|50",
+        "left": "var:preset|spacing|50"
+      }
+    },
+    "typography": {
+      "fontFamily": "var:preset|font-family|body",
+      "fontSize": "var:preset|font-size|medium",
+      "fontWeight": "420",
+      "lineHeight": "1.45"
+    },
+    "elements": {
+      "button": {
+        "border": {
+          "radius": "999px"
+        },
+        "color": {
+          "background": "var:preset|color|ink",
+          "text": "var:preset|color|paper"
+        },
+        "spacing": {
+          "padding": {
+            "top": "0.9rem",
+            "right": "1.4rem",
+            "bottom": "0.9rem",
+            "left": "1.4rem"
+          }
+        },
+        "typography": {
+          "fontWeight": "720"
+        }
+      },
+      "heading": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|display",
+          "fontWeight": "620",
+          "letterSpacing": "0",
+          "lineHeight": "1"
+        }
+      },
+      "link": {
+        "color": {
+          "text": "var:preset|color|ink"
+        },
+        "typography": {
+          "textDecoration": "underline"
+        }
+      }
+    },
+    "blocks": {
+      "core/site-title": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|body",
+          "fontWeight": "850",
+          "letterSpacing": "0",
+          "lineHeight": "0.92"
+        }
+      },
+      "core/navigation": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|body",
+          "fontWeight": "690"
+        }
+      },
+      "core/post-title": {
+        "typography": {
+          "fontSize": "var:preset|font-size|huge"
+        }
+      },
+      "woocommerce/product-button": {
+        "typography": {
+          "fontWeight": "720"
+        }
+      }
+    }
+  }
+}
