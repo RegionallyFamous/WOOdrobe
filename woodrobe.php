@@ -1490,17 +1490,27 @@ function woodrobe_render_mini_cart_showcase_cards( $styles, $sample_items, $forc
  */
 function woodrobe_showcase_product_rating_block_markup( $slug, $product_id ) {
 	$style_class  = 'is-style-' . sanitize_html_class( $slug );
+	$slug_class   = sanitize_html_class( $slug );
 	$single_attrs = array( 'productId' => $product_id );
 	$rating_attrs = array(
 		'className'                        => $style_class,
 		'isDescendentOfSingleProductBlock' => true,
 		'productId'                        => $product_id,
 	);
+	$context      = array(
+		'rating-row'        => __( 'Verified buyer score', 'woodrobe' ),
+		'stars-first'       => __( 'Loved by collectors', 'woodrobe' ),
+		'score-pill'        => __( 'Average score', 'woodrobe' ),
+		'review-link-stack' => __( 'Read the field notes', 'woodrobe' ),
+		'trust-inline'      => __( 'Trusted product signal', 'woodrobe' ),
+		'compact-stars'     => __( 'Quick proof', 'woodrobe' ),
+	);
 
 	return '<!-- wp:woocommerce/single-product ' . wp_json_encode( $single_attrs ) . ' -->'
 		. '<div class="wp-block-woocommerce-single-product">'
-		. '<div class="woodrobe-rating-preview">'
-		. '<div class="woodrobe-rating-preview__context"><strong>' . esc_html__( 'Spare Key to Nowhere', 'woodrobe' ) . '</strong><span>' . esc_html__( 'Customer sentiment', 'woodrobe' ) . '</span></div>'
+		. '<div class="woodrobe-rating-preview woodrobe-rating-preview--' . esc_attr( $slug_class ) . '">'
+		. '<div class="woodrobe-rating-preview__context"><strong>' . esc_html__( 'Spare Key to Nowhere', 'woodrobe' ) . '</strong><span>' . esc_html( $context[ $slug ] ?? __( 'Customer sentiment', 'woodrobe' ) ) . '</span></div>'
+		. '<span class="woodrobe-rating-preview__score" aria-hidden="true">4.8</span>'
 		. '<!-- wp:woocommerce/product-rating ' . wp_json_encode( $rating_attrs ) . ' /-->'
 		. '</div>'
 		. '</div>'
@@ -1609,7 +1619,9 @@ function woodrobe_showcase_store_notices_block_markup( $slug ) {
 	$style_class = 'is-style-' . sanitize_html_class( $slug );
 	$attrs       = array( 'className' => $style_class );
 
-	return '<!-- wp:woocommerce/store-notices ' . wp_json_encode( $attrs ) . ' /-->';
+	return '<div class="woodrobe-notice-preview woodrobe-notice-preview--' . esc_attr( sanitize_html_class( $slug ) ) . '">'
+		. '<!-- wp:woocommerce/store-notices ' . wp_json_encode( $attrs ) . ' /-->'
+		. '</div>';
 }
 
 /**
@@ -1624,26 +1636,50 @@ function woodrobe_showcase_store_notices_block_markup( $slug ) {
 function woodrobe_render_store_notices_showcase_cards( $styles, $sample_items, $force_open_styles, $instance_id ) {
 	unset( $sample_items, $force_open_styles, $instance_id );
 
-	$notice_types = array( 'success', 'notice', 'error' );
-
 	ob_start();
 
 	foreach ( $styles as $index => $style ) :
 		$slug  = $style['slug'];
 		$label = $style['label'];
-
-		if ( function_exists( 'wc_clear_notices' ) ) {
-			wc_clear_notices();
-		}
-		if ( function_exists( 'wc_add_notice' ) ) {
-			wc_add_notice(
+		$notice_variants = array(
+			'notice-stack'   => array(
+				array( 'success', __( 'Order sample added to the bag.', 'woodrobe' ) ),
+				array( 'notice', __( 'Free shipping unlocks after one more oddity.', 'woodrobe' ) ),
+			),
+			'inline-alert'   => array(
+				array( 'notice', __( 'Inline alert keeps the message in the shopping flow.', 'woodrobe' ) ),
+			),
+			'toast-rail'     => array(
+				array( 'error', __( 'Toast rail pins the alert to the edge of the viewport.', 'woodrobe' ) ),
+			),
+			'banner-notice'  => array(
+				array( 'success', __( 'Banner notice stretches across the whole store surface.', 'woodrobe' ) ),
+			),
+			'compact-notice' => array(
+				array( 'notice', __( 'Compact notice. Small, fast, visible.', 'woodrobe' ) ),
+			),
+			'split-notice'   => array(
+				array( 'error', __( 'Split notice separates message and action areas.', 'woodrobe' ) ),
+			),
+		);
+		$notices = $notice_variants[ $slug ] ?? array(
+			array(
+				0 === $index % 3 ? 'success' : ( 1 === $index % 3 ? 'notice' : 'error' ),
 				sprintf(
 					/* translators: %s: store notice style label. */
 					__( '%s preview notice. This is live WooCommerce notice markup using the selected WOOdrobe layout.', 'woodrobe' ),
 					$label
 				),
-				$notice_types[ $index % count( $notice_types ) ]
-			);
+			),
+		);
+
+		if ( function_exists( 'wc_clear_notices' ) ) {
+			wc_clear_notices();
+		}
+		if ( function_exists( 'wc_add_notice' ) ) {
+			foreach ( $notices as $notice ) {
+				wc_add_notice( $notice[1], $notice[0] );
+			}
 		}
 
 		$rendered = woodrobe_render_showcase_block_markup( woodrobe_showcase_store_notices_block_markup( $slug ) );
